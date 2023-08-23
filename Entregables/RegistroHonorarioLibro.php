@@ -21,20 +21,20 @@ $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en l
   {
 $consulta3 = "INSERT INTO `a_trabajo`.`libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
 `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`) 
-VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '1',
+VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '125',
  NULL, NULL, 'Boleta ".$columna['PK']." Honorarios', '".$columna['Bruto']."', NULL,'".$columna['PK']."', '4');";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 if($columna['Pagado']>0){
 $consulta3 = "INSERT INTO `a_trabajo`.`libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
 `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`) 
-VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '1',
+VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '66',
  NULL, NULL, 'Boleta ".$columna['PK']." Honorarios Por Pagar', NULL, '".$columna['Pagado']."','".$columna['PK']."', '4');";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 }
 if($columna['Retenido']>0){
 $consulta3 = "INSERT INTO `a_trabajo`.`libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
 `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`) 
-VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '1',
+VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['PK']."', '74',
  NULL, NULL, 'Boleta ".$columna['PK']." Honorarios Retenidos', NULL, '".$columna['Retenido']."','".$columna['PK']."', '4');";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
      }
