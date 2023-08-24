@@ -86,16 +86,12 @@ $arr = explode('/',$decoded_json[$a][ 'ticket_honoraries' ][$b]['date']);
 $fecha_y_m_d = $arr[2].'-'.$arr[1].'-'.$arr[0];
 echo $fecha_y_m_d;
 $pk_empres = -1;
-$consulta = "SELECT * FROM `usuario` WHERE `PK` = ".$PKempresa;
-$resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
-$columna = mysqli_fetch_array( $resultado );
-$pk_empres = $columna['Empresa_pk'];
 $bruto = str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['gross']);
 $retenido = str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['detained']);
 $pagado = str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['paid_out']);
 // $consulta3 = "CALL `RegistroHonorarios`($pk_empres,$cfg[$fecha_y_m_d]['DateFormat'],$pk_estadoh,$pk_emisor,$bruto,$retenido,$pagado)";
-$consulta3 =  "INSERT INTO honorarios(PK,empresa_pk ,Fecha ,Estado,FechaAnulacion  ,Emisor  ,Bruto ,Retenido   ,Pagado) 
-VALUES ('0','".$pk_empres."','".$fecha_y_m_d ."', '".$pk_estadoh."',NULL,'".$pk_emisor ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['gross']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['detained']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['paid_out']) ."')";
+$consulta3 =  "INSERT INTO `honorarios`(`PK`, `PK_Usuario`, `Fecha`, `Estado`, `FechaAnulacion`, `Emisor`, `Bruto`, `Retenido`, `Pagado` )
+VALUES ('0','".$PKempresa."','".$fecha_y_m_d ."', '".$pk_estadoh."',NULL,'".$pk_emisor ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['gross']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['detained']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['paid_out']) ."')";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 
 echo "<a>registrado</a>";

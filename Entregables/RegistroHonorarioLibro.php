@@ -13,7 +13,7 @@ $db = mysqli_select_db( $conexion, $basededatos ) or die ( "Upps! Pues va a ser 
 
 $boolean= TRUE; //no existe
 $pk_tipoempresa = -1;
-$consulta = "SELECT * FROM `honorarios`"; //1 es Venta 2 es Compra
+$consulta = "SELECT * FROM `honorarios` WHERE `PK_Usuario`=$PKempresa"; //1 es Venta 2 es Compra
 $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
 // $columna = mysqli_fetch_array( $resultado );
 

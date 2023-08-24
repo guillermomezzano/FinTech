@@ -1,4 +1,5 @@
 <?php //se necesita https://github.com/PHPOffice/PHPExcel
+//la carpeta descargada debe colocarse dentro de la carpeta donde este este programa
 require_once 'PHPExcel-1.8/Classes/PHPExcel.php';
 $archivo = "Carga Masiva REM y ejemplo.xlsx";
 $inputFileType = PHPExcel_IOFactory::identify($archivo);
@@ -6,7 +7,7 @@ $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 $objPHPExcel = $objReader->load($archivo);
 $sheet = $objPHPExcel->getSheet(1); 
 $highestRow = $sheet->getHighestRow(); 
-$highestColumn = $sheet->getHighestColumn();
+$highestColumn = $sheet->getHighestColumn(); //no se usa pero para tenerlo en cuenta si es necesario
 
 $data = file_get_contents("key.json");
 $key = json_decode($data, true);

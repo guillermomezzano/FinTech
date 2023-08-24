@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-06-2023 a las 21:45:52
+-- Tiempo de generación: 25-08-2023 a las 01:15:55
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -19,6 +19,45 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `a_trabajo`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LibroDiario`(IN `PK` INT, IN `m` INT, IN `y` INT)
+    READS SQL DATA
+SELECT * FROM `libro` WHERE `FK_empresacliente` = PK AND MONTH(`FECHA`) = m AND YEAR(`FECHA`) = y$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `LibroMayor`(IN `id` INT, IN `pk` INT)
+    READS SQL DATA
+SELECT * FROM `libro` WHERE `CUENTA` = id AND `FK_empresacliente` = pk$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistroHonorarios`(IN `PK` INT, IN `fecha` DATE, IN `esthonor` INT, IN `emisor` INT, IN `bruto` INT, IN `reten` INT, IN `pagado` INT)
+    MODIFIES SQL DATA
+BEGIN
+    INSERT INTO honorarios(PK,empresa_pk ,Fecha ,Estado,FechaAnulacion  ,Emisor  ,Bruto ,Retenido   ,Pagado) 
+VALUES ('0',PK,fecha, esthonor,NULL,emisor,bruto,reten,pagado);
+END$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `afp`
+--
+
+CREATE TABLE IF NOT EXISTS `afp` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `afp`
+--
+
+INSERT INTO `afp` (`PK`, `Nombre`) VALUES
+(1, 'prueba');
 
 -- --------------------------------------------------------
 
@@ -42,11 +81,33 @@ INSERT INTO `archivo` (`PK`, `Nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `bancos`
+--
+
+CREATE TABLE IF NOT EXISTS `bancos` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `centrocostos`
+--
+
+CREATE TABLE IF NOT EXISTS `centrocostos` (
+  `PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `codigosdocumentos`
 --
 
 CREATE TABLE IF NOT EXISTS `codigosdocumentos` (
-`id` int(11) NOT NULL,
+`PK` int(11) NOT NULL,
   `Codigo` int(11) NOT NULL,
   `Nombre` varchar(100) NOT NULL,
   `Archivo` int(11) NOT NULL,
@@ -57,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `codigosdocumentos` (
 -- Volcado de datos para la tabla `codigosdocumentos`
 --
 
-INSERT INTO `codigosdocumentos` (`id`, `Codigo`, `Nombre`, `Archivo`, `TipoDocumento`) VALUES
+INSERT INTO `codigosdocumentos` (`PK`, `Codigo`, `Nombre`, `Archivo`, `TipoDocumento`) VALUES
 (1, 30, 'Factura', 1, 1),
 (2, 32, 'Factura de ventas y servicios no afectos o exentos de IVA', 1, 1),
 (3, 33, 'Factura Electrónica ', 1, 1),
@@ -122,38 +183,93 @@ INSERT INTO `codigosdocumentos` (`id`, `Codigo`, `Nombre`, `Archivo`, `TipoDocum
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compras`
+-- Estructura de tabla para la tabla `compraventa`
 --
 
-CREATE TABLE IF NOT EXISTS `compras` (
-  `PK` int(11) NOT NULL,
-  `documento` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `compraventa` (
+`PK` int(11) NOT NULL,
+  `PK_Usuario` int(11) NOT NULL,
+  `Documento` int(11) NOT NULL,
+  `dhdrCodigo` int(20) NOT NULL,
+  `dcvCodigo` int(11) NOT NULL,
+  `dcvEstadoContab` int(11) DEFAULT NULL,
+  `detCodigo` int(20) NOT NULL,
+  `detTipoDoc` int(11) DEFAULT NULL,
+  `PK_Empresa` int(11) NOT NULL,
+  `detNroDoc` int(11) NOT NULL,
+  `detFchDoc` date NOT NULL,
+  `detFecAcuse` date DEFAULT NULL,
+  `detFecReclamado` date DEFAULT NULL,
+  `detFecRecepcion` datetime DEFAULT NULL,
+  `detMntExe` int(11) NOT NULL,
+  `detMntNeto` int(11) NOT NULL,
+  `detMntActFijo` int(11) NOT NULL,
+  `detMntIVAActFijo` int(11) NOT NULL,
+  `detMntIVANoRec` int(11) NOT NULL,
+  `detMntCodNoRec` int(11) NOT NULL,
+  `detMntSinCredito` int(11) NOT NULL,
+  `detMntIVA` int(11) NOT NULL,
+  `detMntTotal` int(11) NOT NULL,
+  `detTasaImp` int(11) DEFAULT NULL,
+  `detAnulado` int(11) DEFAULT NULL,
+  `detIVARetTotal` int(11) DEFAULT NULL,
+  `detIVARetParcial` int(11) DEFAULT NULL,
+  `detIVANoRetenido` int(11) NOT NULL,
+  `detIVAPropio` int(11) DEFAULT NULL,
+  `detIVATerceros` int(11) DEFAULT NULL,
+  `detIVAUsoComun` int(11) NOT NULL,
+  `detLiqRutEmisor` int(11) DEFAULT NULL,
+  `detLiqDvEmisor` int(11) DEFAULT NULL,
+  `detLiqValComNeto` int(11) DEFAULT NULL,
+  `detLiqValComExe` int(11) DEFAULT NULL,
+  `detLiqValComIVA` int(11) DEFAULT NULL,
+  `detIVAFueraPlazo` int(11) DEFAULT NULL,
+  `detTipoDocRef` int(11) NOT NULL,
+  `detFolioDocRef` int(11) DEFAULT NULL,
+  `detExpNumId` int(11) DEFAULT NULL,
+  `detExpNacionalidad` int(11) DEFAULT NULL,
+  `detCredEc` int(11) DEFAULT NULL,
+  `detLey18211` int(11) DEFAULT NULL,
+  `detDepEnvase` int(11) DEFAULT NULL,
+  `detIndSinCosto` int(11) DEFAULT NULL,
+  `detIndServicio` int(11) DEFAULT NULL,
+  `detMntNoFact` int(11) DEFAULT NULL,
+  `detMntPeriodo` int(11) DEFAULT NULL,
+  `detPsjNac` int(11) DEFAULT NULL,
+  `detPsjInt` int(11) DEFAULT NULL,
+  `detNumInt` int(11) DEFAULT NULL,
+  `detCdgSIISucur` int(11) NOT NULL,
+  `detEmisorNota` int(11) NOT NULL,
+  `detTabPuros` int(11) NOT NULL,
+  `detTabCigarrillos` int(11) NOT NULL,
+  `detTabElaborado` int(11) NOT NULL,
+  `detImpVehiculo` int(11) NOT NULL,
+  `detTpoImp` int(11) NOT NULL,
+  `detTipoTransaccion` int(11) NOT NULL,
+  `detEventoReceptor` varchar(15) DEFAULT NULL,
+  `detEventoReceptorLeyenda` text,
+  `cambiarTipoTran` int(11) NOT NULL,
+  `detPcarga` int(11) NOT NULL,
+  `descTipoTransaccion` int(11) NOT NULL,
+  `totalDtoiMontoImp` int(11) NOT NULL,
+  `totalDinrMontoIVANoR` int(11) DEFAULT NULL,
+  `emisorAgresivo` int(11) NOT NULL,
+  `fechaActivacionAnotacion` date DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuentabanco`
+--
+
+CREATE TABLE IF NOT EXISTS `cuentabanco` (
+`PK` int(11) NOT NULL,
   `Empresa_pk` int(11) NOT NULL,
-  `proveedor_pk` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `folio` int(11) NOT NULL,
-  `fecha_docto` date NOT NULL,
-  `fecha_recep` datetime NOT NULL,
-  `fecha_acuse:recib` datetime NOT NULL,
-  `Monto_exent` int(11) DEFAULT NULL,
-  `MontoNeto` int(11) NOT NULL,
-  `MontoIvaRECUP` int(11) NOT NULL,
-  `MontoIvaNORECUP` int(11) DEFAULT NULL,
-  `CODIG IVA NO REC` int(11) DEFAULT NULL,
-  `MontoTotal` int(11) NOT NULL,
-  `MONTO NETO ACTIVO` int(11) DEFAULT NULL,
-  `IVA ACTIVO FIJO` int(11) DEFAULT NULL,
-  `IVA USO COMUN` int(11) DEFAULT NULL,
-  `IMPTO SIN DER` int(11) DEFAULT NULL,
-  `IVA NO RETEN` int(11) NOT NULL,
-  `TABACOS PUROS` int(11) DEFAULT NULL,
-  `TABACOS CIGARR` int(11) DEFAULT NULL,
-  `TABACOS ELAB` int(11) DEFAULT NULL,
-  `NCE O NDE` int(11) NOT NULL,
-  `CODIGO OTRO` int(11) DEFAULT NULL,
-  `VALOR OTRO` int(11) DEFAULT NULL,
-  `TASA OTRO` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Banco` int(11) NOT NULL,
+  `Num` int(11) NOT NULL,
+  `Tipo` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -397,6 +513,16 @@ INSERT INTO `cuentas` (`PK`, `Codigo`, `Nombre`, `Atributo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `departamento`
+--
+
+CREATE TABLE IF NOT EXISTS `departamento` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `documento`
 --
 
@@ -419,17 +545,74 @@ INSERT INTO `documento` (`PK`, `Nombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `emisor`
+--
+
+CREATE TABLE IF NOT EXISTS `emisor` (
+`PK` int(11) NOT NULL,
+  `RUT` varchar(11) NOT NULL,
+  `RazonSocial` varchar(50) NOT NULL,
+  `SocProf` int(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
 -- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE IF NOT EXISTS `empresa` (
 `PK` int(11) NOT NULL,
-  `rut` varchar(11) NOT NULL,
-  `RazonSocial` varchar(50) NOT NULL,
-  `Tipo` int(11) NOT NULL
+  `RUT` varchar(11) NOT NULL,
+  `RazonSocial` varchar(100) NOT NULL,
+  `Tipo` int(11) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+
+--
+-- Estructura de tabla para la tabla `estadohonorario`
+--
+
+CREATE TABLE IF NOT EXISTS `estadohonorario` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+
+--
+-- Estructura de tabla para la tabla `gastos`
+--
+
+CREATE TABLE IF NOT EXISTS `gastos` (
+`PK` int(11) NOT NULL,
+  `PersResponsable` int(11) NOT NULL,
+  `Area` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Boleta/Factura` tinyint(1) NOT NULL,
+  `Concepto` int(11) NOT NULL,
+  `FechaBF` date NOT NULL,
+  `NDoc` int(11) NOT NULL,
+  `Proveedor` int(11) NOT NULL,
+  `Valor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `honorarios`
+--
+
+CREATE TABLE IF NOT EXISTS `honorarios` (
+`PK` int(11) NOT NULL,
+  `PK_Usuario` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Estado` int(11) NOT NULL,
+  `FechaAnulacion` date DEFAULT NULL,
+  `Emisor` int(11) NOT NULL,
+  `Bruto` int(11) NOT NULL,
+  `Retenido` int(11) NOT NULL,
+  `Pagado` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+
 
 --
 -- Estructura de tabla para la tabla `libro`
@@ -441,12 +624,178 @@ CREATE TABLE IF NOT EXISTS `libro` (
   `FECHA` date NOT NULL,
   `TIPO` int(11) NOT NULL,
   `NUM` int(11) NOT NULL,
-  `SECUENCIA` int(11) NOT NULL,
   `CUENTA` int(11) NOT NULL,
+  `Sucursal` int(11) DEFAULT NULL,
+  `CentroCostos` int(11) DEFAULT NULL,
   `GLOSA` varchar(50) NOT NULL,
   `DEBE` int(11) DEFAULT NULL,
-  `HABER` int(11) DEFAULT NULL
+  `HABER` int(11) DEFAULT NULL,
+  `PK_Origen` int(11) NOT NULL,
+  `Tabla_Origen` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+
+
+--
+-- Estructura de tabla para la tabla `movimientos`
+--
+
+CREATE TABLE IF NOT EXISTS `movimientos` (
+`PK` int(11) NOT NULL,
+  `Fecha` date NOT NULL,
+  `Cuenta` int(11) NOT NULL,
+  `Descripcion` text NOT NULL,
+  `Ingreso` int(11) DEFAULT NULL,
+  `Egreso` int(11) DEFAULT NULL,
+  `Conciliacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `naciones`
+--
+
+CREATE TABLE IF NOT EXISTS `naciones` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `nombretabla`
+--
+
+CREATE TABLE IF NOT EXISTS `nombretabla` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `nombretabla`
+--
+
+INSERT INTO `nombretabla` (`PK`, `Nombre`) VALUES
+(1, 'VENTA'),
+(2, 'CLIENTE'),
+(3, 'COMPRA'),
+(4, 'HONORARIO'),
+(5, 'REMUNERACIO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `plazocontrato`
+--
+
+CREATE TABLE IF NOT EXISTS `plazocontrato` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `plazocontrato`
+--
+
+INSERT INTO `plazocontrato` (`PK`, `Nombre`) VALUES
+(1, 'prueba');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `remuneraciones`
+--
+
+CREATE TABLE IF NOT EXISTS `remuneraciones` (
+`PK` int(11) NOT NULL,
+  `Depto` int(11) NOT NULL,
+  `Cod` int(11) NOT NULL,
+  `Trabajador` int(11) NOT NULL,
+  `DT` int(11) NOT NULL,
+  `S.BASE` int(11) NOT NULL,
+  `GRAT.LEGAL` int(11) NOT NULL,
+  `VALOR IMP.` int(11) NOT NULL,
+  `TOTAL IMP.` int(11) DEFAULT NULL,
+  `ASIG. FAM.` int(11) DEFAULT NULL,
+  `CONECT.` int(11) NOT NULL,
+  `MOVI,` int(11) NOT NULL,
+  `COLACION` int(11) NOT NULL,
+  `TOTAL NO IMP` int(11) NOT NULL,
+  `TOT. HABERES` int(11) NOT NULL,
+  `PREVISION` int(11) NOT NULL,
+  `SALUD` int(11) DEFAULT NULL,
+  `IMP.UNICO` int(11) NOT NULL,
+  `SEG.CES.` int(11) DEFAULT NULL,
+  `ADIC. ISAPRE` int(11) NOT NULL,
+  `TOT. DESC.LEG.` int(11) DEFAULT NULL,
+  `RET SII` int(11) NOT NULL,
+  `TOT.DESC` int(11) NOT NULL,
+  `LIQUIDO` int(11) NOT NULL,
+  `SIS` int(11) NOT NULL,
+  `AFC` int(11) NOT NULL,
+  `MUTUAL` int(11) NOT NULL,
+  `COSTO EMPRESA` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+
+
+--
+-- Estructura de tabla para la tabla `sistemasalud`
+--
+
+CREATE TABLE IF NOT EXISTS `sistemasalud` (
+`PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `sistemasalud`
+--
+
+INSERT INTO `sistemasalud` (`PK`, `Nombre`) VALUES
+(1, 'prueba');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sucursal`
+--
+
+CREATE TABLE IF NOT EXISTS `sucursal` (
+  `PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipo comprobante`
+--
+
+CREATE TABLE IF NOT EXISTS `tipo comprobante` (
+  `PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo comprobante`
+--
+
+INSERT INTO `tipo comprobante` (`PK`, `Nombre`) VALUES
+(0, 'Ingreso'),
+(1, 'Egreso'),
+(2, 'Traspaso');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipocuenta`
+--
+
+CREATE TABLE IF NOT EXISTS `tipocuenta` (
+  `PK` int(11) NOT NULL,
+  `Nombre` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -456,86 +805,49 @@ CREATE TABLE IF NOT EXISTS `libro` (
 
 CREATE TABLE IF NOT EXISTS `tipoempresa` (
 `PK` int(11) NOT NULL,
-  `Nombre` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+  `Nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Estructura de tabla para la tabla `tipo libro`
+-- Estructura de tabla para la tabla `tipomovimiento`
 --
 
-CREATE TABLE IF NOT EXISTS `tipo libro` (
+CREATE TABLE IF NOT EXISTS `tipomovimiento` (
   `PK` int(11) NOT NULL,
-  `NOMBRE` varchar(12) NOT NULL
+  `Nombre` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipoventa`
+-- Estructura de tabla para la tabla `trabajadores`
 --
 
-CREATE TABLE IF NOT EXISTS `tipoventa` (
+CREATE TABLE IF NOT EXISTS `trabajadores` (
+`PK` int(11) NOT NULL,
+  `RUT` varchar(11) NOT NULL,
+  `NOMBRE` varchar(50) NOT NULL,
+  `empresa_pk` int(11) NOT NULL,
+  `plazo_contrato` int(11) NOT NULL,
+  `AFP` int(11) NOT NULL,
+  `SistemaSalud` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario` (
   `PK` int(11) NOT NULL,
-  `Nombre` varchar(10) NOT NULL
+  `Empresa_pk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ventas`
+-- Indices de la tabla `afp`
 --
-
-CREATE TABLE IF NOT EXISTS `ventas` (
-  `PK` int(11) NOT NULL,
-  `documento` int(11) NOT NULL,
-  `Empresa_pk` int(11) NOT NULL,
-  `cliente_pk` int(11) NOT NULL,
-  `tipo` int(11) NOT NULL,
-  `folio` int(11) NOT NULL,
-  `fecha_docto` date NOT NULL,
-  `fecha_recep` datetime NOT NULL,
-  `fecha_acuse:recib` datetime NOT NULL,
-  `fecha_reclamo` datetime DEFAULT NULL,
-  `Monto_exent` int(11) DEFAULT NULL,
-  `MontoNeto` int(11) NOT NULL,
-  `MontoIva` int(11) NOT NULL,
-  `MontoTotal` int(11) NOT NULL,
-  `IVA RETEN TOTAL` int(11) NOT NULL,
-  `IVA RETEN PARCIAL` int(11) NOT NULL,
-  `IVA NO RETEN` int(11) NOT NULL,
-  `IVA PROPIO` int(11) NOT NULL,
-  `IVA 3ROS` int(11) NOT NULL,
-  `RUT EMISOR` varchar(11) DEFAULT NULL,
-  `NETO COMIS` int(11) NOT NULL,
-  `EXCENTO COMIS` int(11) NOT NULL,
-  `IVA COMISION` int(11) NOT NULL,
-  `IVA FUERA PLAZO` int(11) NOT NULL,
-  `TIPO DCTO` int(11) DEFAULT NULL,
-  `FOLIO DCTO` int(11) DEFAULT NULL,
-  `NUM. IDENT` int(11) DEFAULT NULL,
-  `NACIONALIDAD` int(11) DEFAULT NULL,
-  `CREDIT EMPRES` int(11) NOT NULL,
-  `IMPTO ZONA` int(11) DEFAULT NULL,
-  `GARANT DEP ENVAS` int(11) NOT NULL,
-  `INDIC VENTA` int(11) NOT NULL,
-  `INDIC SERCIVIO` int(11) NOT NULL,
-  `MONTO NO FACTUR` int(11) NOT NULL,
-  `TOTAL MONTO` int(11) NOT NULL,
-  `VENTA PASAJE NAC` int(11) DEFAULT NULL,
-  `VENTA PASAJE INTERN` int(11) DEFAULT NULL,
-  `NUMERO INTERNO` int(11) DEFAULT NULL,
-  `CODIGO SUCURSAL` int(11) NOT NULL,
-  `NCE O NDE` int(11) DEFAULT NULL,
-  `CODIGO OTRO` int(11) DEFAULT NULL,
-  `VALOR OTRO IMP` int(11) DEFAULT NULL,
-  `TASA OTRO IMP` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Índices para tablas volcadas
---
+ALTER TABLE `afp`
+ ADD PRIMARY KEY (`PK`);
 
 --
 -- Indices de la tabla `archivo`
@@ -544,15 +856,45 @@ ALTER TABLE `archivo`
  ADD PRIMARY KEY (`PK`);
 
 --
+-- Indices de la tabla `bancos`
+--
+ALTER TABLE `bancos`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `centrocostos`
+--
+ALTER TABLE `centrocostos`
+ ADD PRIMARY KEY (`PK`);
+
+--
 -- Indices de la tabla `codigosdocumentos`
 --
 ALTER TABLE `codigosdocumentos`
- ADD PRIMARY KEY (`id`), ADD KEY `CD_ibfk_1` (`Archivo`), ADD KEY `CD_ibfk_2` (`TipoDocumento`);
+ ADD PRIMARY KEY (`PK`), ADD KEY `CD_ibfk_1` (`Archivo`), ADD KEY `CD_ibfk_2` (`TipoDocumento`);
+
+--
+-- Indices de la tabla `compraventa`
+--
+ALTER TABLE `compraventa`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `cuentabanco`
+--
+ALTER TABLE `cuentabanco`
+ ADD PRIMARY KEY (`PK`);
 
 --
 -- Indices de la tabla `cuentas`
 --
 ALTER TABLE `cuentas`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `departamento`
+--
+ALTER TABLE `departamento`
  ADD PRIMARY KEY (`PK`);
 
 --
@@ -562,9 +904,33 @@ ALTER TABLE `documento`
  ADD PRIMARY KEY (`PK`);
 
 --
+-- Indices de la tabla `emisor`
+--
+ALTER TABLE `emisor`
+ ADD PRIMARY KEY (`PK`);
+
+--
 -- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `estadohonorario`
+--
+ALTER TABLE `estadohonorario`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `gastos`
+--
+ALTER TABLE `gastos`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `honorarios`
+--
+ALTER TABLE `honorarios`
  ADD PRIMARY KEY (`PK`);
 
 --
@@ -574,21 +940,81 @@ ALTER TABLE `libro`
  ADD PRIMARY KEY (`PK`);
 
 --
+-- Indices de la tabla `movimientos`
+--
+ALTER TABLE `movimientos`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `naciones`
+--
+ALTER TABLE `naciones`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `nombretabla`
+--
+ALTER TABLE `nombretabla`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `plazocontrato`
+--
+ALTER TABLE `plazocontrato`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `remuneraciones`
+--
+ALTER TABLE `remuneraciones`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `sistemasalud`
+--
+ALTER TABLE `sistemasalud`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `sucursal`
+--
+ALTER TABLE `sucursal`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `tipo comprobante`
+--
+ALTER TABLE `tipo comprobante`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `tipocuenta`
+--
+ALTER TABLE `tipocuenta`
+ ADD PRIMARY KEY (`PK`);
+
+--
 -- Indices de la tabla `tipoempresa`
 --
 ALTER TABLE `tipoempresa`
  ADD PRIMARY KEY (`PK`);
 
 --
--- Indices de la tabla `tipo libro`
+-- Indices de la tabla `tipomovimiento`
 --
-ALTER TABLE `tipo libro`
+ALTER TABLE `tipomovimiento`
  ADD PRIMARY KEY (`PK`);
 
 --
--- Indices de la tabla `tipoventa`
+-- Indices de la tabla `trabajadores`
 --
-ALTER TABLE `tipoventa`
+ALTER TABLE `trabajadores`
+ ADD PRIMARY KEY (`PK`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
  ADD PRIMARY KEY (`PK`);
 
 --
@@ -596,40 +1022,120 @@ ALTER TABLE `tipoventa`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `afp`
+--
+ALTER TABLE `afp`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `archivo`
 --
 ALTER TABLE `archivo`
 MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
+-- AUTO_INCREMENT de la tabla `bancos`
+--
+ALTER TABLE `bancos`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT de la tabla `codigosdocumentos`
 --
 ALTER TABLE `codigosdocumentos`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+--
+-- AUTO_INCREMENT de la tabla `compraventa`
+--
+ALTER TABLE `compraventa`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT de la tabla `cuentabanco`
+--
+ALTER TABLE `cuentabanco`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `cuentas`
 --
 ALTER TABLE `cuentas`
 MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=221;
 --
+-- AUTO_INCREMENT de la tabla `departamento`
+--
+ALTER TABLE `departamento`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
 MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT de la tabla `emisor`
+--
+ALTER TABLE `emisor`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `estadohonorario`
+--
+ALTER TABLE `estadohonorario`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `gastos`
+--
+ALTER TABLE `gastos`
 MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `honorarios`
+--
+ALTER TABLE `honorarios`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
+--
+-- AUTO_INCREMENT de la tabla `movimientos`
+--
+ALTER TABLE `movimientos`
 MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `naciones`
+--
+ALTER TABLE `naciones`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `nombretabla`
+--
+ALTER TABLE `nombretabla`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT de la tabla `plazocontrato`
+--
+ALTER TABLE `plazocontrato`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `remuneraciones`
+--
+ALTER TABLE `remuneraciones`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `sistemasalud`
+--
+ALTER TABLE `sistemasalud`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `tipoempresa`
 --
 ALTER TABLE `tipoempresa`
-MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `trabajadores`
+--
+ALTER TABLE `trabajadores`
+MODIFY `PK` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
