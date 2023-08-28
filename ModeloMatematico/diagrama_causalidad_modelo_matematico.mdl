@@ -1,0 +1,1853 @@
+{UTF-8}
+Fecha  = A FUNCTION OF( Fecha documento venta) ~~|
+Fecha=
+	IF THEN ELSE(Fecha documento venta = Ventana temporal,1,0)
+	~	
+	~		|
+
+Total no imponible=
+	Asignacion familiar+Colacion+Conectividad+Movilizacion
+	~	
+	~		|
+
+Tipo  = A FUNCTION OF( Documentos de venta,Egreso,Ingreso,Libro de remuneraciones,Traspaso\
+		,Variables honorarios) ~~|
+Tipo=
+	IF THEN ELSE(Documentos de venta=1,Traspaso,Ingreso:OR:Egreso)
+	~	
+	~		|
+
+"4202.13. Beneficio Licencia"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Cuenta  = A FUNCTION OF( "1104.01. DEUDORES CLIENTES","5101.01 VENTA AFECTA","5101.02. VENTA EXENTA"\
+		,Venta) ~~|
+Cuenta=
+	"5101.01 VENTA AFECTA":AND:"1104.01. DEUDORES CLIENTES"
+	~	
+	~		|
+
+"2105.02. Remuneraciones por pagar"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Remuneraciones  = A FUNCTION OF( Variables remuneraciones) ~~|
+Remuneraciones=
+	IF THEN ELSE(Recursos humanos=1,1,0)
+	~	
+	~		|
+
+Ingreso=
+	2
+	~	
+	~		|
+
+Numero comprobante=
+	1
+	~	
+	~		|
+
+Fecha legal de pago de cotizaciones recursos humanos  = A FUNCTION OF( )
+	~	
+	~		|
+
+API  = A FUNCTION OF( LUCA)
+	~	
+	~		|
+
+Total Haberes=
+	Total imponible+Total no imponible
+	~	
+	~		|
+
+Fecha pago remuneraciones recursos humanos politica empresa  = A FUNCTION OF( )
+	~	
+	~		|
+
+Total imponible=
+	Sueldo Base+Gratificacion legal
+	~	
+	~		|
+
+"5101.02. VENTA EXENTA"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Libro de remuneraciones  = A FUNCTION OF( )
+	~	
+	~		|
+
+Traspaso=
+	1
+	~	
+	~		|
+
+Egreso=
+	3
+	~	
+	~		|
+
+"4202.14. Representacion y Viaticos"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Fecha de pago politicas recursos humanos=A FUNCTION OF(Fecha de pago politicas recursos humanos\
+		,Fecha libro diario) ~~|
+Fecha de pago politicas recursos humanos=
+	~	
+	~		|
+
+Fecha carga RRHH  = A FUNCTION OF( )
+	~	
+	~		|
+
+Retencion SII  = A FUNCTION OF( )
+	~	
+	~		|
+
+Solicitud  = A FUNCTION OF( API,SII,Ventana temporal) ~~|
+Solicitud=
+	IF THEN ELSE(LUCA=1,SII,0)
+	~	
+	~		|
+
+Haber  = A FUNCTION OF( "1101.02. BANCO","1104.01. DEUDORES CLIENTES","2105.04. Honorarios por pagar"\
+		,"2108.04 RETENCIONES PROFESIONALES","2108.07 AFP","2108.08 ISAPRE","2108.09 FONASA"\
+		,"2108.10 MUTUAL","2108.11 CAJA DE COMPENSACION","4202.08 Mutual de seguridad","5101.01 VENTA AFECTA"\
+		,Monto total,Tipo)
+	~	
+	~		|
+
+Fecha libro diario  = A FUNCTION OF( Fecha boleta honorarios,Fecha carga RRHH,Fecha documento venta\
+		,Fecha legal de pago de cotizaciones recursos humanos,Fecha movimiento Banco,Fecha pago remuneraciones recursos humanos politica empresa\
+		) ~~|
+Fecha libro diario=
+	Fecha documento venta
+	~	
+	~		|
+
+Movimientos ingresos  = A FUNCTION OF( ) ~~|
+Movimientos ingresos=
+	IF THEN ELSE(Solicitud<>0,1,0)
+	~	
+	~		|
+
+Glosa=
+	1
+	~	
+	~		|
+
+Debe  = A FUNCTION OF( "1104.01. DEUDORES CLIENTES","2105.02. Remuneraciones por pagar"\
+		,"2105.04. Honorarios por pagar","2108.04 RETENCIONES PROFESIONALES","2108.07 AFP",\
+		"2108.08 ISAPRE","2108.09 FONASA","2108.10 MUTUAL","2108.11 CAJA DE COMPENSACION","4201.02. Honorarios profesionales"\
+		,"4202.01 Suelo Base","4202.02 Gratificacion","4202.03 Bonos y aguilnaldo","4202.04 Colacion"\
+		,"4202.05 Movilizacion","4202.06 Asignacion telefono","4202.07 Seguro de invalidez y sobrevivencia"\
+		,"4202.08 Mutual de seguridad","4202.11. SEGURO CESANTIA EMPLEADOR","4202.13. Beneficio Licencia"\
+		,"4202.14. Representacion y Viaticos","5101.01 VENTA AFECTA",Monto total,Tipo)
+	~	
+	~		|
+
+Variables documento de venta=
+	IF THEN ELSE(Venta=1,1,0)
+	~	
+	~		|
+
+Consolidado  = A FUNCTION OF( Definir cuenta del Plan,Empresa en LUCA,empresa proveedor 1\
+		,Informacion de la Factura de compra)
+	~	
+	~		|
+
+Razon Social empresa en Luca  = A FUNCTION OF( )
+	~	
+	~		|
+
+Segmento  = A FUNCTION OF( )
+	~	
+	~		|
+
+Segmento empresa en LUCA  = A FUNCTION OF( )
+	~	
+	~		|
+
+Informacion de la Factura de compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Definir cuenta=
+	1
+	~	
+	~		|
+
+Definir cuenta del Plan  = A FUNCTION OF( PLAN DE CUENTA)
+	~	
+	~		|
+
+Definir Glosa  = A FUNCTION OF( )
+	~	
+	~		|
+
+RUT empresa en LUCA  = A FUNCTION OF( )
+	~	
+	~		|
+
+empresa proveedor 1  = A FUNCTION OF( Empresa Proveedor)
+	~	
+	~		|
+
+Descripcion de Actividades  = A FUNCTION OF( )
+	~	
+	~		|
+
+Estado de Resultados  = A FUNCTION OF( )
+	~	
+	~		|
+
+Categoria Tributaria  = A FUNCTION OF( )
+	~	
+	~		|
+
+Categoria Tributaria empresa en LUCA  = A FUNCTION OF( )
+	~	
+	~		|
+
+Empresa Proveedor  = A FUNCTION OF( Categoria Tributaria,Descripcion de Actividades,Razon social compra\
+		,Rut proveedor compra,Segmento,Tipo y subtipo contribuyente)
+	~	
+	~		|
+
+Empresa en LUCA  = A FUNCTION OF( Empresa LUCA)
+	~	
+	~		|
+
+PLAN DE CUENTA  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2116.01. FACTURAS POR PAGAR"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Configuraciones iniciales=A FUNCTION OF(Configuraciones iniciales,Balance General,Estado de Resultados\
+		) ~~|
+Configuraciones iniciales=
+	1
+	~	
+	~		|
+
+Empresa LUCA  = A FUNCTION OF( Actividades economicas,Categoria Tributaria empresa en LUCA\
+		,Razon Social empresa en Luca,RUT empresa en LUCA,Configuraciones iniciales,Segmento empresa en LUCA\
+		)
+	~	
+	~		|
+
+Tipo y subtipo contribuyente  = A FUNCTION OF( )
+	~	
+	~		|
+
+Actividades economicas  = A FUNCTION OF( )
+	~	
+	~		|
+
+Balance General  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tipo compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+IVA activo fijo  = A FUNCTION OF( )
+	~	
+	~		|
+
+Documentos de compra  = A FUNCTION OF( Compra,Variables compra) ~~|
+Documentos de compra=
+	IF THEN ELSE(Compra=1,1,0)
+	~	
+	~		|
+
+Monto total compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+IVA no retenido  = A FUNCTION OF( )
+	~	
+	~		|
+
+IVA uso comun  = A FUNCTION OF( )
+	~	
+	~		|
+
+Fecha acuse compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA no recuperable  = A FUNCTION OF( )
+	~	
+	~		|
+
+Rut proveedor compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+NCE o NDE sobre factura de compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto exento compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Razon social compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tasa otro impuesto  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tabacos elaborados  = A FUNCTION OF( )
+	~	
+	~		|
+
+Codigo IVA no recuperable  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA recuperable  = A FUNCTION OF( )
+	~	
+	~		|
+
+monto neto compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Fecha documento compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Valor otro impuesto  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tabacos puros  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto neto activo fijo compra=
+	1
+	~	
+	~		|
+
+Tipo documento compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Codigo otro impuesto  = A FUNCTION OF( )
+	~	
+	~		|
+
+Fecha recepcion compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Folio compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tabacos cigarrillos  = A FUNCTION OF( )
+	~	
+	~		|
+
+Impuesto sin derecho a credito  = A FUNCTION OF( )
+	~	
+	~		|
+
+Variables compra  = A FUNCTION OF( )
+	~	
+	~		|
+
+Honorarios pagados  = A FUNCTION OF( )
+	~	
+	~		|
+
+Honorarios retenido  = A FUNCTION OF( )
+	~	
+	~		|
+
+Impuesto unico  = A FUNCTION OF( "2108.03 IMPUESTO UNICO TRABAJADOR")
+	~	
+	~		|
+
+Consolidacion  = A FUNCTION OF( cruce de informacion,-Finiquitos,Movimientos remuneraciones\
+		,Remuneraciones) ~~|
+Consolidacion= INTEG (
+	cruce de informacion+Movimientos remuneraciones+Remuneraciones,
+		0)
+	~	
+	~		|
+
+Costo empresa  = A FUNCTION OF( AFC,Liquido,Mutual,SIS,Total descuentos)
+	~	
+	~		|
+
+"1108.01 PAGOS PREVISIONALES"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2105.04. Honorarios por pagar"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2105.05 FINIQUITOS POR PAGAR"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.03 IMPUESTO UNICO TRABAJADOR"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.04 RETENCIONES PROFESIONALES"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.04. Retencion profesionales"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.07 AFP"=
+	1
+	~	
+	~		|
+
+"2108.08 ISAPRE"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.09 FONASA"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.10 MUTUAL"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.11 CAJA DE COMPENSACION"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"2108.14 FINIQUITOS"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4201.02. Honorarios profesionales"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.01 Suelo Base"=
+	1
+	~	
+	~		|
+
+"4202.02 Gratificacion"=
+	1
+	~	
+	~		|
+
+"4202.03 Bonos y aguilnaldo"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.04 Colacion"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.05 Movilizacion"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.06 Asignacion telefono"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.07 Seguro de invalidez y sobrevivencia"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.08 Mutual de seguridad"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.09 Finiquitos"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.10 Vacaciones proporcionales"  = A FUNCTION OF( )
+	~	
+	~		|
+
+"4202.11. SEGURO CESANTIA EMPLEADOR"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Finiquitos  = A FUNCTION OF( "2108.14 FINIQUITOS","4202.10 Vacaciones proporcionales"\
+		,Recursos humanos)
+	~	
+	~		|
+
+Valor imponible=
+	1
+	~	
+	~		|
+
+Salud  = A FUNCTION OF( "2108.08 ISAPRE","2108.09 FONASA")
+	~	
+	~		|
+
+Nombre o razon social  = A FUNCTION OF( )
+	~	
+	~		|
+
+Total descuentos  = A FUNCTION OF( Retencion SII,Total descuentos legales)
+	~	
+	~		|
+
+Numero  = A FUNCTION OF( )
+	~	
+	~		|
+
+Variables remuneraciones  = A FUNCTION OF( )
+	~	
+	~		|
+
+Honorarios  = A FUNCTION OF( Honorario,Variables honorarios) ~~|
+Honorarios=
+	IF THEN ELSE(Honorario=1,1,0)
+	~	
+	~		|
+
+Colacion  = A FUNCTION OF( "4202.04 Colacion")
+	~	
+	~		|
+
+Prevision  = A FUNCTION OF( "2108.07 AFP")
+	~	
+	~		|
+
+Conectividad  = A FUNCTION OF( "4202.06 Asignacion telefono")
+	~	
+	~		|
+
+Fecha boleta honorarios  = A FUNCTION OF( )
+	~	
+	~		|
+
+Seguro cesantia  = A FUNCTION OF( "4202.11. SEGURO CESANTIA EMPLEADOR")
+	~	
+	~		|
+
+Socprof  = A FUNCTION OF( )
+	~	
+	~		|
+
+Variables honorarios  = A FUNCTION OF( )
+	~	
+	~		|
+
+Rut honorarios  = A FUNCTION OF( )
+	~	
+	~		|
+
+Sueldo Base  = A FUNCTION OF( "4202.01 Suelo Base") ~~|
+Sueldo Base=
+	1
+	~	
+	~		|
+
+Dias trabajados=
+	30
+	~	
+	~		|
+
+Liquido  = A FUNCTION OF( Total descuentos,Total Haberes)
+	~	
+	~		|
+
+Movilizacion  = A FUNCTION OF( "4202.05 Movilizacion")
+	~	
+	~		|
+
+Estado  = A FUNCTION OF( )
+	~	
+	~		|
+
+SIS  = A FUNCTION OF( "4202.07 Seguro de invalidez y sobrevivencia")
+	~	
+	~		|
+
+Gratificacion legal  = A FUNCTION OF( "4202.02 Gratificacion") ~~|
+Gratificacion legal=
+	1
+	~	
+	~		|
+
+Recursos humanos=
+	1
+	~	
+	~		|
+
+Honorarios bruto  = A FUNCTION OF( Honorarios pagados,Honorarios retenido)
+	~	
+	~		|
+
+Mutual  = A FUNCTION OF( "2108.10 MUTUAL")
+	~	
+	~		|
+
+Total descuentos legales  = A FUNCTION OF( Impuesto unico,Prevision,Salud,Seguro cesantia\
+		)
+	~	
+	~		|
+
+Otros ingresos  = A FUNCTION OF( cruce de informacion,Documentos de venta,Plan de cuentas saldos iniciales\
+		) ~~|
+Otros ingresos=
+	IF THEN ELSE(Documentos de venta<>cruce de informacion,1,0)
+	~	
+	~		|
+
+"1101.02. BANCO"=
+	1
+	~	
+	~		|
+
+Variables de segundo cruce  = A FUNCTION OF( Empresa,Iteracion) ~~|
+Variables de segundo cruce=
+	IF THEN ELSE(Empresa=1:AND:Monto parcial=1,1,0)
+	~	
+	~		|
+
+Iteracion=
+	IF THEN ELSE(Monto parcial=1,1,0 )
+	~	
+	~		|
+
+"5101.01 VENTA AFECTA"=
+	IF THEN ELSE(Fecha=1,1,0)
+	~	
+	~		|
+
+"1104.01. DEUDORES CLIENTES"=
+	IF THEN ELSE(Fecha=0,1,0)
+	~	
+	~		|
+
+"1.1.3. DIVIDENDOS PERCIBIDOS"  = A FUNCTION OF( Otros ingresos,Plan de cuentas saldos iniciales\
+		)
+	~	
+	~		|
+
+"1.1.4. OTRAS ENTRADAS"  = A FUNCTION OF( Otros ingresos,Plan de cuentas saldos iniciales\
+		)
+	~	
+	~		|
+
+Adicional isapre  = A FUNCTION OF( )
+	~	
+	~		|
+
+AFC  = A FUNCTION OF( )
+	~	
+	~		|
+
+LUCA= INTEG (
+	IF THEN ELSE(Solicitud<>0,Movimientos ingresos+Solicitud-cruce de informacion,0),
+		0)
+	~	
+	~		|
+
+Asignacion familiar  = A FUNCTION OF( )
+	~	
+	~		|
+
+Banco  = A FUNCTION OF( Movimientos remuneraciones,Movimientos ingresos) ~~|
+Banco= INTEG (
+	IF THEN ELSE(Solicitud<>0,1,0),
+		0)
+	~	
+	~		|
+
+Codigo  = A FUNCTION OF( )
+	~	
+	~		|
+
+Codigo departamento  = A FUNCTION OF( )
+	~	
+	~		|
+
+Codigo otros impuestos  = A FUNCTION OF( )
+	~	
+	~		|
+
+Codigo sucursal  = A FUNCTION OF( )
+	~	
+	~		|
+
+Compra=
+	0
+	~	
+	~		|
+
+Credito empresa constructura  = A FUNCTION OF( )
+	~	
+	~		|
+
+cruce de informacion=
+	IF THEN ELSE(Variables de primer cruce=1:OR:Variables de segundo cruce=1,1,0)
+	~	
+	~		|
+
+Departamento  = A FUNCTION OF( )
+	~	
+	~		|
+
+Descripcion=
+	1
+	~	
+	~		|
+
+Documentos de venta=
+	IF THEN ELSE( Venta=1 , 1 , 0 )
+	~	
+	~		|
+
+Egresos=
+	0
+	~	
+	~		|
+
+Emisor=
+	Nulo+Razon social variable banco+Rut variable banco
+	~	
+	~		|
+
+Empresa=
+	IF THEN ELSE(Empresa documento venta=Emisor,1,0)
+	~	
+	~		|
+
+Empresa documento venta=
+	Razon social+Rut proveedor
+	~	
+	~		|
+
+Exento comision liquido factura  = A FUNCTION OF( )
+	~	
+	~		|
+
+Fecha acuse=
+	1
+	~	
+	~		|
+
+Fecha documento=
+	1
+	~	
+	~		|
+
+Fecha documento venta=
+	Fecha acuse+Fecha documento+Fecha recepcion+Fecha reclamo
+	~	
+	~		|
+
+Fecha movimiento Banco=
+	1
+	~	
+	~		|
+
+Fecha recepcion=
+	1
+	~	
+	~		|
+
+Fecha reclamo=
+	1
+	~	
+	~		|
+
+Folio  = A FUNCTION OF( )
+	~	
+	~		|
+
+Folio documento de referencia  = A FUNCTION OF( )
+	~	
+	~		|
+
+"Garantia dep. envases"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Honorario=
+	0
+	~	
+	~		|
+
+"impuesto zona franca (ley 18211)"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Indicador servicio periodico  = A FUNCTION OF( )
+	~	
+	~		|
+
+Indicador venta sin costo  = A FUNCTION OF( )
+	~	
+	~		|
+
+Ingresos=
+	1
+	~	
+	~		|
+
+IVA comision liquido factura  = A FUNCTION OF( )
+	~	
+	~		|
+
+IVA fuera de plazo  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto=
+	IF THEN ELSE( Monto total - Ingresos=0,1,Monto total - Ingresos)
+	~	
+	~		|
+
+Monto exento  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA no retenido  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA propio  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA retenido parcial  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA retenido total  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto IVA terceros  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto neto  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto no facturable  = A FUNCTION OF( )
+	~	
+	~		|
+
+Monto parcial=
+	IF THEN ELSE(Monto=1,1,Monto)
+	~	
+	~		|
+
+Monto total=
+	1
+	~	
+	~		|
+
+Movimientos remuneraciones  = A FUNCTION OF( )
+	~	
+	~		|
+
+Nacionalidad receptor extranjero  = A FUNCTION OF( )
+	~	
+	~		|
+
+NCE o NDE sobre factura de venta  = A FUNCTION OF( )
+	~	
+	~		|
+
+Neto comision liquido factura  = A FUNCTION OF( )
+	~	
+	~		|
+
+Nombre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Nulo=
+	1
+	~	
+	~		|
+
+Numero identificador receptor extranjero  = A FUNCTION OF( )
+	~	
+	~		|
+
+Numero interno  = A FUNCTION OF( )
+	~	
+	~		|
+
+Plan de cuentas saldos iniciales  = A FUNCTION OF( )
+	~	
+	~		|
+
+Razon social=
+	1
+	~	
+	~		|
+
+Razon social variable banco=
+	1
+	~	
+	~		|
+
+RUT  = A FUNCTION OF( )
+	~	
+	~		|
+
+RUT emisor liquido factura  = A FUNCTION OF( )
+	~	
+	~		|
+
+Rut proveedor=
+	1
+	~	
+	~		|
+
+Rut variable banco=
+	1
+	~	
+	~		|
+
+SII= INTEG (
+	Documentos de compra+Documentos de venta+Honorarios-Solicitud,
+		0)
+	~	
+	~		|
+
+Tasa otros impuestos  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tipo de Venta  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tipo documento  = A FUNCTION OF( )
+	~	
+	~		|
+
+Tipo documento de referencia  = A FUNCTION OF( )
+	~	
+	~		|
+
+Total monto periodo  = A FUNCTION OF( )
+	~	
+	~		|
+
+Valor otros impuestos  = A FUNCTION OF( )
+	~	
+	~		|
+
+Variables de primer cruce=
+	IF THEN ELSE(Fecha=1:AND:Empresa=1:AND:Monto=1,1,0)
+	~	
+	~		|
+
+Venta=
+	1
+	~	
+	~		|
+
+Ventana temporal=
+	1
+	~	
+	~		|
+
+Ventas pasajes transporte internacional  = A FUNCTION OF( )
+	~	
+	~		|
+
+Ventas pasajes transporte nacional  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Principal
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+12,1,0,353,-613,69,18,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Registro automático e instantáneo
+12,2,0,457,-882,34,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Variables 
+12,3,0,482,-745,93,27,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Documento: sincronización exitosa con SII, documento aceptado, visualización
+10,4,SII,432,-413,53,26,3,3,0,0,0,0,0,0,0,0,0,0,0,0
+12,5,48,632,-688,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,6,8,4,4,0,0,22,0,0,0,-1--1--1,,1|(432,-558)|
+1,7,8,5,100,0,0,22,0,0,0,-1--1--1,,1|(530,-688)|
+11,8,0,432,-688,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,9,Documentos de venta,432,-666,71,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,10,0,634,-660,26,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Cliente
+12,11,48,629,-541,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,12,14,4,4,0,0,22,0,0,0,-1--1--1,,1|(553,-413)|
+1,13,14,11,100,0,0,22,0,0,0,-1--1--1,,1|(629,-478)|
+11,14,0,629,-413,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,15,Documentos de compra,629,-392,78,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,16,0,629,-568,35,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Proveedor
+12,17,0,715,-454,69,18,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Registro automático e instantáneo
+10,18,LUCA,921,-78,53,26,3,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,19,21,18,4,0,0,22,0,0,0,-1--1--1,,1|(659,-88)|
+1,20,21,4,100,0,0,22,0,0,0,-1--1--1,,1|(444,-242)|
+11,21,0,444,-88,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,22,Solicitud,444,-66,31,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,Banco,1277,-432,53,26,3,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,24,26,18,4,0,0,22,0,0,0,-1--1--1,,1|(1119,-84)|
+1,25,26,23,100,0,0,22,0,0,0,-1--1--1,,1|(1272,-250)|
+11,26,0,1272,-84,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,27,Movimientos ingresos,1272,-64,106,9,40,131,0,0,-1,0,0,0,0,0,0,0,0,0
+10,28,Consolidacion,921,192,53,26,3,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,29,31,28,4,0,0,22,0,0,0,-1--1--1,,1|(921,114)|
+1,30,31,18,100,0,0,22,0,0,0,-1--1--1,,1|(921,-1)|
+11,31,0,921,56,10,7,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,32,cruce de informacion,1002,56,70,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,33,Variables de primer cruce,1228,79,115,7,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+1,34,33,31,1,0,0,0,0,64,0,-1--1--1,,1|(1117,-36)|
+12,35,0,1212,118,70,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Primeros validadores
+10,36,Fecha,1404,36,22,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,37,Empresa,1410,76,30,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,38,Monto,1416,254,23,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,39,36,33,1,0,0,0,0,64,0,-1--1--1,,1|(1329,-28)|
+1,40,37,33,1,0,0,0,0,64,0,-1--1--1,,1|(1321,19)|
+1,41,38,33,1,0,0,0,0,64,0,-1--1--1,,1|(1332,280)|
+10,42,Variables de segundo cruce,1242,342,115,19,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+12,43,0,1490,614,21,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Glosa
+12,44,0,1217,376,73,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Segundos validadores
+1,45,42,31,1,0,0,0,0,64,0,-1--1--1,,1|(1121,135)|
+12,46,48,165,-548,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,47,49,4,4,0,0,22,0,0,0,-1--1--1,,1|(275,-410)|
+1,48,49,46,100,0,0,22,0,0,0,-1--1--1,,1|(165,-480)|
+11,49,0,165,-410,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,50,Honorarios,165,-389,38,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,51,0,157,-577,38,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Honorarios
+12,52,0,250,-444,69,18,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Registro automatico e instantaneo
+12,53,0,362,253,46,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Carga masiva
+12,54,0,402,223,118,18,8,199,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Calculadora de remuneraciones
+1,55,57,28,4,0,0,22,0,0,0,-1--1--1,,1|(921,828)|
+1,56,57,23,100,0,0,22,0,0,0,-1--1--1,,1|(1961,-432)|
+11,57,0,1961,828,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,58,Movimientos remuneraciones,1961,856,54,18,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,59,48,426,255,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,60,62,28,4,0,0,22,0,0,0,-1--1--1,,1|(756,181)|
+1,61,62,59,100,0,0,22,0,0,0,-1--1--1,,1|(426,181)|
+11,62,0,638,181,7,10,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,63,Remuneraciones,638,201,55,10,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,64,Venta,245,-776,21,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,65,64,8,1,0,0,0,0,64,0,-1--1--1,,1|(248,-722)|
+10,66,Compra,848,-536,29,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,67,66,14,1,0,0,0,0,64,0,-1--1--1,,1|(606,-616)|
+1,68,4,21,1,0,0,0,0,64,0,-1--1--1,,1|(301,-234)|
+10,69,Honorario,178,-274,35,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,70,69,49,1,0,0,0,0,64,0,-1--1--1,,1|(44,-360)|
+10,71,Fecha documento venta,1605,-73,63,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,72,71,36,1,0,0,0,0,64,0,-1--1--1,,1|(1505,-57)|
+10,73,Ventana temporal,920,-142,58,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,74,Empresa documento venta,1616,71,63,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,75,74,37,1,0,0,0,0,64,0,-1--1--1,,1|(1524,-1)|
+10,76,Emisor,1613,134,34,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,77,76,37,1,0,0,0,0,64,0,-1--1--1,,1|(1508,160)|
+10,78,Monto total,1589,212,49,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,79,Ingresos,1608,299,58,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,80,78,38,1,0,0,0,0,64,0,-1--1--1,,1|(1469,175)|
+1,81,79,38,1,0,0,0,0,64,0,-1--1--1,,1|(1540,366)|
+10,82,Descripcion,1514,646,50,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,83,0,1850,274,90,27,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Temporalidad del consumo y ejecución de la informacion
+1,84,37,42,1,0,0,0,0,64,0,-1--1--1,,1|(1512,555)|
+10,85,Monto parcial,1326,612,47,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,86,43,85,1,0,0,0,0,64,0,-1--1--1,,1|(1420,684)|
+1,87,38,85,1,0,0,0,0,64,0,-1--1--1,,1|(1489,450)|
+10,88,Ingresos,1331,-82,35,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,89,Otros ingresos,1480,-284,49,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,90,9,89,1,0,0,0,0,64,0,-1--1--1,,1|(1062,-813)|
+1,91,31,89,1,0,0,0,0,64,0,-1--1--1,,1|(822,-396)|
+10,92,Iteracion,1166,526,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,93,85,92,1,0,0,0,0,192,0,-1--1--1,,1|(1248,692)|
+1,94,92,42,1,0,0,0,0,192,0,-1--1--1,,1|(1032,419)|
+10,95,Plan de cuentas saldos iniciales,1723,-281,59,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,96,95,89,1,0,0,0,0,192,0,-1--1--1,,1|(1601,-175)|
+10,97,Recursos humanos,551,324,47,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,98,0,827,118,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Movimiento contable|<<NnN>>|Asiento contable
+10,99,Variables remuneraciones,378,142,43,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,100,99,62,1,0,0,0,0,192,0,-1--1--1,,1|(484,15)|
+12,101,48,428,431,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,102,104,28,100,0,0,22,0,192,0,-1--1--1,,1|(655,192)|
+1,103,104,101,4,0,0,22,0,192,0,-1--1--1,,1|(543,431)|
+11,104,0,655,431,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,105,Finiquitos,655,461,42,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,106,97,105,1,0,0,0,0,192,0,-1--1--1,,1|(683,285)|
+10,107,"2108.14 FINIQUITOS",528,559,39,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,108,"4202.10 Vacaciones proporcionales",794,561,53,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,109,107,105,1,0,0,0,0,192,0,-1--1--1,,1|(495,490)|
+1,110,108,105,1,0,0,0,0,192,0,-1--1--1,,1|(827,477)|
+10,111,Variables honorarios,-3,-454,58,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,112,111,49,1,0,0,0,0,192,0,-1--1--1,,1|(105,-533)|
+12,113,0,251,-833,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+INGRESO
+12,114,0,150,-635,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+12,115,0,873,-588,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+10,116,Variables compra,520,-490,50,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,117,116,14,1,0,0,0,0,192,0,-1--1--1,,1|(493,-343)|
+10,118,API,636,-192,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,119,18,118,1,0,0,0,0,192,0,-1--1--1,,1|(713,-277)|
+1,120,118,21,1,0,0,0,0,192,0,-1--1--1,,1|(617,-18)|
+1,121,73,21,1,0,0,0,0,192,0,-1--1--1,,1|(716,-307)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Variables registro de venta
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Variables documento de venta,262,873,69,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,2,Tipo documento,765,-73,55,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,3,Tipo de Venta,760,-30,47,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,4,Rut proveedor,764,21,49,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,5,Razon social,761,65,43,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,6,Folio,737,113,19,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,7,Fecha documento,780,163,59,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,8,Fecha recepcion,776,210,54,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,9,Fecha acuse,762,257,41,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,10,Fecha reclamo,770,305,49,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,11,Monto exento,770,353,47,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,12,Monto neto,758,391,39,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,13,Monto IVA,754,441,39,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,14,Monto IVA retenido total,801,490,106,18,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,15,Monto IVA retenido parcial,809,538,106,18,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,16,Monto total,756,577,39,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,17,Monto IVA no retenido,792,618,77,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,18,Monto IVA propio,774,661,61,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,19,Monto IVA terceros,781,705,66,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,20,RUT emisor liquido factura,810,745,93,14,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,21,Neto comision liquido factura,814,789,111,9,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,22,Exento comision liquido factura,825,833,114,17,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,23,IVA comision liquido factura,818,879,109,15,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,24,IVA fuera de plazo,781,925,62,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,25,Tipo documento de referencia,830,967,113,15,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,26,Folio documento de referencia,814,1018,99,17,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,27,Numero identificador receptor extranjero,853,1071,141,18,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,28,Nacionalidad receptor extranjero,836,1122,122,14,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,29,Credito empresa constructura,825,1163,109,14,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,30,"impuesto zona franca (ley 18211)",833,1206,122,17,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,31,Numero interno,774,1249,53,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,32,Codigo sucursal,774,1290,54,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,33,NCE o NDE sobre factura de venta,842,1387,138,14,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,34,Codigo otros impuestos,800,1333,78,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,35,Valor otros impuestos,794,1430,73,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,36,Tasa otros impuestos,792,1521,69,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,37,Ventas pasajes transporte nacional,834,1477,115,14,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,38,Ventas pasajes transporte internacional,846,1575,133,23,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,39,"Garantia dep. envases",792,1621,73,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,40,Indicador venta sin costo,798,1721,122,15,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,41,Indicador servicio periodico,820,1671,99,15,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,42,Monto no facturable,784,1763,67,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,43,Total monto periodo,784,1811,67,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,44,Fecha documento venta,441,226,78,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,45,7,44,1,0,0,0,0,64,0,-1--1--1,,1|(593,94)|
+1,46,8,44,1,0,0,0,0,64,0,-1--1--1,,1|(618,126)|
+1,47,9,44,1,0,0,0,0,64,0,-1--1--1,,1|(607,318)|
+1,48,10,44,1,0,0,0,0,64,0,-1--1--1,,1|(627,362)|
+10,49,Empresa documento venta,1013,47,85,17,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+1,50,4,49,1,0,0,0,0,64,0,-1--1--1,,1|(943,-45)|
+1,51,5,49,1,0,0,0,0,64,0,-1--1--1,,1|(943,119)|
+10,52,Venta,134,804,22,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,53,52,1,1,0,0,0,0,192,0,-1--1--1,,1|(253,727)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Variables registro de compra
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Variables compra,232,51,61,22,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,2,Tipo documento compra,437,50,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Tipo compra,412,92,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Rut proveedor compra,584,48,56,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,Razon social compra,581,93,62,15,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,6,Folio compra,415,138,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Fecha documento compra,760,50,73,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Fecha recepcion compra,755,92,85,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Fecha acuse compra,747,136,65,14,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,10,Monto exento compra,928,50,75,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,11,monto neto compra,923,86,67,17,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,12,Monto IVA recuperable,931,125,94,7,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,13,Monto IVA no recuperable,939,170,75,3,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,14,Codigo IVA no recuperable,1113,176,75,11,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,15,Monto total compra,923,222,83,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,16,Monto neto activo fijo compra,949,266,87,28,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,17,IVA activo fijo,911,314,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,18,IVA uso comun,912,356,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Impuesto sin derecho a credito,946,398,87,19,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,IVA no retenido,912,442,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Tabacos puros,1312,48,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,Tabacos cigarrillos,1323,89,75,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,Tabacos elaborados,1325,130,80,13,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,24,NCE o NDE sobre factura de compra,1549,47,106,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,25,Codigo otro impuesto,1512,87,69,15,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,26,Valor otro impuesto,1506,126,61,15,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,27,Tasa otro impuesto,1506,170,62,12,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Variables banco
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+12,1,0,572,239,25,10,8,7,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Cuenta
+12,2,0,269,662,43,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Conciliación
+12,3,0,255,713,25,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Estado
+12,4,0,286,752,66,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Opciones (eliminar)
+12,5,0,759,194,29,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Número
+12,6,0,755,316,17,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Tipo
+1,7,5,1,1,0,0,0,0,64,0,-1--1--1,,1|(640,127)|
+1,8,6,1,1,0,0,0,0,64,0,-1--1--1,,1|(621,336)|
+10,9,Fecha movimiento Banco,276,150,62,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,10,Razon social variable banco,803,471,94,17,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,11,Rut variable banco,779,563,63,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,12,Nulo,740,635,18,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,13,Emisor,551,536,26,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,14,10,13,1,0,0,0,0,64,0,-1--1--1,,1|(613,391)|
+1,15,11,13,1,0,0,0,0,64,0,-1--1--1,,1|(639,480)|
+1,16,12,13,1,0,0,0,0,64,0,-1--1--1,,1|(631,666)|
+10,17,Ingresos,257,91,49,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,18,Egresos,254,38,46,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,19,Descripcion,267,459,41,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+12,20,0,255,510,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Glosa
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Variables remuneraciones
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Codigo departamento,538,286,71,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,2,Departamento,524,329,47,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,3,Codigo,505,373,26,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,4,RUT,814,293,18,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,5,Nombre,820,333,29,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,6,Dias trabajados,1057,237,51,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,7,Sueldo Base,1051,277,42,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,8,Gratificacion legal,1066,324,62,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,9,Valor imponible,1058,373,54,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,10,Total imponible,1060,426,53,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,11,Asignacion familiar,1070,518,66,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,12,Conectividad,1050,565,45,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,13,Movilizacion,1050,614,45,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,14,Colacion,1033,658,31,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,15,Total no imponible,1062,705,63,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,16,Total Haberes,1052,784,47,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,17,Prevision,1042,906,33,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,18,Salud,1035,954,21,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,19,Impuesto unico,1059,1005,51,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,20,Seguro cesantia,1061,1075,53,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,21,Adicional isapre,909,955,55,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,22,Total descuentos legales,1080,1179,93,18,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+10,23,Retencion SII,1057,1212,46,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,24,Total descuentos,1062,1247,55,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,25,Liquido,1052,1424,27,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,26,SIS,1040,1460,14,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,27,AFC,1044,1496,18,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,28,Mutual,1052,1533,26,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,29,Costo empresa,1068,1625,50,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+12,30,0,536,238,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+Variables posicionales
+12,31,0,513,416,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+(Sucursal)
+12,32,0,860,242,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+Variables de identificacion
+10,33,"4202.01 Suelo Base",1242,274,56,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,34,"4202.02 Gratificacion",1245,328,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,35,33,7,1,0,0,0,0,192,0,-1--1--1,,1|(1183,199)|
+1,36,34,8,1,0,0,0,0,192,0,-1--1--1,,1|(1109,255)|
+1,37,7,10,1,0,0,0,0,192,0,-1--1--1,,1|(947,385)|
+1,38,8,10,1,0,0,0,0,192,0,-1--1--1,,1|(935,448)|
+10,39,"4202.06 Asignacion telefono",1225,548,53,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,40,"4202.05 Movilizacion",1257,621,62,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,41,"4202.04 Colacion",1231,668,51,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,42,11,15,1,0,0,0,0,192,0,-1--1--1,,1|(892,611)|
+1,43,12,15,1,0,0,0,0,192,0,-1--1--1,,1|(929,633)|
+1,44,13,15,1,0,0,0,0,192,0,-1--1--1,,1|(960,656)|
+1,45,14,15,1,0,0,0,0,192,0,-1--1--1,,1|(1112,672)|
+1,46,39,12,1,0,0,0,0,192,0,-1--1--1,,1|(1177,481)|
+1,47,40,13,1,0,0,0,0,192,0,-1--1--1,,1|(1115,541)|
+1,48,41,14,1,0,0,0,0,192,0,-1--1--1,,1|(1140,599)|
+1,49,10,16,1,0,0,0,0,192,0,-1--1--1,,1|(755,591)|
+1,50,15,16,1,0,0,0,0,192,0,-1--1--1,,1|(1235,748)|
+10,51,"2108.07 AFP",1227,895,40,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,52,"2108.08 ISAPRE",1231,947,50,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,53,"2108.09 FONASA",1335,948,54,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,54,"2108.03 IMPUESTO UNICO TRABAJADOR",1232,1013,56,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,55,"4202.11. SEGURO CESANTIA EMPLEADOR",1231,1067,51,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,56,51,17,1,0,0,0,0,192,0,-1--1--1,,1|(1121,855)|
+1,57,52,18,1,0,0,0,0,192,0,-1--1--1,,1|(1143,887)|
+1,58,53,18,1,0,0,0,0,192,0,-1--1--1,,1|(1151,1012)|
+1,59,54,19,1,0,0,0,0,192,0,-1--1--1,,1|(1132,1065)|
+1,60,55,20,1,0,0,0,0,192,0,-1--1--1,,1|(1152,1144)|
+1,61,17,22,1,0,0,0,0,192,0,-1--1--1,,1|(873,1084)|
+1,62,18,22,1,0,0,0,0,192,0,-1--1--1,,1|(911,1059)|
+1,63,19,22,1,0,0,0,0,192,0,-1--1--1,,1|(947,1093)|
+1,64,20,22,1,0,0,0,0,192,0,-1--1--1,,1|(976,1116)|
+1,65,22,24,1,0,0,0,0,192,0,-1--1--1,,1|(1203,1281)|
+1,66,23,24,1,0,0,0,0,192,0,-1--1--1,,1|(1164,1241)|
+10,67,"2108.04 RETENCIONES PROFESIONALES",2089,1033,53,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,68,24,25,1,0,0,0,0,192,0,-1--1--1,,1|(864,1361)|
+10,69,Total Haberes,781,1427,42,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,70,69,25,1,0,0,0,0,192,0,-1--1--1,,1|(897,1293)|
+10,71,"4202.07 Seguro de invalidez y sobrevivencia",1215,1457,50,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,72,"2108.10 MUTUAL",1204,1536,55,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,73,71,26,1,0,0,0,0,192,0,-1--1--1,,1|(1115,1396)|
+1,74,72,28,1,0,0,0,0,192,0,-1--1--1,,1|(1119,1466)|
+1,75,25,29,1,0,0,0,0,192,0,-1--1--1,,1|(887,1574)|
+1,76,26,29,1,0,0,0,0,192,0,-1--1--1,,1|(922,1548)|
+1,77,27,29,1,0,0,0,0,192,0,-1--1--1,,1|(950,1561)|
+1,78,28,29,1,0,0,0,0,192,0,-1--1--1,,1|(990,1570)|
+1,79,24,29,1,0,0,0,0,192,0,-1--1--1,,1|(690,1564)|
+12,80,0,1074,132,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+Variables contables
+10,81,Variables remuneraciones,209,230,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Plan de cuentas
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,75,0
+10,1,"5101.01 VENTA AFECTA",-28,240,49,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,2,Fecha,-258,255,30,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,3,2,1,1,0,0,0,0,64,0,-1--1--1,,1|(-50,153)|
+10,4,"1104.01. DEUDORES CLIENTES",36,392,138,19,8,131,0,0,0,0,0,0,0,0,0,0,0,0
+1,5,2,4,1,0,0,0,0,64,0,-1--1--1,,1|(-238,473)|
+12,6,0,36,323,70,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+VENTAS AFECTAS
+12,7,0,36,283,71,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+VENTAS EXENTAS
+10,8,"1.1.3. DIVIDENDOS PERCIBIDOS",12,649,53,27,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,9,"1.1.4. OTRAS ENTRADAS",12,863,49,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,10,Otros ingresos,-243,732,58,10,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,11,Plan de cuentas saldos iniciales,-488,744,54,18,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+1,12,11,8,1,0,0,0,0,64,0,-1--1--1,,1|(-334,531)|
+1,13,11,9,1,0,0,0,0,64,0,-1--1--1,,1|(-456,883)|
+1,14,10,8,1,0,0,0,0,64,0,-1--1--1,,1|(-154,612)|
+1,15,10,9,1,0,0,0,0,64,0,-1--1--1,,1|(-180,880)|
+10,16,"1101.02. BANCO",-31,78,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,17,0,-487,799,80,40,8,71,0,0,-1,0,0,0,0,0,1,0,0,0
+Balance general
+10,18,"4202.01 Suelo Base",674,101,50,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,"4202.02 Gratificacion",678,146,56,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,"4202.03 Bonos y aguilnaldo",692,194,82,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,"4202.04 Colacion",667,240,72,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,"4202.05 Movilizacion",675,291,55,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,"4202.06 Asignacion telefono",692,347,74,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,24,"4202.07 Seguro de invalidez y sobrevivencia",729,400,129,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,25,"4202.08 Mutual de seguridad",691,454,79,21,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,26,"4202.09 Finiquitos",668,577,61,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,27,"4202.10 Vacaciones proporcionales",705,628,93,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,28,0,632,-13,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+4. Resultados/Perdidas
+12,29,0,658,9,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+42. Gastos Administracion|<<NnN>>|
+12,30,0,689,31,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+4202. Gastos Remuneraciones
+10,31,"2108.07 AFP",1042,239,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,32,"2108.08 ISAPRE",1052,282,63,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,33,"2108.09 FONASA",1058,318,60,6,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,34,"2108.10 MUTUAL",1059,359,71,15,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,35,"2108.11 CAJA DE COMPENSACION",1106,400,99,13,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,"2108.03 IMPUESTO UNICO TRABAJADOR",1115,99,150,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,37,"2108.04 RETENCIONES PROFESIONALES",1114,150,144,17,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,38,0,1012,-17,80,40,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+2. Pasivos
+12,39,0,1060,5,80,40,8,71,0,16,-1,0,0,0,-1--1--1,-1--1--1,||B|0-0-0,0,0,0,0,0,0
+21. Pasivos circulares
+12,40,0,1116,31,93,36,8,71,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+2108. Provisiones y retenciones
+10,41,"4202.11. SEGURO CESANTIA EMPLEADOR",733,681,129,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,42,"1108.01 PAGOS PREVISIONALES",403,102,107,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,43,"2108.14 FINIQUITOS",1066,448,94,20,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,44,"2105.05 FINIQUITOS POR PAGAR",408,145,133,21,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,45,"2105.04. Honorarios por pagar",1529,94,88,26,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,46,"2108.04. Retencion profesionales",1535,143,96,19,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,47,"4201.02. Honorarios profesionales",1540,196,99,16,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,48,"2116.01. FACTURAS POR PAGAR",1827,91,99,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,49,PLAN DE CUENTA,-660,538,52,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,50,"5101.02. VENTA EXENTA",47,182,44,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,51,"2105.02. Remuneraciones por pagar",1542,247,91,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,52,"4202.14. Representacion y Viaticos",706,504,93,17,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,53,"4202.13. Beneficio Licencia",688,544,75,27,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Libro Diario Ingreso por Venta
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,20,0
+10,1,Fecha libro diario,1403,321,59,10,8,3,0,16,0,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,2,Cuenta,1992,310,25,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,3,Debe,2334,308,19,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,4,Haber,2510,306,22,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+10,5,Glosa,2160,310,21,10,8,3,0,0,0,0,0,0,0,0,0,0,0,0
+12,6,0,1994,285,62,10,8,71,0,0,-1,0,0,0,-1,-1,0,0,0,0
+Del plan de cuenta
+10,7,Fecha documento venta,1401,407,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,8,7,1,1,0,0,0,0,192,0,-1--1--1,,1|(1256,347)|
+10,9,"5101.01 VENTA AFECTA",1997,454,43,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,10,9,2,1,0,0,0,0,192,0,-1--1--1,,1|(1833,394)|
+10,11,Descripcion,867,383,38,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,12,Monto total,2434,401,37,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,13,12,3,1,0,0,0,0,192,0,-1--1--1,,1|(2437,261)|
+10,14,Fecha movimiento Banco,1094,126,67,5,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,15,"1101.02. BANCO",864,489,34,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,16,Descripcion,870,415,38,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,17,Ingresos,870,454,29,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,18,"1104.01. DEUDORES CLIENTES",1995,398,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,19,18,2,1,0,0,0,0,192,0,-1--1--1,,1|(1915,397)|
+10,20,Tipo,1543,326,42,22,8,3,0,16,-1,0,0,0,0-0-0,0-0-0,||B|0-0-0,0,0,0,0,0,0
+10,21,Traspaso,1548,408,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,22,Ingreso,1547,442,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,23,Egreso,1546,479,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,24,Documentos de venta,1583,258,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,25,24,20,1,0,0,0,0,192,0,-1--1--1,,1|(1465,262)|
+1,26,21,20,1,0,0,0,0,192,0,-1--1--1,,1|(1637,393)|
+1,27,22,20,1,0,0,0,0,192,0,-1--1--1,,1|(1648,417)|
+1,28,23,20,1,0,0,0,0,192,0,-1--1--1,,1|(1671,444)|
+10,29,Numero comprobante,1730,585,54,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,30,12,4,1,0,0,0,0,192,0,-1--1--1,,1|(2485,448)|
+1,31,18,3,1,0,0,0,0,192,0,-1--1--1,,1|(2251,249)|
+1,32,18,4,1,0,0,0,0,192,0,-1--1--1,,1|(2318,141)|
+1,33,9,3,1,0,0,0,0,192,0,-1--1--1,,1|(2092,518)|
+1,34,9,4,1,0,0,0,0,192,0,-1--1--1,,1|(2349,619)|
+10,35,Venta,1131,402,22,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,36,35,2,1,0,0,0,0,192,0,-1--1--1,,1|(1769,139)|
+10,37,"5101.02. VENTA EXENTA",2004,541,47,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,38,37,2,1,0,0,0,0,192,0,-1--1--1,,1|(1809,508)|
+10,39,Fecha legal de pago de cotizaciones recursos humanos,1407,732,57,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,40,Remuneraciones,869,341,49,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,41,39,1,1,0,0,0,0,192,0,-1--1--1,,1|(1233,580)|
+10,42,Libro de remuneraciones,1586,731,62,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,43,42,20,1,0,0,0,0,192,0,-1--1--1,,1|(1458,528)|
+10,44,"2108.07 AFP",2003,700,41,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,45,"2108.08 ISAPRE",2005,733,51,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,46,"2108.09 FONASA",2008,767,54,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,47,"2108.10 MUTUAL",2009,802,56,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,48,"2108.11 CAJA DE COMPENSACION",2010,846,52,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,49,44,3,1,0,0,0,0,192,0,-1--1--1,,1|(2092,457)|
+1,50,45,3,1,0,0,0,0,192,0,-1--1--1,,1|(2135,501)|
+1,51,46,3,1,0,0,0,0,192,0,-1--1--1,,1|(2042,475)|
+1,52,47,3,1,0,0,0,0,192,0,-1--1--1,,1|(2088,515)|
+1,53,48,3,1,0,0,0,0,192,0,-1--1--1,,1|(2108,577)|
+10,54,"1101.02. BANCO",2009,920,52,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,55,Fecha pago remuneraciones recursos humanos politica empresa,1401,1007,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,56,54,4,1,0,0,0,0,192,0,-1--1--1,,1|(2616,633)|
+10,57,"2105.02. Remuneraciones por pagar",2013,1020,51,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,58,"1101.02. BANCO",2017,1094,52,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,59,57,3,1,0,0,0,0,192,0,-1--1--1,,1|(2382,773)|
+1,60,58,4,1,0,0,0,0,192,0,-1--1--1,,1|(2676,967)|
+1,61,55,1,1,0,0,0,0,192,0,-1--1--1,,1|(1199,612)|
+10,62,Fecha carga RRHH,1409,1152,49,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,63,62,1,1,0,0,0,0,192,0,-1--1--1,,1|(1061,562)|
+10,64,Egreso,1574,789,25,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,65,64,20,1,0,0,0,0,192,0,-1--1--1,,1|(1438,579)|
+1,66,14,1,1,0,0,0,0,192,0,-1--1--1,,1|(1126,96)|
+10,67,"4202.01 Suelo Base",2025,1238,56,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,68,"4202.02 Gratificacion",2029,1300,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,69,"4202.03 Bonos y aguilnaldo",2031,1386,46,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,70,"4202.06 Asignacion telefono",2033,1446,53,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,71,"4202.04 Colacion",2035,1518,51,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,72,"4202.05 Movilizacion",2039,1578,62,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,73,"4202.14. Representacion y Viaticos",2040,1646,70,33,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,74,"4202.13. Beneficio Licencia",2039,1717,59,17,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,75,"4202.07 Seguro de invalidez y sobrevivencia",2041,1784,50,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,76,"4202.11. SEGURO CESANTIA EMPLEADOR",2045,1858,51,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,77,"4202.08 Mutual de seguridad",2041,1954,51,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,78,67,3,1,0,0,0,0,192,0,-1--1--1,,1|(2871,809)|
+1,79,68,3,1,0,0,0,0,192,0,-1--1--1,,1|(2852,1194)|
+1,80,69,3,1,0,0,0,0,192,0,-1--1--1,,1|(2919,1310)|
+1,81,70,3,1,0,0,0,0,192,0,-1--1--1,,1|(2977,1324)|
+1,82,71,3,1,0,0,0,0,192,0,-1--1--1,,1|(3016,1305)|
+1,83,73,3,1,0,0,0,0,192,0,-1--1--1,,1|(3001,1507)|
+1,84,75,3,1,0,0,0,0,192,0,-1--1--1,,1|(3136,1604)|
+1,85,76,3,1,0,0,0,0,192,0,-1--1--1,,1|(3078,1604)|
+1,86,77,3,1,0,0,0,0,192,0,-1--1--1,,1|(3141,1507)|
+1,87,74,3,1,0,0,0,0,192,0,-1--1--1,,1|(3069,1555)|
+1,88,72,3,1,0,0,0,0,192,0,-1--1--1,,1|(2996,1397)|
+1,89,20,3,1,0,0,0,0,192,0,-1--1--1,,1|(2021,86)|
+1,90,20,4,1,0,0,0,0,192,0,-1--1--1,,1|(2317,130)|
+1,91,44,4,1,0,0,0,0,192,0,-1--1--1,,1|(2320,678)|
+1,92,45,4,1,0,0,0,0,192,0,-1--1--1,,1|(2380,673)|
+1,93,46,4,1,0,0,0,0,192,0,-1--1--1,,1|(2370,713)|
+1,94,47,4,1,0,0,0,0,192,0,-1--1--1,,1|(2431,727)|
+1,95,48,4,1,0,0,0,0,192,0,-1--1--1,,1|(2467,745)|
+1,96,77,4,1,0,0,0,0,192,0,-1--1--1,,1|(1528,1209)|
+10,97,Fecha boleta honorarios,1408,1254,36,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,98,Variables honorarios,1583,843,58,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,99,"2105.04. Honorarios por pagar",2044,2051,55,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,100,"2108.04 RETENCIONES PROFESIONALES",2049,2132,53,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,101,"4201.02. Honorarios profesionales",2053,2223,55,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+1,102,97,1,1,0,0,0,0,192,0,-1--1--1,,1|(930,735)|
+1,103,98,20,1,0,0,0,0,192,0,-1--1--1,,1|(1370,540)|
+1,104,99,4,1,0,0,0,0,192,0,-1--1--1,,1|(3250,1510)|
+1,105,100,4,1,0,0,0,0,192,0,-1--1--1,,1|(3280,1560)|
+1,106,101,3,1,0,0,0,0,192,0,-1--1--1,,1|(1515,1465)|
+1,107,99,3,1,0,0,0,0,192,0,-1--1--1,,1|(1580,1275)|
+1,108,100,3,1,0,0,0,0,192,0,-1--1--1,,1|(1545,1195)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Formulario 29
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,75,0
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Libro Diario Remuneraciones
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,0
+10,1,Fecha libro diario,278,-615,52,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,2,Cuenta,606,-631,35,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,Glosa,756,-636,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,Debe,946,-633,27,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Haber,1104,-637,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,6,"4202.01 Suelo Base",611,-565,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,7,"4202.02 Gratificacion",614,-513,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,8,"4202.06 Asignacion telefono",621,-460,44,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,9,"4202.04 Colacion",612,-387,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,"4202.05 Movilizacion",611,-318,56,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,11,Sueldo Base,952,-569,56,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,12,Gratificacion legal,952,-516,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,13,Conectividad,956,-460,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,14,Colacion,955,-395,44,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,15,Movilizacion,946,-330,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,16,"2108.07 AFP",612,-256,56,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,17,Prevision,957,-261,48,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,18,"2108.08 ISAPRE",605,-176,35,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,19,"2108.09 FONASA",604,-108,35,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,20,Salud,952,-183,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,21,Salud,951,-117,31,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,22,"2108.03 IMPUESTO UNICO TRABAJADOR",603,-35,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,23,"4202.11. SEGURO CESANTIA EMPLEADOR",604,45,44,30,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,24,Impuesto unico,961,-36,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,25,Seguro cesantia,962,51,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,26,"2108.04 RETENCIONES PROFESIONALES",601,141,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,27,Retencion SII,955,138,44,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,28,"4202.07 Seguro de invalidez y sobrevivencia",599,229,61,30,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,29,SIS,950,232,23,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,30,"2108.10 MUTUAL",603,324,35,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,31,Mutual,957,316,35,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,32,Fecha de pago politicas recursos humanos,284,-469,56,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,33,1,32,1,0,0,0,1,64,0,255-255-255,|||0-0-0,1|(169,-566)|
+10,34,Tipo,431,-618,27,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,35,Traspaso,434,-586,44,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,36,Ingreso,432,-562,40,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,37,Egreso,433,-535,35,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Variables honorarios
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,0
+10,1,Numero,366,164,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,2,Fecha boleta honorarios,615,165,117,24,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,3,Estado,367,208,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,4,Rut honorarios,842,165,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,5,Nombre o razon social,870,201,120,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,6,Socprof,373,255,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,7,Honorarios bruto,1125,163,78,21,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,8,Honorarios retenido,1138,198,94,18,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,9,Honorarios pagados,1135,237,86,12,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,10,Variables honorarios,177,163,88,7,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,11,9,7,1,0,0,0,0,192,0,-1--1--1,,1|(1381,175)|
+1,12,8,7,1,0,0,0,0,192,0,-1--1--1,,1|(990,243)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Libro diario honorarios
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,0
+10,1,Fecha libro diario,499,172,57,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,2,Cuenta,693,173,29,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,Glosa,843,168,25,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,Debe,1033,171,24,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Haber,1191,167,26,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,6,0,612,109,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Comprobante|<<NnN>>|Tipo/Numero/Secuencia
+10,7,Fecha boleta honorarios,497,256,56,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,8,"2105.04. Honorarios por pagar",687,265,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,9,0,878,267,121,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Honorarios/mes/pagados(neto)
+10,10,Honorarios pagados,1203,265,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,11,Fecha boleta honorarios,496,336,56,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,12,"2108.04. Retencion profesionales",687,334,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,13,0,863,336,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Retenciones honorarios/mes/retencion
+10,14,Honorarios retenido,1200,337,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,15,0,302,330,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+TRASPASO
+10,16,Fecha boleta honorarios,500,421,42,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,17,"4201.02. Honorarios profesionales",679,419,61,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,18,Honorarios bruto,1044,418,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,19,0,302,260,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+TRASPASO
+12,20,0,307,426,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+TRASPASO
+12,21,0,874,415,91,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Honorarios/mes/total
+10,22,Fecha boleta honorarios,-233,521,42,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,23,0,310,523,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+10,24,"2105.04. Honorarios por pagar",677,519,64,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,25,0,871,521,102,41,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Pago honorarios/mes
+10,26,Honorarios pagados,1047,526,37,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,27,0,311,604,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+12,28,0,875,603,102,41,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Pago honorarios/mes
+10,29,Honorarios pagados,1216,602,37,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,30,0,1369,603,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Conciliacion
+12,31,0,306,50,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Libro Diario mes M
+12,32,0,317,698,104,38,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Libro Diario mes M+1
+12,33,0,316,783,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+10,34,"2108.04. Retencion profesionales",680,774,60,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,35,0,495,778,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Fecha de declaracion (rango)
+10,36,Honorarios retenido,1048,780,37,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,37,0,872,779,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Pago F29 mes M
+12,38,0,875,870,102,41,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Pago F29 mes M
+10,39,Honorarios retenido,1216,863,37,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,40,0,1368,860,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Conciliacion
+10,41,"1101.02. BANCO",677,875,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,42,"1101.02. BANCO",677,599,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,43,0,318,879,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESO
+12,44,0,497,878,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Fecha de declaracion (rango)
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Libro de Ingresos y Egresos
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,0
+12,1,0,-210,86,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESOS
+12,2,0,-194,185,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Correlativo
+12,3,0,-20,185,97,45,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Numero de Documento
+10,4,Numero,-20,239,42,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,5,0,164,184,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Tipo Documento
+12,6,0,158,241,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+BOL-HE
+12,7,0,322,184,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+RUT Emisor
+12,8,0,486,185,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Fecha Operacion
+10,9,Rut honorarios,323,240,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,Fecha boleta honorarios,-391,653,89,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,11,0,665,183,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Pagados
+12,12,0,806,182,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Adeudados
+12,13,0,960,181,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Glosa Operacion
+12,14,0,811,246,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+0
+12,15,0,963,245,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Pago Honorarios
+10,16,Honorarios bruto,671,245,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,17,Folio compra,-13,300,61,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,18,Tipo documento compra,161,306,77,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,19,0,-359,236,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Honorarios
+12,20,0,-374,298,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Compra
+10,21,Rut proveedor compra,332,310,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,22,0,500,272,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Fecha libro diario
+10,23,Monto total compra,675,315,73,22,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,24,0,812,313,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+0
+12,25,0,989,312,107,38,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Folio documento compra
+12,26,0,1011,338,118,9,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Descripcion (Glosa) Factura
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*Libro Diario compra
+$-1--1--1,0,|12||-1--1--1|-1--1--1|-1--1--1|-1--1--1|-1--1--1|96,96,100,0
+10,1,Fecha libro diario,407,-164,57,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,2,Cuenta,601,-163,29,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,3,Glosa,775,-165,25,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,4,Debe,941,-165,24,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,5,Haber,1099,-169,26,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,6,0,520,-227,80,40,8,71,0,0,-1,0,0,0,0,0,0,0,0,0
+Comprobante|<<NnN>>|Tipo/Numero/Secuencia
+12,7,0,228,-87,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+TRASPASO|<<NnN>>|
+10,8,Fecha documento compra,414,-86,88,23,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,9,"2116.01. FACTURAS POR PAGAR",611,-87,63,28,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,10,monto neto compra,2841,-253,48,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,11,Monto total compra,952,-9,52,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,12,Monto total compra,1103,-89,39,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,13,0,230,-16,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+TRASPASO|<<NnN>>|
+10,14,Fecha documento compra,406,-21,57,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,15,Definir cuenta,621,-5,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,16,Definir Glosa,787,-86,56,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,17,0,788,-43,79,17,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+OCR|<<NnN>>|(Optical Character Recognition)|<<NnN>>|
+12,18,0,228,115,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESOS
+12,19,0,230,188,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESOS
+10,20,"2116.01. FACTURAS POR PAGAR",621,116,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,21,Monto total compra,949,118,39,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,22,"1101.02. BANCO",623,187,40,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,23,Monto total compra,1106,177,39,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+12,24,0,46,154,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+1era estructura
+12,25,0,47,301,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+2da estructura
+12,26,0,229,272,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESOS
+12,27,0,231,345,80,40,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+EGRESOS
+10,28,"1101.02. BANCO",620,275,55,9,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,29,Monto total compra,2847,-201,39,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,30,PLAN DE CUENTA,777,449,35,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,31,Rut proveedor compra,131,449,61,16,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,32,Razon social compra,132,506,80,18,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|||128-128-128,0,0,0,0,0,0
+10,33,Tipo y subtipo contribuyente,129,561,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,34,Segmento,129,607,53,14,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,35,Descripcion de Actividades,131,677,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,36,Categoria Tributaria,126,744,44,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,37,Empresa Proveedor,341,585,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,38,31,37,1,0,0,0,0,192,0,-1--1--1,,1|(292,401)|
+1,39,32,37,1,0,0,0,0,192,0,-1--1--1,,1|(273,459)|
+1,40,33,37,1,0,0,0,0,192,0,-1--1--1,,1|(260,505)|
+1,41,34,37,1,0,0,0,0,192,0,-1--1--1,,1|(259,638)|
+1,42,35,37,1,0,0,0,0,192,0,-1--1--1,,1|(239,712)|
+1,43,36,37,1,0,0,0,0,192,0,-1--1--1,,1|(291,769)|
+10,44,Empresa LUCA,970,575,52,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,45,RUT empresa en LUCA,1216,428,61,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,46,Razon Social empresa en Luca,1219,505,90,25,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,47,Segmento empresa en LUCA,1223,604,80,29,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,48,Actividades economicas,1227,689,48,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,49,Categoria Tributaria empresa en LUCA,1243,782,95,40,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,50,45,44,1,0,0,0,0,192,0,-1--1--1,,1|(1055,399)|
+1,51,46,44,1,0,0,0,0,192,0,-1--1--1,,1|(1085,481)|
+1,52,47,44,1,0,0,0,0,192,0,-1--1--1,,1|(1081,551)|
+1,53,48,44,1,0,0,0,0,192,0,-1--1--1,,1|(1078,701)|
+1,54,49,44,1,0,0,0,0,192,0,-1--1--1,,1|(1082,786)|
+10,55,Consolidado,624,828,63,29,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,56,48,173,830,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,57,59,56,100,0,0,22,0,192,0,-1--1--1,,1|(279,830)|
+1,58,59,55,4,0,0,22,0,192,0,-1--1--1,,1|(474,830)|
+11,59,0,381,830,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,60,empresa proveedor 1,381,860,48,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,61,37,59,1,0,0,0,0,192,0,-1--1--1,,1|(502,644)|
+12,62,48,1076,826,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,63,65,62,100,0,0,22,0,192,0,-1--1--1,,1|(960,826)|
+1,64,65,55,4,0,0,22,0,192,0,-1--1--1,,1|(764,826)|
+11,65,0,848,826,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,66,Empresa en LUCA,848,856,44,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,67,44,65,1,0,0,0,0,192,0,-1--1--1,,1|(807,596)|
+10,68,Informacion de la Factura de compra,651,1031,61,23,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,69,68,55,1,0,0,0,0,192,0,-1--1--1,,1|(484,990)|
+12,70,48,616,343,10,8,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,71,73,70,100,0,0,22,0,192,0,-1--1--1,,1|(616,455)|
+1,72,73,55,4,0,0,22,0,192,0,-1--1--1,,1|(616,685)|
+11,73,0,616,565,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,74,Definir cuenta del Plan,685,565,61,22,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,75,30,74,1,0,0,0,0,192,0,-1--1--1,,1|(575,398)|
+12,76,0,411,146,79,44,8,7,0,0,-1,0,0,0,0,0,0,0,0,0
+Fecha del movimiento|<<NnN>>|
+10,77,Configuraciones iniciales,1267,900,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,78,77,44,1,0,0,0,0,192,0,-1--1--1,,1|(1156,922)|
+10,79,Balance General,1450,844,42,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,80,Estado de Resultados,1456,960,44,22,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,81,79,77,1,0,0,0,0,192,0,-1--1--1,,1|(1376,788)|
+1,82,80,77,1,0,0,0,0,192,0,-1--1--1,,1|(1376,1019)|
+///---\\\
+:L<%^E!@
+5:Debe
+9:Current
+19:100,12
+24:0
+25:0
+26:0
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:0
+72:0
+73:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:1
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
+105:0,0,0,0,0,0,0,0,0,0
+104:Courier|12||0-0-0|0-0-0|-1--1--1|0-0-255|192-192-192|-1--1--1
