@@ -1,0 +1,30 @@
+/* SubMenu.css */
+.sub-menu {
+    position: fixed ;
+    top: 0;
+    left: -150px; /* Posición inicial fuera del elemento principal */
+    height: 100vh;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2%;
+    padding-left: 1%;
+    transition: left 0.3s ease-in-out;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 1;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    color:white
+  }
+  
+  .sub-menu.show {
+    left:14%; /* Posición cuando el submenú está visible */
+    opacity: 1;
+    width: 15%;
+ 
+    /* transition: 0.3s; */
+  }
+
+  
+  
