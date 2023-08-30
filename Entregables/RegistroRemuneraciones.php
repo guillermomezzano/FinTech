@@ -59,11 +59,11 @@ if($boolean){
     echo "no lo encontro";
     $pk_trab = '1' ;
 }}
-$consulta3 =  "INSERT INTO `a_trabajo`.`remuneraciones` (`PK`, `Depto`, `Cod`, `Trabajador`, 
-`DT`, `S.BASE`, `GRAT.LEGAL`, `VALOR IMP.`, `TOTAL IMP.`, `ASIG. FAM.`, `CONECT.`, `MOVI,`, 
-`COLACION`, `TOTAL NO IMP`, `TOT. HABERES`, `PREVISION`, `SALUD`, `IMP.UNICO`, `SEG.CES.`, 
-`ADIC. ISAPRE`, `TOT. DESC.LEG.`, `RET SII`, `TOT.DESC`, `LIQUIDO`, `SIS`, `AFC`, `MUTUAL`, 
-`COSTO EMPRESA`) VALUES ('0', '".$pk_depto."', '".$sheet->getCell("C".$row)->getValue()."', 
+$consulta3 =  "INSERT INTO `a_trabajo`.`remuneraciones` (`PK`,`PK_Usuario`,`FechaCarga`, `Depto`, `Cod`, `Trabajador`, 
+`DT`, `SBASE`, `GRATLEGAL`, `VALOR IMP`, `TOTAL IMP`, `ASIG FAM`, `CONECT`, `MOVI`, 
+`COLACION`, `TOTAL NO IMP`, `TOT HABERES`, `PREVISION`, `SALUD`, `IMPUNICO`, `SEGCES`, 
+`ADIC ISAPRE`, `TOT DESCLEG`, `RET SII`, `TOTDESC`, `LIQUIDO`, `SIS`, `AFC`, `MUTUAL`, 
+`COSTO EMPRESA`) VALUES ('0', '".$PKempresa."', '" . date("Y-m-d") . "','".$pk_depto."','".$sheet->getCell("C".$row)->getValue()."', 
 '".$pk_trab."', '".$sheet->getCell("F".$row)->getValue()."', '".$sheet->getCell("G".$row)->getValue()."',
  '".$sheet->getCell("H".$row)->getValue()."', '".$sheet->getCell("I".$row)->getValue()."', 
  '".$sheet->getCell("J".$row)->getValue()."', '".$sheet->getCell("K".$row)->getValue()."',
