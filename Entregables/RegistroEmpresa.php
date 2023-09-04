@@ -49,7 +49,7 @@ if($boolean){
     $consulta2 = "INSERT INTO tipoempresa(PK,Nombre) VALUES ('0','".$decoded_json [ 'glosaActividad' ] ."')";
     $resultado = mysqli_query( $conexion, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
 }}
-$consulta3 = "INSERT INTO empresa(PK,rut, RazonSocial, Tipo) VALUES ('0','".$decoded_json [ 'rut' ] ."', '".$decoded_json [ 'razonSocial' ] ."', '".$pk_tipoempresa ."')";
+$consulta3 = "INSERT INTO empresa(PK,rut, RazonSocial, Tipo) VALUES ('0','".$decoded_json [ 'rut' ] ."-".$decoded_json [ 'dv' ] ."', '".$decoded_json [ 'razonSocial' ] ."', '".$pk_tipoempresa ."')";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 
 echo "<a>registrado</a>";
