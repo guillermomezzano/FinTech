@@ -453,7 +453,7 @@ INSERT INTO `cuentas` (`PK`, `Codigo`, `Nombre`, `Atributo`) VALUES
 (165, '4202-08', 'MUTUAL DE SEGURIDAD', ''),
 (166, '4202-09', 'FINIQUITO', ''),
 (167, '4202-10', 'VACACIONES PROPORCIONALES', ''),
-(168, '4202-11', 'SEGURO CESANTIA EMPEADOR', ''),
+(168, '4202-11', 'SEGURO CESANTIA EMPLEADOR', ''),
 (169, '4202-12', 'COTIZACION EN SUSPENSION', ''),
 (170, '4204-01', 'FLUCTUACION DE CAMBIOS', ''),
 (171, '4205-01', 'INTERESES Y REAJUSTES', ''),
@@ -854,15 +854,17 @@ INSERT INTO `trabajadores` (`PK`, `RUT`, `NOMBRE`, `empresa_pk`, `plazo_contrato
 
 CREATE TABLE IF NOT EXISTS `usuario` (
   `PK` int(11) NOT NULL,
-  `Empresa_pk` int(11) NOT NULL
+  `Empresa_pk` int(11) NOT NULL,
+  `APIKey` varchar(30) NOT NULL,
+  `SII` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`PK`, `Empresa_pk`) VALUES
-(867, 1);
+INSERT INTO `usuario` (`PK`, `Empresa_pk`, `APIKey`, `SII`) VALUES
+(867, 4, 'KKivbrfBakBKD3dytxYUVfff', 'apJIw88GpMZMeDH7uUtfW5fJH8ctg6T2MbKE7Bt9HAs9i44YLxYdRgcAUvBcP+Bn');
 
 --
 -- Índices para tablas volcadas
