@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 // components
 import Reports from "../subSideBar/Reports";
+import Configuration from "../subSideBar/Configuration";
 
 // Styles
 import "./sideBar.css";
@@ -53,19 +54,21 @@ const Sidebar = () => {
   const [showSubMenuReports, setShowSubMenuReports] = useState(false);
   const [menuItems, setMenuItems] = useState(menuItemsDefaults);
   // varables de estado para el resto de submenus
-  // const [showSubMenuConfiguration, setShowSubMenuConfiguration] = useState(false);
+  const [showSubMenuConfiguration, setShowSubMenuConfiguration] =
+    useState(false);
   // const [showSubMenuWorking, setShowSubMenuWorking] = useState(false);
   // const [showSubMenuSuport, setShowSubMenuSuport] = useState(false);
 
   //funcion para cuando el mouse esta sobre del menu
+  // vaule es true en este caso y id es el item
   const handleMouseEnter = (value, id) => {
     if (id === 3) {
       setShowSubMenuReports(value);
     }
-    // se sigue esta logica para el resto de submenus
-    // if (id === 2) {
-    //   setShowSubMenuReports(value);
-    // }
+
+    if (id === 4) {
+      setShowSubMenuConfiguration(value);
+    }
     setExpanded(value);
   };
 
@@ -75,9 +78,14 @@ const Sidebar = () => {
       setShowSubMenuReports(value);
     }
 
-    if (showSubMenuReports === true) {
+    if (id === 4) {
+      setShowSubMenuConfiguration(value);
+    }
+    // en es caso de que un submenu este habilitado no se cierra el menu principal
+    if (showSubMenuReports === true || showSubMenuConfiguration === true) {
       return setExpanded(true);
     }
+
     setExpanded(value);
   };
 
@@ -109,6 +117,12 @@ const Sidebar = () => {
       <Reports
         showSubMenuReports={showSubMenuReports}
         setShowSubMenuReports={setShowSubMenuReports}
+        setExpanded={setExpanded}
+        expanded={expanded}
+      />
+      <Configuration
+        showSubMenuConfiguration={showSubMenuConfiguration}
+        setShowSubMenuConfiguration={setShowSubMenuConfiguration}
         setExpanded={setExpanded}
         expanded={expanded}
       />
