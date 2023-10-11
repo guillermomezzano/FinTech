@@ -637,6 +637,7 @@ CREATE TABLE IF NOT EXISTS `libro` (
   `HABER` int(11) DEFAULT NULL,
   `PK_Origen` int(11) NOT NULL,
   `Tabla_Origen` int(11) NOT NULL
+  `Auxiliar` int(11) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 

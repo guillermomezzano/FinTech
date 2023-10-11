@@ -10,7 +10,7 @@ $opts = array(
   $context = stream_context_create($opts);
   $PKempresa = "867";
   $operation = "VENTA";
-  $mes = "06";
+  $mes = "09";
   $yr = "2023"; //202306
 
   $data = file_get_contents("key.json");
@@ -37,9 +37,9 @@ while ($columna = mysqli_fetch_array( $resultado))
   header('Content-Type: application/json');
   $json_ugly = file_get_contents('https://api.cymasuite.com/api/v1/sii/get-purchase-detail?company_id='.$PKempresa.'&per_page=10&page=1&date='.$yr.''.$mes.'&cod='.$pk_doc.'&operation='.$operation.'&state=REGISTRO', false, $context);
   $json_pretty = json_encode(json_decode($json_ugly), JSON_PRETTY_PRINT);
-  // echo $json_pretty;
+  echo $json_pretty;
   $decoded_json = json_decode($json_pretty, true);
-  // echo $decoded_json [ 'total_items' ];
+  echo $decoded_json [ 'total_items' ];
   if($decoded_json [ 'total_items' ]>0){
     $a =0;
     while ($a < $decoded_json [ 'total_items' ]) {
@@ -251,7 +251,7 @@ if($decoded_json [ 'data' ][$a] [ 'dcvEstadoContab'] != null){
   if($decoded_json [ 'data' ][$a] [ 'detNumInt'] != null){
   $aj = "'".$decoded_json [ 'data' ][$a] [ 'detNumInt']."'";
 }
-$consulta4 = "INSERT INTO `a_trabajo`.`compraventa` 
+$consulta4 = "INSERT INTO `compraventa` 
   (`PK`, `PK_Usuario`, `Documento`, `dhdrCodigo`, `dcvCodigo`, `dcvEstadoContab`, `detCodigo`, `detTipoDoc`, `PK_Empresa`, 
   `detNroDoc`, `detFchDoc`, `detFecAcuse`, `detFecReclamado`, `detFecRecepcion`, `detMntExe`, `detMntNeto`, `detMntActFijo`, 
   `detMntIVAActFijo`, `detMntIVANoRec`, `detMntCodNoRec`, `detMntSinCredito`, `detMntIVA`, `detMntTotal`, `detTasaImp`, 
@@ -281,7 +281,7 @@ $consulta4 = "INSERT INTO `a_trabajo`.`compraventa`
   '".$decoded_json [ 'data' ][$a] [ 'detTipoTransaccion']."', ".$ag.", ".$ah."
   , '".$af."', '".$decoded_json [ 'data' ][$a] [ 'detPcarga']."', '".$pk_tip."',
   '".$decoded_json [ 'data' ][$a] [ 'totalDtoiMontoImp']."', ".$ac.", '".$ad."', ".$ae.");";
-  // echo $consulta4;
+  echo $consulta4;
 $resultado4 = mysqli_query( $conexion, $consulta4 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 
   $a = $a+1;

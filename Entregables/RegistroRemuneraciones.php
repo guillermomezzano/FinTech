@@ -59,7 +59,7 @@ if($boolean){
     echo "no lo encontro";
     $pk_trab = '1' ;
 }}
-$consulta3 =  "INSERT INTO `a_trabajo`.`remuneraciones` (`PK`,`PK_Usuario`,`FechaCarga`, `Depto`, `Cod`, `Trabajador`, 
+$consulta3 =  "INSERT INTO `remuneraciones` (`PK`,`PK_Usuario`,`FechaCarga`, `Depto`, `Cod`, `Trabajador`, 
 `DT`, `SBASE`, `GRATLEGAL`, `VALOR IMP`, `TOTAL IMP`, `ASIG FAM`, `CONECT`, `MOVI`, 
 `COLACION`, `TOTAL NO IMP`, `TOT HABERES`, `PREVISION`, `SALUD`, `IMPUNICO`, `SEGCES`, 
 `ADIC ISAPRE`, `TOT DESCLEG`, `RET SII`, `TOTDESC`, `LIQUIDO`, `SIS`, `AFC`, `MUTUAL`, 
