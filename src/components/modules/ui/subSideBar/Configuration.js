@@ -11,39 +11,34 @@ import Typography from "@mui/material/Typography";
 const menuItemsDefaults = [
   {
     id: 1,
-    name: "Libro Registro de Venta",
-    link: "/",
+    name: "FormsUsers",
+    link: "/FormsUsers",
   },
   {
     id: 2,
-    name: "Libro Diario",
-    link: "/DiaryBook",
+    name: "PageUsers",
+    link: "/PageUsers",
   },
   {
     id: 3,
-    name: "Libro Registro de Compra",
+    name: "Otra Opcion",
     link: "/",
   },
   {
     id: 4,
-    name: "Libro Mayor",
+    name: "Otra Opcion",
     link: "/",
   },
   {
     id: 5,
-    name: "Libro Remuneraciones",
-    link: "/",
-  },
-  {
-    id: 6,
-    name: "Libro Clientes",
+    name: "Otra Opcion",
     link: "/",
   },
 ];
 
-const Reports = ({
-  showSubMenuReports,
-  setShowSubMenuReports,
+const Configuration = ({
+  showSubMenuConfiguration,
+  setShowSubMenuConfiguration,
   setExpanded,
   expanded,
 }) => {
@@ -51,28 +46,27 @@ const Reports = ({
 
   const handleMouseEnter = (value) => {
     if (expanded === true) {
-      setShowSubMenuReports(value);
+      setShowSubMenuConfiguration(value);
     }
   };
 
   const handleMouseLeave = (value) => {
-    setShowSubMenuReports(value);
+    setShowSubMenuConfiguration(value);
     setExpanded(value);
   };
   return (
     <div
-      className={`sub-menu ${showSubMenuReports ? "show" : ""}`}
+      className={`sub-menu ${showSubMenuConfiguration ? "show" : ""}`}
       onMouseEnter={() => handleMouseEnter(true)}
       onMouseLeave={() => handleMouseLeave(false)}
     >
       <div className="flex flex-col gap-4">
         <Typography className="h-16 flex items-center pl-[10%]" variant="h4">
-          Reportes
+          Configuration
         </Typography>
         {menuItems.map((menuItem) => (
-          <Link to={menuItem.link}>
+          <Link key={menuItem.id} to={menuItem.link}>
             <Typography
-              key={menuItem.id}
               className="h-16 flex items-center hover:bg-[#4b5563] pl-[10%] rounded-lg cursor-pointer"
               variant="h6"
             >
@@ -85,4 +79,4 @@ const Reports = ({
   );
 };
 
-export default Reports;
+export default Configuration;

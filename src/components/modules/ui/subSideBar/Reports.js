@@ -11,34 +11,49 @@ import Typography from "@mui/material/Typography";
 const menuItemsDefaults = [
   {
     id: 1,
-    name: "FormsUsers",
-    link: "/FormsUsers",
+    name: "Libro Registro de Venta",
+    link: "/",
   },
   {
     id: 2,
-    name: "PageUsers",
-    link: "/PageUsers",
+    name: "Libro Diario",
+    link: "/DiaryBook",
   },
   {
     id: 3,
-    name: "Otra Opcion",
+    name: "Libro Registro de Compra",
     link: "/",
   },
   {
     id: 4,
-    name: "Otra Opcion",
+    name: "Libro Mayor",
     link: "/",
   },
   {
     id: 5,
-    name: "Otra Opcion",
+    name: "Libro Remuneraciones",
+    link: "/",
+  },
+  {
+    id: 6,
+    name: "Libro Clientes",
+    link: "/",
+  },
+  {
+    id: 7,
+    name: "Libro Auxiliar Simple",
+    link: "/SimpleAuxiliaryBook",
+  },
+  {
+    id: 8,
+    name: "Libro Auxiliar Completo",
     link: "/",
   },
 ];
 
-const Configuration = ({
-  showSubMenuConfiguration,
-  setShowSubMenuConfiguration,
+const Reports = ({
+  showSubMenuReports,
+  setShowSubMenuReports,
   setExpanded,
   expanded,
 }) => {
@@ -46,28 +61,27 @@ const Configuration = ({
 
   const handleMouseEnter = (value) => {
     if (expanded === true) {
-      setShowSubMenuConfiguration(value);
+      setShowSubMenuReports(value);
     }
   };
 
   const handleMouseLeave = (value) => {
-    setShowSubMenuConfiguration(value);
+    setShowSubMenuReports(value);
     setExpanded(value);
   };
   return (
     <div
-      className={`sub-menu ${showSubMenuConfiguration ? "show" : ""}`}
+      className={`sub-menu ${showSubMenuReports ? "show" : ""}`}
       onMouseEnter={() => handleMouseEnter(true)}
       onMouseLeave={() => handleMouseLeave(false)}
     >
       <div className="flex flex-col gap-4">
         <Typography className="h-16 flex items-center pl-[10%]" variant="h4">
-          Configuration
+          Reportes
         </Typography>
         {menuItems.map((menuItem) => (
-          <Link to={menuItem.link}>
+          <Link key={menuItem.id} to={menuItem.link}>
             <Typography
-              key={menuItem.id}
               className="h-16 flex items-center hover:bg-[#4b5563] pl-[10%] rounded-lg cursor-pointer"
               variant="h6"
             >
@@ -80,4 +94,4 @@ const Configuration = ({
   );
 };
 
-export default Configuration;
+export default Reports;

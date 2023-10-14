@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import GlobalContext from "../context/global-context";
 
 // end points
 import {
@@ -13,12 +14,13 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 // components
-import Sidebar from "../ui/sideBar/SideBar";
+import Sidebar from "../../src/components/modules/ui/sideBar/SideBar";
 
 const FormsUsers = () => {
   // Definir dos variables de estado para los inputs
   const [userName, setuserName] = useState("");
   const [email, setEmail] = useState("");
+  const { ui } = useContext(GlobalContext);
   const params = useParams();
 
   // Función para manejar cambios en los inputs
@@ -51,17 +53,38 @@ const FormsUsers = () => {
         console.log(response);
       }
     } catch (error) {
-      console.error("Error al enviar datos:", error);
+      ui.setDialog({
+        title: "error",
+        body: `Error al enviar datos,${error}`,
+        btnText: "ok",
+        open: true,
+      });
     }
   };
 
   useEffect(() => {
     const loadUser = async () => {
-      if (params.id) {
-        const { data } = await getUserRequest(params.id);
-        setuserName(data.user_name);
-        setEmail(data.email);
-        console.log("data", data);
+      try {
+        if (params.id) {
+          ui.setLoader({
+            text: "Cargando usuario",
+            visible: true,
+          });
+          const { data } = await getUserRequest(params.id);
+          setuserName(data.user_name);
+          setEmail(data.email);
+          console.log("data", data);
+        }
+      } catch (error) {
+        console.error(error);
+        ui.setDialog({
+          title: "error",
+          body: `Error al cargar usuarios,${error}`,
+          btnText: "ok",
+          open: true,
+        });
+      } finally {
+        ui.setLoader({ text: "", visible: false });
       }
     };
 
