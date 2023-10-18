@@ -6,6 +6,7 @@ import Sidebar from "../../src/components/modules/ui/sideBar/SideBar";
 import TableDiaryBook from "../../src/components/modules/tablesBooks/TableDiaryBook";
 import PaginationControls from "../components/modules/PaginationControls";
 import SearchCalendar from "../components/modules/SearchCalendar";
+import Header from "../components/layouts/Header";
 
 // material
 import Typography from "@mui/material/Typography";
@@ -218,6 +219,7 @@ const DiaryBook = () => {
 
   return (
     <div>
+      <Header />
       <Sidebar />
       <div className="ml-[5%] p-[2%]">
         {/* barra superior */}

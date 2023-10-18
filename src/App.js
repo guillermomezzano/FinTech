@@ -5,8 +5,6 @@ import GlobalState from "./context/GlobalState";
 // components
 import Home from "./pages/Home";
 import DiaryBook from "./pages/DiaryBook";
-import FormsUsers from "./pages/FormsUsers";
-import PageUsers from "./pages/PageUsers";
 import SimpleAuxiliaryBook from "./pages/SimpleAuxiliaryBook";
 import IncomeUpdateForm from "./pages/IncomeUpdateForm";
 import Loader from "./components/modules/Loader";
@@ -15,26 +13,43 @@ import SnackbarMessage from "./components/modules/SnackbarMessage";
 // styles
 import "./App.css";
 
+// material
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#6d1b7b",
+    },
+    secondary: {
+      main: "#cac3c3",
+    },
+  },
+  // typography: {
+  //   fontFamily: ['Karla, sans-serif'].join(','),
+  //   fontSize: 17,
+  // },
+});
+
 function App() {
   return (
-    <GlobalState>
-      <Loader />
-      <SnackbarMessage />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/DiaryBook" element={<DiaryBook />} />
-          <Route path="/FormsUsers" element={<FormsUsers />} />
-          <Route path="/FormsUsers/:id" element={<FormsUsers />} />
-          <Route path="/PageUsers" element={<PageUsers />} />
-          <Route
-            path="/SimpleAuxiliaryBook"
-            element={<SimpleAuxiliaryBook />}
-          />
-          <Route path="/IncomeUpdateForm" element={<IncomeUpdateForm />} />
-        </Routes>
-      </BrowserRouter>
-    </GlobalState>
+    <ThemeProvider theme={theme}>
+      <GlobalState>
+        <Loader />
+        <SnackbarMessage />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/DiaryBook" element={<DiaryBook />} />
+            <Route
+              path="/SimpleAuxiliaryBook"
+              element={<SimpleAuxiliaryBook />}
+            />
+            <Route path="/IncomeUpdateForm" element={<IncomeUpdateForm />} />
+          </Routes>
+        </BrowserRouter>
+      </GlobalState>
+    </ThemeProvider>
   );
 }
 

@@ -7,6 +7,7 @@ import SearchCalendar from "../components/modules/SearchCalendar";
 import PaginationControls from "../components/modules/PaginationControls";
 import TableSimpleAuxiliaryBooks from "../components/modules/tablesBooks/TableSimpleAuxiliaryBook";
 import Header from "../components/layouts/Header";
+import BottonNavBar from "../components/modules/BottonNavBar";
 // material
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";

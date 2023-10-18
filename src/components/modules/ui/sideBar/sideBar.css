@@ -1,9 +1,9 @@
 .sidebar {
-  top: 0;
+  top: 7%;
   display: flex;
   flex-direction: column;
   width: 100px;
-  height: 100vh;
+  height: 100%;
   background-color: #cac3c3;
   transition: width 0.5s;
   position: fixed ;
@@ -12,12 +12,12 @@
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-  z-index: 2
+  z-index: 3
 }
   
 .expanded {
   width: 15%;
-  right: 0; 
+
 }
 
 .icon-hover:hover {

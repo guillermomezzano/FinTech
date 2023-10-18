@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import GlobalContext from "../../context/global-context";
 
 //services
+
+// components
+import AutoCompleteHeader from "../modules/AutoCompleteHeader";
 
 //material
 import AppBar from "@mui/material/AppBar";
@@ -8,12 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
+import WebhookIcon from "@mui/icons-material/Webhook";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 
 const initialData = [
   {
@@ -75,9 +78,16 @@ const initialData = [
 
 const Header = () => {
   const [openDialog, setOpenDialog] = useState(false);
+  const { ui } = useContext(GlobalContext);
 
   const handleDialogOpen = () => {
-    setOpenDialog(true);
+    debugger;
+    ui.setDialog({
+      open: true,
+      title: "Proyecto creado",
+      body: "El proyecto ha sido creado y está en proceso de aprobación.",
+      btnText: "Ok",
+    });
   };
 
   const handleDialogClose = () => {
@@ -85,42 +95,18 @@ const Header = () => {
   };
 
   return (
-    <div>
-      <AppBar position="static" className="pl-[5%]">
-        <Toolbar>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Mi Aplicación
-          </Typography>
-          <Autocomplete
-            disablePortal
-            id="combo-box-demo"
-            getOptionLabel={(option) => option.nombre}
-            options={initialData}
-            sx={{
-              width: 300,
-              backgroundColor: "white", // Establecer el fondo en blanco
-            }}
-            renderInput={(params) => (
-              <TextField {...params} label="nombre de la empresa" />
-            )}
-          />
-          <IconButton onClick={handleDialogOpen} color="inherit">
-            <AddIcon />
-          </IconButton>
+    <div className="mb-20">
+      <AppBar>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <WebhookIcon sx={{ fontSize: 50 }} />
+          <div className="flex gap-4">
+            <AutoCompleteHeader initialData={initialData} />
+            <IconButton onClick={handleDialogOpen} color="inherit">
+              <AddIcon />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
-
-      <Dialog open={openDialog} onClose={handleDialogClose}>
-        <DialogTitle>Opciones del Diálogo</DialogTitle>
-        <DialogContent>
-          {/* Aquí puedes colocar el contenido de tu diálogo */}
-        </DialogContent>
-        <DialogActions>
-          <button onClick={handleDialogClose} color="primary">
-            Cerrar
-          </button>
-        </DialogActions>
-      </Dialog>
     </div>
   );
 };

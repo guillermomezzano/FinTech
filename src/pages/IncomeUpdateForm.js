@@ -1,5 +1,6 @@
 // components
 import Sidebar from "../components/modules/ui/sideBar/SideBar";
+import Header from "../components/layouts/Header";
 
 // material
 import Select from "@mui/material/Select";
@@ -11,6 +12,7 @@ import Typography from "@mui/material/Typography";
 const IncomeUpdateForm = () => {
   return (
     <>
+      <Header />
       <Sidebar />
       <div className="ml-[5%] p-[2%]">
         <div className="mb-6">

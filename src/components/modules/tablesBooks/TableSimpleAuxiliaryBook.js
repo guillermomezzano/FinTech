@@ -43,8 +43,8 @@ const TableSimpleAuxiliaryBooks = ({ data, page, rowsPerPage }) => {
         value={filterNombreEmpresa}
         onChange={handleFilterIdChange}
       />
-      <TableContainer>
-        <Table>
+      <TableContainer sx={{ maxHeight: 440 }}>
+        <Table stickyHeader>
           <TableHead>
             <TableRow className="uppercase">
               <TableCell style={{ fontWeight: "bold" }}>Clientes</TableCell>

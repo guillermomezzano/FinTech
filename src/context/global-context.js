@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const GlobalContext = React.createContext({
   ui: {
@@ -9,10 +9,10 @@ const GlobalContext = React.createContext({
     dialog: {},
     setDialog: () => {},
   },
-  auth: {
-    jwt: false,
-    setJwt: () => {},
-  },
+  // auth: {
+  //   jwt: false,
+  //   setJwt: () => {},
+  // },
 });
 
 export default GlobalContext;
