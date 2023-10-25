@@ -1,6 +1,7 @@
 // components
 import Sidebar from "../components/modules/ui/sideBar/SideBar";
 import Header from "../components/layouts/Header";
+import BottonNavBar from "../components/modules/BottonNavBar";
 
 // material
 import Select from "@mui/material/Select";
@@ -94,6 +95,7 @@ const IncomeUpdateForm = () => {
           </Button>
         </div>
       </div>
+      <BottonNavBar />
     </>
   );
 };

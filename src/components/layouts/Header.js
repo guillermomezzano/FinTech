@@ -1,22 +1,17 @@
-import React, { useState, useContext } from "react";
-import GlobalContext from "../../context/global-context";
+import React, { useState } from "react";
 
 //services
 
 // components
 import AutoCompleteHeader from "../modules/AutoCompleteHeader";
+import ModalDialogOptions from "../modules/ModalDialogOptions";
 
 //material
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
-import Typography from "@mui/material/Typography";
 import WebhookIcon from "@mui/icons-material/Webhook";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 
 const initialData = [
   {
@@ -77,21 +72,10 @@ const initialData = [
 ];
 
 const Header = () => {
-  const [openDialog, setOpenDialog] = useState(false);
-  const { ui } = useContext(GlobalContext);
+  const [open, setOpen] = useState(false);
 
-  const handleDialogOpen = () => {
-    debugger;
-    ui.setDialog({
-      open: true,
-      title: "Proyecto creado",
-      body: "El proyecto ha sido creado y está en proceso de aprobación.",
-      btnText: "Ok",
-    });
-  };
-
-  const handleDialogClose = () => {
-    setOpenDialog(false);
+  const handleClickOpen = () => () => {
+    setOpen(true);
   };
 
   return (
@@ -101,12 +85,13 @@ const Header = () => {
           <WebhookIcon sx={{ fontSize: 50 }} />
           <div className="flex gap-4">
             <AutoCompleteHeader initialData={initialData} />
-            <IconButton onClick={handleDialogOpen} color="inherit">
+            <IconButton onClick={handleClickOpen()} color="inherit">
               <AddIcon />
             </IconButton>
           </div>
         </Toolbar>
       </AppBar>
+      <ModalDialogOptions setOpen={setOpen} open={open} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 
 // material
 import TableContainer from "@mui/material/TableContainer";
+import TextField from "@mui/material/TextField";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
@@ -27,9 +28,7 @@ const TableSimpleAuxiliaryBooks = ({ data, page, rowsPerPage }) => {
   const filteredData = data
     .filter((row) => {
       const filter = filterNombreEmpresa.trim().toLowerCase();
-      if (filter === "") {
-        return true;
-      }
+      if (filter === "") return true;
       const nombre = row.nombre.toLowerCase();
       return nombre.startsWith(filter);
     })
@@ -37,13 +36,16 @@ const TableSimpleAuxiliaryBooks = ({ data, page, rowsPerPage }) => {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Filtrar por nombre de empresa"
+      <TextField
+        color="secondary"
+        label="Buscar empresa"
         value={filterNombreEmpresa}
         onChange={handleFilterIdChange}
+        style={{ marginBottom: "20px" }}
       />
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer
+        sx={{ maxHeight: 440, backgroundColor: "rgba(255, 255, 255, 0.5)" }}
+      >
         <Table stickyHeader>
           <TableHead>
             <TableRow className="uppercase">

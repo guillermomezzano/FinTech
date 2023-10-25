@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // components
 import Sidebar from "../components/modules/ui/sideBar/SideBar";
@@ -251,6 +251,7 @@ const SimpleAuxiliaryBook = () => {
           </div>
         </ThemeProvider>
       </div>
+      <BottonNavBar />
     </div>
   );
 };

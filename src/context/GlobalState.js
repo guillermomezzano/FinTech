@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState } from "react";
 import GlobalContext from "./global-context";
 
 const GlobalState = (props) => {

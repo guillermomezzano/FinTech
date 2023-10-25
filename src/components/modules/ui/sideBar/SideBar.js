@@ -4,70 +4,48 @@ import React, { useState } from "react";
 // Styles
 import "./sideBar.css";
 
+// data
+import {
+  menuItemsDefaults,
+  menuItemsDefaultsStatic,
+} from "../../data/dataSideBar.js";
+
 // Material
-import WebhookIcon from "@mui/icons-material/Webhook";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import BuildCircleIcon from "@mui/icons-material/BuildCircle";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
+
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-
-const menuItemsDefaults = [
-  {
-    id: 0,
-    name: "LUCA",
-    variant: "h4",
-    icon: <WebhookIcon sx={{ fontSize: 50 }} />,
-  },
-  {
-    id: 1,
-    name: "busqueda",
-    variant: "h6",
-    icon: <SearchIcon sx={{ fontSize: 50 }} />,
-  },
-  {
-    id: 2,
-    name: "Working",
-    variant: "h6",
-    icon: <ConstructionIcon sx={{ fontSize: 50 }} />,
-  },
-  {
-    id: 3,
-    name: "Reportes",
-    variant: "h6",
-    icon: <LibraryBooksIcon sx={{ fontSize: 50 }} />,
-  },
-  {
-    id: 4,
-    name: "Configuracion",
-    variant: "h6",
-    icon: <BuildCircleIcon sx={{ fontSize: 50 }} />,
-  },
-  {
-    id: 5,
-    name: "Soporte",
-    variant: "h6",
-    icon: <ContactPhoneIcon sx={{ fontSize: 50 }} />,
-  },
-];
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
   const [menuItems, setMenuItems] = useState(menuItemsDefaults);
   const [searchText, setSearchText] = useState("");
   const [showInput, setShowInput] = useState(false);
+  // const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleMouseEnter = (value, id) => {
+  const handleMouseEnter = (value, name) => {
     setExpanded(value);
-    id === 1 ? setShowInput(value) : setShowInput(false);
+    name === "busqueda" ? setShowInput(value) : setShowInput(false);
   };
+
+  // useEffect(() => {
+  //   console.log(scrollPosition);
+  // }, [scrollPosition]);
+
+  // useEffect(() => {
+  //   if (!expanded) {
+  //     // Si el menú no está expandido, restablece la posición del scroll a la parte superior
+  //     sidebarRef.current.scrollTop = 0;
+  //     setScrollPosition(0);
+  //   }
+  // }, [expanded]);
+
+  // const handleScroll = () => {
+  //   setScrollPosition(sidebarRef.current.scrollTop);
+  // };
 
   //funcion para cuando el mouse esta fuera del menu
   const handleMouseLeave = (value) => {
-    setSearchText("");
     setExpanded(value);
     setShowInput(value);
   };
@@ -79,9 +57,7 @@ const Sidebar = () => {
 
   const filteredData = menuItems.filter((row) => {
     const filter = searchText.trim().toLowerCase();
-    if (filter === "") {
-      return true;
-    }
+    if (filter === "") return true;
     const name = row.name.toLowerCase();
     return name.startsWith(filter);
   });
@@ -89,21 +65,25 @@ const Sidebar = () => {
   return (
     <>
       {/* menu lateral */}
-      <div className={`sidebar ${expanded ? "expanded" : ""}`}>
-        <div></div>
-        {filteredData.map((menuItem) => (
+      <div
+        className={`sidebar ${expanded ? "expanded" : ""}`}
+        // ref={sidebarRef}
+        // onScroll={handleScroll}
+      >
+        {menuItemsDefaultsStatic.map((menuItem) => (
           <div
             key={menuItem.id}
             className={`flex h-16 ${
-              menuItem.id === 1 ? " hover:bg-white" : "hover:bg-[#4b5563]"
-            } cursor-pointer rounded-lg ${
+              showInput ? "hover:bg-white" : "hover:bg-[#4b5563]"
+            } 
+            cursor-pointer rounded-lg ${
               expanded ? "icon-hover p-6" : "justify-center"
             }`}
-            onMouseEnter={() => handleMouseEnter(true, menuItem.id)}
-            onMouseLeave={() => handleMouseLeave(false, menuItem.id)}
+            onMouseEnter={() => handleMouseEnter(true, menuItem.name)}
+            onMouseLeave={() => handleMouseLeave(false)}
           >
             <div className="flex items-center gap-4">
-              {menuItem.id === 1 && showInput ? (
+              {menuItem.id === 2 && showInput ? (
                 <Box className="flex text-black hover:bg-white items-end">
                   {menuItem.icon}
                   <TextField
@@ -123,6 +103,34 @@ const Sidebar = () => {
                   )}
                 </>
               )}
+            </div>
+          </div>
+        ))}
+        {filteredData.map((menuItem) => (
+          <div
+            key={menuItem.id}
+            className={`flex h-16 hover:bg-[#4b5563] cursor-pointer rounded-lg ${
+              expanded ? "icon-hover p-6" : "justify-center"
+            }`}
+            onMouseEnter={() => handleMouseEnter(true, "")}
+            onMouseLeave={() => handleMouseLeave(false)}
+          >
+            <div className="flex items-center gap-4">
+              <>
+                {menuItem.icon}
+                {expanded && (
+                  <Typography
+                    sx={{
+                      fontSize: menuItem.fontSize,
+                      // transition: "20s ease-in-out",
+                      // opacity: `${expanded ? "1" : "0"}`,
+                    }}
+                  >
+                    {/* // <Typography variant={menuItem.variant}> */}
+                    {menuItem.name}
+                  </Typography>
+                )}
+              </>
             </div>
           </div>
         ))}

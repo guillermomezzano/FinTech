@@ -4,20 +4,26 @@
   flex-direction: column;
   width: 100px;
   height: 100%;
-  background-color: #cac3c3;
-  transition: width 0.5s;
+  background-color: #cac3c3 ;
+  transition: width 0.7s;
   position: fixed ;
   left: 0;
   padding-top: 2%;
+  padding-bottom: 5%;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-  z-index: 3
+  z-index: 3; 
+  overflow-y: none;
 }
   
 .expanded {
-  width: 15%;
+  width: 20%;
+  overflow-y: scroll;
+}
 
+.expanded::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .icon-hover:hover {

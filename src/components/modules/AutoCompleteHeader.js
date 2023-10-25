@@ -40,7 +40,7 @@ const AutoCompleteHeader = ({ initialData }) => {
         )}
         groupBy={(option) => option.firstLetter}
         getOptionLabel={(option) => option.nombre}
-        sx={{ width: 300, background: "#ffffff", borderRadius: "10px" }}
+        sx={{ width: 300, background: "#ffffff", borderRadius: "8px" }}
         renderInput={(params) => (
           <TextField
             onChange={handleInputChange}

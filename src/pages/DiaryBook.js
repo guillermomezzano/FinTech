@@ -1,5 +1,5 @@
 // react
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // components
 import Sidebar from "../../src/components/modules/ui/sideBar/SideBar";
@@ -185,37 +185,9 @@ const theme = createTheme({
 });
 
 const DiaryBook = () => {
-  const [fechaInicio, setFechaInicio] = useState("");
-  const [fechaFin, setFechaFin] = useState("");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [data, setData] = useState(initialData);
-
-  // Funciónes para manejar cambios en las fechas
-  const handleFechaInicioChange = (e) => {
-    setFechaInicio(e.target.value);
-  };
-
-  const handleFechaFinChange = (e) => {
-    setFechaFin(e.target.value);
-  };
-
-  useEffect(() => {
-    // Función para filtrar las filas por fecha
-    const filterDataByDateRange = () => {
-      const filteredRows = initialData.filter((row) => {
-        const rowFecha = new Date(row.fecha);
-        const startFecha = new Date(fechaInicio);
-        const endFecha = new Date(fechaFin);
-        // Comprobación si la fecha inicial es menor o igual que la final y viceversa
-        return rowFecha >= startFecha && rowFecha <= endFecha;
-      });
-      // Actualiza el estado Data con las filas filtradas
-      setData(filteredRows);
-    };
-    // Llama a la función cuando cambien las fechas
-    filterDataByDateRange();
-  }, [fechaInicio, fechaFin]);
 
   return (
     <div>
@@ -239,12 +211,7 @@ const DiaryBook = () => {
               Actualizar
             </Button>
             {/* Filtros de fechas */}
-            <SearchCalendar
-              fechaInicio={fechaInicio}
-              fechaFin={fechaFin}
-              handleFechaInicioChange={handleFechaInicioChange}
-              handleFechaFinChange={handleFechaFinChange}
-            />
+            <SearchCalendar initialData={initialData} setData={setData} />
           </div>
         </div>
         {/* Tabla */}
