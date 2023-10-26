@@ -14,7 +14,7 @@ const SearchCalendar = ({ initialData, setData }) => {
     0
   );
 
-  const [fechaInicio, setFechaInicio] = useState(lastDayOfLastMonth);
+  const [fechaInicio, setFechaInicio] = useState(firstDayOfCurrentMonth);
   const [fechaFin, setFechaFin] = useState(lastDayOfCurrentMonth);
 
   const handleFechaInicioChange = (e) => {

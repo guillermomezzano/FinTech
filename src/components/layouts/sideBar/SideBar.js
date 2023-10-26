@@ -8,7 +8,7 @@ import "./sideBar.css";
 import {
   menuItemsDefaults,
   menuItemsDefaultsStatic,
-} from "../../data/dataSideBar.js";
+} from "../../modules/data/dataSideBar.js";
 
 // Material
 

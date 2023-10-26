@@ -2,12 +2,11 @@
 import React, { useState } from "react";
 
 // components
-import Sidebar from "../components/modules/ui/sideBar/SideBar";
+
 import SearchCalendar from "../components/modules/SearchCalendar";
 import PaginationControls from "../components/modules/PaginationControls";
 import TableSimpleAuxiliaryBooks from "../components/modules/tablesBooks/TableSimpleAuxiliaryBook";
-import Header from "../components/layouts/Header";
-import BottonNavBar from "../components/modules/BottonNavBar";
+import Layout from "../components/layouts/index";
 // material
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -151,7 +150,7 @@ const initialData = [
   {
     nombre: "empresa dedededede",
     id: "13",
-    fecha: new Date("9/15/2023"),
+    fecha: new Date("10/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
     haber: 45,
@@ -162,7 +161,7 @@ const initialData = [
   {
     nombre: "alberto uno",
     id: "14",
-    fecha: new Date("3/15/2023"),
+    fecha: new Date("10/5/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
     haber: 45,
@@ -173,7 +172,7 @@ const initialData = [
   {
     id: "15",
     nombre: "guille uno",
-    fecha: new Date("8/15/2023"),
+    fecha: new Date("10/26/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
     haber: 45,
@@ -206,9 +205,7 @@ const SimpleAuxiliaryBook = () => {
   const [data, setData] = useState(initialData);
 
   return (
-    <div>
-      <Header />
-      <Sidebar />
+    <Layout>
       <div className="ml-[5%] p-[2%]">
         {/* barra superior */}
         <div className="flex justify-between mb-10 ">
@@ -251,8 +248,7 @@ const SimpleAuxiliaryBook = () => {
           </div>
         </ThemeProvider>
       </div>
-      <BottonNavBar />
-    </div>
+    </Layout>
   );
 };
 

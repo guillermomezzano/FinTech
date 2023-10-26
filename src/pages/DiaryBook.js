@@ -2,12 +2,12 @@
 import React, { useState } from "react";
 
 // components
-import Sidebar from "../../src/components/modules/ui/sideBar/SideBar";
+
 import TableDiaryBook from "../../src/components/modules/tablesBooks/TableDiaryBook";
 import PaginationControls from "../components/modules/PaginationControls";
 import SearchCalendar from "../components/modules/SearchCalendar";
-import Header from "../components/layouts/Header";
 
+import Layout from "../components/layouts/index";
 // material
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
@@ -191,50 +191,50 @@ const DiaryBook = () => {
 
   return (
     <div>
-      <Header />
-      <Sidebar />
-      <div className="ml-[5%] p-[2%]">
-        {/* barra superior */}
-        <div className="flex justify-between mb-10 ">
-          <Typography variant="h4">Libro Diario</Typography>
-          <div className="flex gap-10">
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#4b5563", color: "white" }}
-            >
-              Descargar en pdf
-            </Button>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: "#4b5563", color: "white" }}
-            >
-              Actualizar
-            </Button>
-            {/* Filtros de fechas */}
-            <SearchCalendar initialData={initialData} setData={setData} />
-          </div>
-        </div>
-        {/* Tabla */}
-        <ThemeProvider theme={theme}>
-          <div className="w-full">
-            <div>
-              <TableDiaryBook
-                data={data}
-                page={page}
-                rowsPerPage={rowsPerPage}
-              />
-              {/* componete para la paginacion */}
-              <PaginationControls
-                count={data.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                setPage={setPage}
-                setRowsPerPage={setRowsPerPage}
-              />
+      <Layout>
+        <div className="ml-[5%] p-[2%]">
+          {/* barra superior */}
+          <div className="flex justify-between mb-10 ">
+            <Typography variant="h4">Libro Diario</Typography>
+            <div className="flex gap-10">
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#4b5563", color: "white" }}
+              >
+                Descargar en pdf
+              </Button>
+              <Button
+                variant="contained"
+                style={{ backgroundColor: "#4b5563", color: "white" }}
+              >
+                Actualizar
+              </Button>
+              {/* Filtros de fechas */}
+              <SearchCalendar initialData={initialData} setData={setData} />
             </div>
           </div>
-        </ThemeProvider>
-      </div>
+          {/* Tabla */}
+          <ThemeProvider theme={theme}>
+            <div className="w-full">
+              <div>
+                <TableDiaryBook
+                  data={data}
+                  page={page}
+                  rowsPerPage={rowsPerPage}
+                />
+                {/* componete para la paginacion */}
+                <PaginationControls
+                  count={data.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  setPage={setPage}
+                  setRowsPerPage={setRowsPerPage}
+                />
+              </div>
+            </div>
+          </ThemeProvider>
+        </div>
+      </Layout>
     </div>
   );
 };

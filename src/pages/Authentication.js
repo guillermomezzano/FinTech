@@ -1,5 +1,8 @@
 import { useLocation } from "react-router-dom";
 
+// image
+import singin from "../assets/singin.jpg";
+
 // Components
 // import Forgotpassword from '../components/modules/authentication/Forgotpassword';
 import SignInForm from "../components/modules/authentication/SignInForm";
@@ -19,22 +22,18 @@ const Authentication = () => {
     selectedComponent = authComponents[location.pathname] || defaultComponent;
 
   return (
-    <div className="flex flex-row max-md:justify-center bg-white">
-      <div
-        className={`grid min-h-screen py-10 px-6 md:px-10 max-sm:justify-center bg-white md:w-[60%] w-[80%] sm:mx-[5%]`}
-      >
-        <div className="max-w-[500px] self-center">
-          <Typography variant="h1" className="mb-14">
-            hola
-          </Typography>
-          {selectedComponent}
-        </div>
-        <div className="self-end h-full pt-14 text-black">
-          <Typography variant="body" className="tracking-wider text-sm">
-            Luca | {new Date().getFullYear()}
-          </Typography>
-        </div>
+    <div className="flex flex-col relative  items-center justify-center bg-white h-screen">
+      <div className="self-center z-10 absolute top-[3%] w-[40%]">
+        {selectedComponent}
       </div>
+      <img
+        src={singin}
+        alt=""
+        className="absolute w-[70%] h-[70%] object-cover"
+      />
+      <Typography variant="body" className="text-lg z-10 absolute bottom-4">
+        Luca | {new Date().getFullYear()}
+      </Typography>
     </div>
   );
 };
