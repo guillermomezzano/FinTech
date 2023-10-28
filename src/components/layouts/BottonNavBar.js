@@ -6,7 +6,7 @@ const BottonNavBar = () => {
     { color: "#84cc16", to: "/DiaryBook" },
     { color: "red", to: "/SimpleAuxiliaryBook" },
     { color: "blue", to: "/IncomeUpdateForm" },
-    { color: "orange", to: "/" },
+    { color: "orange", to: "/carousel" },
   ];
 
   const [expanded, setExpanded] = useState(false);
