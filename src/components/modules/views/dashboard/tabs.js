@@ -8,40 +8,12 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import Carousel from "../../ui/carousel";
 
-const imgs = [
-  {
-    id: 1,
-    url: require("../../../../assets/fondo_1.jpg"),
-  },
-  {
-    id: 2,
-    url: require("../../../../assets/fondo_2.jpg"),
-  },
-  {
-    id: 3,
-    url: require("../../../../assets/fondo_1.jpg"),
-  },
-  {
-    id: 4,
-    url: require("../../../../assets/fondo_2.jpg"),
-  },
-  {
-    id: 5,
-    url: require("../../../../assets/fondo_1.jpg"),
-  },
-  {
-    id: 6,
-    url: require("../../../../assets/fondo_2.jpg"),
-  },
-  {
-    id: 7,
-    url: require("../../../../assets/fondo_1.jpg"),
-  },
-  {
-    id: 8,
-    url: require("../../../../assets/fondo_2.jpg"),
-  },
-];
+// data
+import {
+  imgsCarouselOne,
+  imgsCarouselTwo,
+  imgsCarouselThree,
+} from "../../data/dataImageCarousel";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -84,12 +56,17 @@ const CarouselTabs = () => {
     setValue(newValue);
   };
 
-//   const handleChangeIndex = (index) => {
-//     setValue(index);
-//   };
+  //   const handleChangeIndex = (index) => {
+  //     setValue(index);
+  //   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper", margin: "64px 0 0 100px" }}>
+    <Box
+      sx={{
+        margin: "64px 0 0 0",
+        // bgcolor: "red",
+      }}
+    >
       <AppBar position="static">
         <Tabs
           value={value}
@@ -106,13 +83,13 @@ const CarouselTabs = () => {
       </AppBar>
       <div>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Carousel imgs={imgs} />
+          <Carousel imgs={imgsCarouselOne} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <Carousel imgs={imgs} />
+          <Carousel imgs={imgsCarouselTwo} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          <Carousel imgs={imgs} />
+          <Carousel imgs={imgsCarouselThree} />
         </TabPanel>
       </div>
     </Box>

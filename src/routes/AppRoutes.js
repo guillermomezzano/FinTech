@@ -12,6 +12,7 @@ import CarouselTabs from "../components/modules/views/dashboard/tabs";
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/:id/:type" element={<Home />} />
       <Route path="/" element={<Home />} />
       <Route path="/signin" element={<Authentication />} />
       <Route path="/diarybook" element={<DiaryBook />} />

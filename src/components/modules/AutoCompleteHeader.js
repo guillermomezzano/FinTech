@@ -11,7 +11,6 @@ const AutoCompleteHeader = ({ initialData }) => {
   const handleInputChange = (event) => {
     setEmpresas(event.target.value);
   };
-  debugger;
 
   const GroupHeader = styled("div")(({ theme }) => ({
     position: "sticky",
