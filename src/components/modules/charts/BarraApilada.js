@@ -9,7 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2'
-import {getComparaCompraVenta,getVentasMesComparaYear,getComparaIvaCompra,getComparaIvaVenta} from'../../../api/chart.api.js'
+import {getDeudasClientes} from'../../../api/chart.api.js'
 
 ChartJS.register(
   CategoryScale,
@@ -22,6 +22,14 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+    },
+  },
 };
 
 var datos = {
@@ -46,16 +54,8 @@ const BarraParalela = ({tempo}) => {
     const [textoLabel, setTextoLabel] = useState([]);
     
     useEffect(() => {
-      const fetchApiCompraVentaCompara = async () => {
-        const  {data}  = await getComparaCompraVenta(temporal);
-        console.log("data es: ",data.data);
-        setSqlDatos(data.data);
-        setTextoBarras(data.barras);
-        setDatosComparativo(data.compara);
-        setTextoLabel(data.text);
-      };
-      const fetchApiComparaVentaMesYear = async () => {
-        const  {data}  = await getVentasMesComparaYear(temporal);
+      const fetchApiDeudasClientes = async () => {
+        const  {data}  = await getDeudasClientes(temporal);
         console.log("data es: ",data.data);
         setSqlDatos(data.data);
         setTextoBarras(data.barras);
@@ -63,38 +63,10 @@ const BarraParalela = ({tempo}) => {
         setTextoLabel(data.text);
       };
       
-      const fetchApiComparaIvaCompra = async () => {
-        const  {data}  = await getComparaIvaCompra(temporal);
-        console.log("data es: ",data.data);
-        setSqlDatos(data.data);
-        setTextoBarras(data.barras);
-        setDatosComparativo(data.compara);
-        setTextoLabel(data.text);
-      };
-      const fetchApiComparaIvaVenta = async () => {
-        const  {data}  = await getComparaIvaVenta(temporal);
-        console.log("data es: ",data.data);
-        setSqlDatos(data.data);
-        setTextoBarras(data.barras);
-        setDatosComparativo(data.compara);
-        setTextoLabel(data.text);
-      };
       switch(texto) {
-        case "CompraVenta":
-            console.log("primero");
-            fetchApiCompraVentaCompara();
-          break;
-          case "ComparaVenta":
-              console.log("segundo");
-              fetchApiComparaVentaMesYear();
-          break;
-          case "ComparaVentaIVA":
-              console.log("tercero");
-              fetchApiComparaIvaCompra();
-            break;
-          case "ComparaCompraIVA":
-              console.log("cuarto");
-              fetchApiComparaIvaVenta();
+          case "DeudasClientes":
+              console.log("primero");
+              fetchApiDeudasClientes();
             break;
         default:
         }

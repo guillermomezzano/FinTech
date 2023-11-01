@@ -1,32 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2'
-import {getComparaClientesMesYear, getVentasMes} from'../../../api/chart.api.js'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2'
+import {getDeudaClienteUnico} from'../../../api/chart.api.js';
+import {getListaClientes} from'../../../api/list.api.js';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
   responsive: true,
-  plugins: {
-      legend: {
-          display: false //esconde el label superior (que sirve en graficos comparativos)
-      }
-    }
 };
 
 var datos = {
@@ -40,47 +21,38 @@ var datos = {
   ],
 };
 
-const BarraUnica = ({tempo}) => {
-    console.log("tempo ",tempo);
-    const myArray = tempo.split("&");
-    var temporal = myArray[0];
-    var texto = myArray[1];
+const PieChartUnico = ({tempo}) => {
+    const [selected, setSelected] = useState('0');
     const [sqlDatos, setSqlDatos] = useState([]);
     const [textoBarras, setTextoBarras] = useState([]);
-    const [textoLabel, setTextoLabel] = useState([]);
-    
+    const [optionJson, setOptionJson] = useState([]);
     useEffect(() => {
       const fetchApiComparaCliente = async () => {
-        const  {data}  = await getComparaClientesMesYear(temporal);
+        if (selected==0) {
+          const  dataoption = await getListaClientes(); //cuando {dataoption} no funcionaba
+          console.log("dataoption es: ",dataoption);
+          setSelected(dataoption.data[0].key)//FUNCIONO NO SE QUE PASA!
+          setOptionJson(dataoption.data);
+        }else{
+        const  {data}  = await getDeudaClienteUnico(selected);
         console.log("data es: ",data.data);
         setSqlDatos(data.data);
         setTextoBarras(data.barras);
-        setTextoLabel(data.text);
+      }
       };
       
-      const fetchApiVentasMes = async () => {
-        const  {data}  = await getVentasMes(temporal);
-        setSqlDatos(data.data);
-        setTextoBarras(data.barras);
-        setTextoLabel(data.text);
-      };
-      switch(texto) {
+      switch(tempo) {
         case "ComparaCliente":
             console.log("primero");
             fetchApiComparaCliente(); //PORQUE NO FUNCIONA!?
           break;
-        case "VentasMes":
-            console.log("segundo");
-            fetchApiVentasMes();
-          break;
         default:
         }
-    }, [tempo]);
+    }, [selected]);
     datos = {
         labels: textoBarras?.map((data) => data),
         datasets: [
           {
-            label: textoLabel?.map((data) => data)[0],
             data: sqlDatos?.map((data) => data),
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
@@ -106,10 +78,22 @@ const BarraUnica = ({tempo}) => {
           },
         ],
     };
+    const listItems = optionJson?.map((opcion) =>
+      <option value={opcion.key}>
+        {opcion.data}
+      </option>
+    );
   
     return (
-      <Bar options={options} data={datos} />
+    <>
+      <select 
+          value={selected}
+          onChange={e => setSelected(e.target.value)}>
+            {listItems}
+      </select>
+      <Pie options={options} data={datos} />
+    </>
     )
   }
   
-  export default BarraUnica
+  export default PieChartUnico
