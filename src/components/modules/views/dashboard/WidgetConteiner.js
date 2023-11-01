@@ -9,56 +9,39 @@ import {
 
 const WidgetConteiner = () => {
   const { id, type } = useParams();
-  const [imagesArray, setImagesArray] = useState();
-
-  // useEffect(() => {
-  switch (type) {
-    case "1":
-      setImagesArray(imgsCarouselOne);
-      debugger;
-      break;
-    case "2":
-      setImagesArray(imgsCarouselTwo);
-      debugger;
-      break;
-    default:
-      setImagesArray(imgsCarouselThree);
-      debugger;
-  }
-  // }, [type]);
-  const a = imagesArray?.filter((image) => image.id === id);
+  const [arrayImg, setArrayImg] = useState();
+  const [objectImg, setObjectImg] = useState();
 
   useEffect(() => {
-    console.log(imagesArray);
-  }, [imagesArray]);
+    switch (type) {
+      case "1":
+        setArrayImg(imgsCarouselOne);
+        break;
+      case "2":
+        setArrayImg(imgsCarouselTwo);
+        break;
+      default:
+        setArrayImg(imgsCarouselThree);
+    }
+  }, []);
+
   useEffect(() => {
-    console.log(a);
-  }, [a]);
+    const results = arrayImg?.filter((nickname) => nickname.id === id);
+    const firstObj = results?.length > 0 ? results[0] : null;
+    setObjectImg(firstObj);
+  }, [arrayImg]);
 
   return (
     <div>
-      <p>
-        holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasoy el widgetConteiner{id}
-        {type}
-      </p>
-      {imagesArray
-        // Filtra el objeto con el id correspondiente
-        ?.map((image) => (
-          <div key={image.id}>
-            {image.id === id ? (
-              <p>
-                holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-              </p>
-            ) : (
-              <></>
-            )}
-
-            {/* <h3>
-              qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqddddddddddddddddqqq
-              {image.id}
-            </h3> */}
-          </div>
-        ))}
+      {objectImg && (
+        <div className="ml-[5%] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+          <img
+            className="w-[20%] h-[20%] block sm:inline-block m-[5px]"
+            src={objectImg.url}
+            alt="slide_image"
+          />
+        </div>
+      )}
     </div>
   );
 };

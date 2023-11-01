@@ -8,7 +8,7 @@ import DiaryBook from "../pages/DiaryBook";
 import SimpleAuxiliaryBook from "../pages/SimpleAuxiliaryBook";
 import IncomeUpdateForm from "../pages/IncomeUpdateForm";
 import CarouselTabs from "../components/modules/views/dashboard/tabs";
-import CompleteAuxiliaryBook from "../pages/CompleteAuxiliaryBook"
+import CompleteAuxiliaryBook from "../pages/CompleteAuxiliaryBook";
 
 const AppRoutes = () => {
   return (
