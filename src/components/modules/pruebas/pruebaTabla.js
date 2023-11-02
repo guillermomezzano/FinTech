@@ -6,7 +6,7 @@ export function ReactTable(){
   const [textoCabeza, setTextoCabeza] = useState([]);
   useEffect(() => {
     const fetchApiComparaCliente = async () => {
-      const  {data}  = await getTablaClientesResumido();
+      const  {data}  = await pruebaTablaTabla();
       console.log("data es: ",data.data);
       setSqlDatos(data.data);
       setTextoCabeza(data.titulos);

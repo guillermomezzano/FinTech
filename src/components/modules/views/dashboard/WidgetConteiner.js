@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import {MultiChartApp} from '../../../modules/charts/App' ;
 
 import {
   imgsCarouselOne,
@@ -36,8 +37,8 @@ const WidgetConteiner = () => {
       <div className="ml-[5%]">
         <h1>{type}</h1>
         <h1>{id}</h1>
+      <MultiChartApp typeid = {type+'&'+id} key ={'1'}/>
       </div>
-
       {/* {objectImg && (
         <div className="ml-[5%] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           <img
