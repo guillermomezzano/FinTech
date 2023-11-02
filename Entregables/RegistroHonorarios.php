@@ -35,47 +35,50 @@ $db = mysqli_select_db( $conexion, $basededatos ) or die ( "Upps! Pues va a ser 
 
 $boolean= TRUE; //no existe
 $pk_estadoh = -1;
-while($boolean){
-$consulta = "SELECT * FROM `estadohonorario`";
+$consulta = "SELECT * FROM `estadohonorario` where Nombre = '".$decoded_json[$a][ 'ticket_honoraries' ][$b]['state']."'";
 $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
 // $columna = mysqli_fetch_array( $resultado );
-
-  while ($columna = mysqli_fetch_array( $resultado))
-  {
-      $IDC = $columna['Nombre'] ;
-      if($IDC == $decoded_json[$a][ 'ticket_honoraries' ][$b]['state']){
-      $boolean=FALSE;
-      $pk_estadoh = $columna['PK'] ;
-      }
-  }
+$row_cnt = $resultado->num_rows;
+if ($row_cnt>0)
+{
+    $boolean=FALSE;
+    $columna = mysqli_fetch_array( $resultado);
+    $pk_estadoh = $columna['PK'] ;
+}
 if($boolean){
     $consulta2 = "INSERT INTO estadohonorario(PK,Nombre) VALUES ('0','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['state'] ."')";
     $resultado = mysqli_query( $conexion, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
-}}
+
+    $consulta3 = "SELECT PK FROM `estadohonorario` ORDER BY `PK` DESC";
+    $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
+    $columna = mysqli_fetch_array( $resultado3 );
+    $pk_estadoh = $columna['PK'];
+  }
 $boolean= TRUE; //no existe
 $pk_emisor = -1;
-while($boolean){
-$consulta = "SELECT * FROM `emisor`";
+$consulta = "SELECT * FROM `emisor` where RUT = '".$decoded_json[$a][ 'ticket_honoraries' ][$b]['rut']."'";
 $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
 // $columna = mysqli_fetch_array( $resultado );
-
-  while ($columna = mysqli_fetch_array( $resultado))
-  {
-      $IDC = $columna['RUT'] ;
-      if($IDC == $decoded_json[$a][ 'ticket_honoraries' ][$b]['rut']){
-      $boolean=FALSE;
-      $pk_emisor = $columna['PK'] ;
-      }
-  }
+$row_cnt = $resultado->num_rows;
+if ($row_cnt>0)
+{
+    $boolean=FALSE;
+    $columna = mysqli_fetch_array( $resultado);
+    $pk_emisor = $columna['PK'] ;
+}
 if($boolean){
   $socprof = 0;
   if($decoded_json[$a][ 'ticket_honoraries' ][$b]['socprof']!="NO"){
     $socprof = 1;
   }
-  echo "INSERT INTO emisor(PK,RUT ,RazonSocial ,SocProf) VALUES ('0','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['rut'] ."','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['business_name'] ."','".$socprof ."') /n";
+  // echo "INSERT INTO emisor(PK,RUT ,RazonSocial ,SocProf) VALUES ('0','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['rut'] ."','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['business_name'] ."','".$socprof ."') /n";
     $consulta2 = "INSERT INTO emisor(PK,RUT ,RazonSocial ,SocProf) VALUES ('0','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['rut'] ."','".$decoded_json[$a][ 'ticket_honoraries' ][$b]['business_name'] ."','".$socprof ."')";
     $resultado = mysqli_query( $conexion, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2.2do aviso");
-}}
+    $consulta3 = "SELECT PK FROM `emisor` ORDER BY `PK` DESC";
+    $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
+    $columna = mysqli_fetch_array( $resultado3 );
+    $pk_emisor = $columna['PK'];
+}
 // echo str_replace('\/', '-',$decoded_json[$a][ 'ticket_honoraries' ][$b]['date']);
 // $date = str_replace('\/', '-',$decoded_json[$a][ 'ticket_honoraries' ][$b]['date']); //D-M-A
 // echo getDate(strtotime($date));
@@ -93,7 +96,7 @@ $pagado = str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['pai
 $consulta3 =  "INSERT INTO `honorarios`(`PK`, `PK_Usuario`, `Fecha`, `Estado`, `FechaAnulacion`, `Emisor`, `Bruto`, `Retenido`, `Pagado` )
 VALUES ('0','".$PKempresa."','".$fecha_y_m_d ."', '".$pk_estadoh."',NULL,'".$pk_emisor ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['gross']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['detained']) ."','".str_replace('.', '', $decoded_json[$a][ 'ticket_honoraries' ][$b]['paid_out']) ."')";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
-
+echo $consulta3;
 echo "<a>registrado</a>";
 mysqli_close( $conexion );
 $b = $b+1;

@@ -21,18 +21,38 @@ $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en l
 
   while ($columna = mysqli_fetch_array( $resultado))
   {
+    $consultaX = "SELECT * FROM `libro` WHERE `Tabla_Origen` = 1  and `PK_Origen`=".$columna['PK'];
+    $resultadoX = mysqli_query( $conexion, $consultaX ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
+
+$row_cnt = $resultadoX->num_rows;
+if($row_cnt==0)
+{
+if($columna['detMntExe']!=0){
+$consulta3 = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
+`NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
+VALUES ('0', '".$PKempresa."', '".$columna['detFchDoc']."', '2', '".$columna['detNroDoc']."', '199',
+ NULL, NULL, 'Boleta ".$columna['PK']." Venta Exenta', NULL, '".$columna['detMntExe']."','".$columna['PK']."', '1', '".$columna['detMntExe']."');";
+$resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
+}
+if($columna['detMntIVA']!=0){
 $consulta3 = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
 `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
 VALUES ('0', '".$PKempresa."', '".$columna['detFchDoc']."', '2', '".$columna['detNroDoc']."', '198',
- NULL, NULL, 'Boleta ".$columna['PK']." Venta', NULL, '".$columna['detMntTotal']."','".$columna['PK']."', '1', '0');";
+ NULL, NULL, 'Boleta ".$columna['PK']." Venta Afecta', NULL, '".$columna['detMntNeto']."','".$columna['PK']."', '1', '".$columna['detMntNeto']."');";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 
+$consulta3 = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
+`NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
+VALUES ('0', '".$PKempresa."', '".$columna['detFchDoc']."', '2', '".$columna['detNroDoc']."', '75',
+ NULL, NULL, 'Boleta ".$columna['PK']." Venta IVA', NULL, '".$columna['detMntIVA']."','".$columna['PK']."', '1', '".$columna['detMntIVA']."');";
+$resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
+}
 $consulta4 = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
 `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
 VALUES ('0', '".$PKempresa."', '".$columna['detFchDoc']."', '2', '".$columna['detNroDoc']."', '5',
  NULL, NULL, 'Boleta ".$columna['PK']." Reflejo', '".$columna['detMntTotal']."', NULL,'".$columna['PK']."', '2', '30');";
 $resultado4 = mysqli_query( $conexion, $consulta4 ) or die ( "Algo ha ido mal en la consulta a la base de datos 4to aviso");
-      }
+}      }
 
 echo "<a>registrado</a>";
 mysqli_close( $conexion );

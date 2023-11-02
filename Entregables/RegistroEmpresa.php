@@ -32,23 +32,25 @@ $db = mysqli_select_db( $conexion, $basededatos ) or die ( "Upps! Pues va a ser 
 
 $boolean= TRUE; //no existe
 $pk_tipoempresa = -1;
-while($boolean){
-$consulta = "SELECT * FROM `tipoempresa`";
+$consulta = "SELECT * FROM `tipoempresa` where Nombre = '".$decoded_json [ 'glosaActividad' ]."'";
 $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
 // $columna = mysqli_fetch_array( $resultado );
-
-  while ($columna = mysqli_fetch_array( $resultado))
-  {
-      $IDC = $columna['Nombre'] ;
-      if($IDC == $decoded_json [ 'glosaActividad' ]){
-      $boolean=FALSE;
-      $pk_tipoempresa = $columna['PK'] ;
-      }
-  }
+$row_cnt = $resultado->num_rows;
+if ($row_cnt>0)
+{
+    $boolean=FALSE;
+    $columna = mysqli_fetch_array( $resultado);
+    $pk_tipoempresa = $columna['PK'] ;
+}
 if($boolean){
     $consulta2 = "INSERT INTO tipoempresa(PK,Nombre) VALUES ('0','".$decoded_json [ 'glosaActividad' ] ."')";
     $resultado = mysqli_query( $conexion, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
-}}
+
+    $consulta3 = "SELECT PK FROM `tipoempresa` ORDER BY `PK` DESC";
+    $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2do aviso");
+    $columna = mysqli_fetch_array( $resultado3 );
+    $pk_tipoempresa = $columna['PK'];
+}
 $consulta3 = "INSERT INTO empresa(PK,rut, RazonSocial, Tipo) VALUES ('0','".$decoded_json [ 'rut' ] ."-".$decoded_json [ 'dv' ] ."', '".$decoded_json [ 'razonSocial' ] ."', '".$pk_tipoempresa ."')";
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 

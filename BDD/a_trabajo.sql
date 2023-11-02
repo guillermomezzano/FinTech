@@ -267,6 +267,8 @@ CREATE TABLE IF NOT EXISTS `cuentabanco` (
   `Banco` int(11) NOT NULL,
   `Num` int(11) NOT NULL,
   `Tipo` int(11) NOT NULL
+  `movRegistrados` int(11) NOT NULL
+  `codigoBanco` varchar(100) NOT NULL
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 
@@ -648,6 +650,7 @@ CREATE TABLE IF NOT EXISTS `libro` (
 CREATE TABLE IF NOT EXISTS `movimientos` (
 `PK` int(11) NOT NULL,
   `PK_Usuario` int(11) NOT NULL,
+  `PK_Cuenta` int(11) NOT NULL,
   `Fecha` date NOT NULL,
   `Cuenta` int(11) NOT NULL,
   `Descripcion` text NOT NULL,
@@ -687,6 +690,9 @@ INSERT INTO `nombretabla` (`PK`, `Nombre`) VALUES
 (3, 'COMPRA'),
 (4, 'HONORARIO'),
 (5, 'REMUNERACIO');
+(6, 'BANCO');
+(7, 'PAGOS');
+(8, 'FACTURA');
 
 -- --------------------------------------------------------
 
