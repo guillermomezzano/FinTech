@@ -1,34 +1,34 @@
 export const imgsCarouselOne = [
   {
-    id: "ComparaCliente",
-    type: "BarraUnica",
+    id: "1",
+    type: "1",
     url: require("../../../assets/carousel/carouselOne/imguno.png"),
   },
   {
-    id: "ComparaCliente",
-    type: "BarraUnica",
+    id: "2",
+    type: "1",
     url: require("../../../assets/carousel/carouselOne/imgdos.png"),
   },
   {
-    id: "ComparaCliente",
-    type: "BarraUnica",
+    id: "3",
+    type: "1",
     url: require("../../../assets/carousel/carouselOne/imgtres.png"),
   },
-  // {
-  //   id: "4",
-  //   type: "1",
-  //   url: require("../../../assets/carousel/carouselOne/imgcuatro.jpg"),
-  // },
-  // {
-  //   id: "5",
-  //   type: "1",
-  //   url: require("../../../assets/carousel/carouselOne/imgcinco.jpg"),
-  // },
-  // {
-  //   id: "6",
-  //   type: "1",
-  //   url: require("../../../assets/carousel/carouselOne/imgseis.png"),
-  // },
+  {
+    id: "4",
+    type: "1",
+    url: require("../../../assets/carousel/carouselOne/imgcuatro.jpg"),
+  },
+  {
+    id: "5",
+    type: "1",
+    url: require("../../../assets/carousel/carouselOne/imgcinco.jpg"),
+  },
+  {
+    id: "6",
+    type: "1",
+    url: require("../../../assets/carousel/carouselOne/imgseis.png"),
+  },
 ];
 
 export const imgsCarouselTwo = [
