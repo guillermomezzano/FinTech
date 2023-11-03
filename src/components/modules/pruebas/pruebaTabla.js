@@ -1,6 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import {pruebaTablaTabla} from'../../../api/list.api.js';
 
+// material
+import Typography from "@mui/material/Typography";
+import TableContainer from "@mui/material/TableContainer";
+import Table from "@mui/material/Table";
+import TableHead from "@mui/material/TableHead";
+import TableBody from "@mui/material/TableBody";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import TablePagination from "@mui/material/TablePagination";
+import Button from "@mui/material/Button";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 export function ReactTable(){
   const [sqlDatos, setSqlDatos] = useState([]);
   const [textoCabeza, setTextoCabeza] = useState([]);
@@ -70,30 +82,30 @@ var cuerpoArr =[
   );
     return(
         <div>
-           <table>
-            <thead>
-                <tr>
-                    {/* <th>Name</th>
-                    <th>Link</th> */}
+        <TableContainer>
+        <Table>
+         <TableHead>
+        <TableRow className="uppercase">
                     {listItems}
-                </tr>
-            </thead>
-            <tbody>
+        </TableRow>
+      </TableHead>
+      <TableBody>
                 {
                    sqlDatos?.map((val,i)=>
-                   <tr key={i}>
+                   <TableRow key={i}>
                     {val.map((colm)=> 
-                    <td>{colm}</td>
+                    <TableCell style={{ padding: "20px" }}>{colm}</TableCell>
                     )
                     
                     }
 
                     {/* <td>{val[i]}</td> */}
-                   </tr>
+                    </TableRow>
                    ) 
                 }
-            </tbody>
-           </table>
+            </TableBody>
+            </Table>
+          </TableContainer>
         </div>
     );
 }
