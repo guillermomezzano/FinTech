@@ -1,22 +1,18 @@
 export const imgsCarouselOne = [
   {
-    id: "1",
-    type: "1",
+    id: "BarraUnica&ComparaCliente",
     url: require("../../../assets/carousel/carouselOne/imguno.png"),
   },
   {
-    id: "2",
-    type: "1",
+    id: "BarraUnica&VentasMes",
     url: require("../../../assets/carousel/carouselOne/imgdos.png"),
   },
   {
-    id: "3",
-    type: "1",
+    id: "BarraParalela&ComparaVenta",
     url: require("../../../assets/carousel/carouselOne/imgtres.png"),
   },
   {
-    id: "4",
-    type: "1",
+    id: "BarraParalela&CompraVenta",
     url: require("../../../assets/carousel/carouselOne/imgcuatro.jpg"),
   },
   {

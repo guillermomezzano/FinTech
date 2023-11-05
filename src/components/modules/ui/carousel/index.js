@@ -63,7 +63,7 @@ const Carousel = ({ imgs }) => {
         >
           {imgs.map(({ id, url, type }) => (
             <SwiperSlide key={id}>
-              <Link to={`/${id}/${type}`} key={id}>
+              <Link to={`/${id}`} key={id}>
                 <img src={url} alt="slide_image" />
               </Link>
             </SwiperSlide>

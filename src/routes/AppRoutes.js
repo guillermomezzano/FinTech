@@ -13,13 +13,17 @@ import CompleteAuxiliaryBook from "../pages/CompleteAuxiliaryBook";
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/:id/:type" element={<Home />} />
+      <Route path="/:id" element={<Home />} />
       <Route path="/" element={<Home />} />
       <Route path="/signin" element={<Authentication />} />
       <Route path="/diarybook" element={<DiaryBook />} />
       <Route path="/simpleauxiliarybook" element={<SimpleAuxiliaryBook />} />
       <Route path="/incomeupdateform" element={<IncomeUpdateForm />} />
       <Route path="/carousel" element={<CarouselTabs />} />
+      <Route
+        path="/completeauxiliarybook"
+        element={<CompleteAuxiliaryBook />}
+      />
     </Routes>
   );
 };
