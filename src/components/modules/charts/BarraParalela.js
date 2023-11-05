@@ -36,15 +36,30 @@ var datos = {
 };
 
 const BarraParalela = ({tempo}) => {
-    console.log("tempo ",tempo);
-    const myArray = tempo.split("&");
-    var temporal = myArray[0];
-    var texto = myArray[1];
+    const texto = tempo;
+    const [selected, setSelected] = useState('5');
+
+    const myArray = [{"value":"5","text":"5"},{"value":"6","text":"6"},
+    {"value":"7","text":"7"},{"value":"8","text":"8"}];
+    var temporal = selected;
     const [sqlDatos, setSqlDatos] = useState([]);
     const [textoBarras, setTextoBarras] = useState([]);
     const [datosComparativos, setDatosComparativo] = useState([]);
     const [textoLabel, setTextoLabel] = useState([]);
     
+    const SelectDoble = () =>{
+      var selectBox = 
+      <select 
+        value={selected}
+        onChange={e => setSelected(e.target.value)}> 
+        {myArray.map((datos)=><option value={datos.value} selected>{datos.text}</option> 
+        )}
+      </select>;
+
+      return(<>
+        {selectBox}
+      </>);
+    }
     useEffect(() => {
       const fetchApiCompraVentaCompara = async () => {
         const  {data}  = await getComparaCompraVenta(temporal);
@@ -121,7 +136,10 @@ const BarraParalela = ({tempo}) => {
     };
   
     return (
+      <>
+      {SelectDoble()}
       <Bar options={options} data={datos} />
+      </>
     )
   }
   

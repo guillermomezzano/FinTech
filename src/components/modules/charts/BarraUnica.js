@@ -41,14 +41,74 @@ var datos = {
 };
 
 const BarraUnica = ({tempo}) => {
-    console.log("tempo ",tempo);
-    const myArray = tempo.split("&");
-    var temporal = myArray[0];
-    var texto = myArray[1];
+    const texto = tempo;
+    const [selected, setSelected] = useState('5');
+    const [counted, setContar] = useState('s');
+
+    var myArray = [{"value":"y","text":"Año"},{"value":"m","text":"Mes"}];
+    var myArray2 =[{"value":"s","text":"Sumatoria"},{"value":"c","text":"Cantidad"}];
+
+    var temporal = selected+counted;
+
     const [sqlDatos, setSqlDatos] = useState([]);
     const [textoBarras, setTextoBarras] = useState([]);
     const [textoLabel, setTextoLabel] = useState([]);
-    
+
+    switch(texto) {
+      case "ComparaCliente":
+          console.log("primero");
+          myArray = [{"value":"y","text":"Año"},{"value":"m","text":"Mes"}];
+          myArray2 =[{"value":"s","text":"Sumatoria"},{"value":"c","text":"Cantidad"}];
+          temporal = selected+counted;
+        break;
+      default:
+          myArray = [{"value":"5","text":"5"},{"value":"6","text":"6"},
+          {"value":"7","text":"7"},{"value":"8","text":"8"}];
+          temporal = selected;
+      }
+    const SelectDoble = () =>{
+      var selectBox = <></>;
+      <select 
+        value={selected}
+        onChange={e => setSelected(e.target.value)}> 
+        {myArray.map((datos)=><option value={datos.value} selected>{datos.text}</option> 
+        )}
+      </select>;
+
+      var selectBox2 = <></>;
+      
+      switch(texto) {
+        case "ComparaCliente":           
+          selectBox = 
+          <select 
+            value={selected}
+            onChange={e => setSelected(e.target.value)}> 
+            {myArray.map((datos)=><option value={datos.value} selected>{datos.text}</option> 
+            )}
+          </select>;
+          selectBox2 =<select 
+            value={counted}
+            onChange={e => setContar(e.target.value)}> 
+            {myArray2.map((datos)=><option value={datos.value} selected>{datos.text}</option> 
+            )}
+          </select> ;
+          
+          break;
+        default:
+          selectBox = 
+          <select 
+            value={selected}
+            onChange={e => setSelected(e.target.value)}> 
+            {myArray.map((datos)=><option value={datos.value} selected>{datos.text}</option> 
+            )}
+          </select>;
+          selectBox2 = <></>;
+        }
+      return(<>
+        {selectBox}
+        {selectBox2}
+      </>);
+    }
     useEffect(() => {
       const fetchApiComparaCliente = async () => {
         const  {data}  = await getComparaClientesMesYear(temporal);
@@ -75,7 +135,7 @@ const BarraUnica = ({tempo}) => {
           break;
         default:
         }
-    }, [tempo]);
+    }, [tempo,selected,counted]);
     datos = {
         labels: textoBarras?.map((data) => data),
         datasets: [
@@ -108,7 +168,10 @@ const BarraUnica = ({tempo}) => {
     };
   
     return (
+      <>
+      {SelectDoble()}
       <Bar options={options} data={datos} />
+      </>
     )
   }
   

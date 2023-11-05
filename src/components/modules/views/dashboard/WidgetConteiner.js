@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { MultiChartApp } from "../../../modules/charts/App";
 
 import {
   imgsCarouselOne,
@@ -8,46 +9,33 @@ import {
 } from "../../../modules/data/dataImageCarousel";
 
 const WidgetConteiner = () => {
-  const { id, type } = useParams();
+  const { id } = useParams();
   const [arrayImg, setArrayImg] = useState();
   const [objectImg, setObjectImg] = useState();
 
-  useEffect(() => {
-    switch (type) {
-      // case "BarraUnica":
-      case "1":
-        setArrayImg(imgsCarouselOne);
-        break;
-      case "2":
-        setArrayImg(imgsCarouselTwo);
-        break;
-      default:
-        setArrayImg(imgsCarouselThree);
-    }
-  }, []);
+  // useEffect(() => {
+  //   switch (type) {
+  //     // case "BarraUnica":
+  //     case "BarraUnica":
+  //       setArrayImg(imgsCarouselOne);
+  //       break;
+  //     case "2":
+  //       setArrayImg(imgsCarouselTwo);
+  //       break;
+  //     default:
+  //       setArrayImg(imgsCarouselThree);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    const results = arrayImg?.filter((nickname) => nickname.id === id);
-    const firstObj = results?.length > 0 ? results[0] : null;
-    setObjectImg(firstObj);
-  }, [arrayImg]);
+  // useEffect(() => {
+  //   const results = arrayImg?.filter((nickname) => nickname.id === id);
+  //   const firstObj = results?.length > 0 ? results[0] : null;
+  //   setObjectImg(firstObj);
+  // }, [arrayImg]);
 
   return (
-    <div>
-      {/* <div className="ml-[5%]">
-        <h1>{type}</h1>
-        <h1>{id}</h1>
-      </div> */}
-
-      {objectImg && (
-        <div className="ml-[5%] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          <img
-            className="w-[20%] h-[20%] block sm:inline-block m-[5px]"
-            src={objectImg.url}
-            alt="slide_image"
-          />
-        </div>
-      )}
+    <div className="w-[400px] ml-[200px] bg-white">
+      <MultiChartApp typeid={id} key={"1"} />
     </div>
   );
 };

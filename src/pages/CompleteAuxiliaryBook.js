@@ -1,7 +1,9 @@
-import {ComparaClienteMesYearApp} from '../components/modules/charts/App'
+import {MultiChartApp} from '../components/modules/charts/App'
+import {ReactTable} from '../components/modules/pruebas/pruebaTabla'
 
 const CompleteAuxiliaryBook = () => {
-  return(<ComparaClienteMesYearApp/>)
+  // return(<MultiChartApp typeid = "GraficoDeTorta&ComparaCliente"/>)
+  return(<ReactTable/>)
 };
 
 export default CompleteAuxiliaryBook;

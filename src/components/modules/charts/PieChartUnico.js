@@ -22,6 +22,7 @@ var datos = {
 };
 
 const PieChartUnico = ({tempo}) => {
+    const texto = tempo;
     const [selected, setSelected] = useState('0');
     const [sqlDatos, setSqlDatos] = useState([]);
     const [textoBarras, setTextoBarras] = useState([]);
@@ -41,7 +42,7 @@ const PieChartUnico = ({tempo}) => {
       }
       };
       
-      switch(tempo) {
+      switch(texto) {
         case "ComparaCliente":
             console.log("primero");
             fetchApiComparaCliente(); //PORQUE NO FUNCIONA!?
