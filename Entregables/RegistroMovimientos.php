@@ -48,6 +48,10 @@ $decoded_json = json_decode($json_pretty, true);
 
 
 $num = $decoded_json['data'];
+if ($Xpagina>0){
+$json_ugly = file_get_contents('https://api.cymasuite.com/api/v1/accounts/'.$PKbancoAC.'/movements?per_page='.$Xpagina.'&page=1&date=desc&movement_buys=true&movement_sales=true', false, $context);
+$json_pretty = json_encode(json_decode($json_ugly), JSON_PRETTY_PRINT);
+$decoded_json = json_decode($json_pretty, true);
 $i=0;
 while( $decoded_json['data'][$i][ 'amount' ]) {  //se intento con un if y un While i<num, todo registraba infinitamente
 
@@ -67,7 +71,7 @@ VALUES ('0','".$PKempresa."','".$columna['PK']."','".$fecha_y_m_d."','".$decoded
 $resultado3 = mysqli_query( $conexion, $consulta3 ) or die ( "Algo ha ido mal en la consulta a la base de datos 3er aviso");
 $i = $i+1;
 }
-echo "<a>registrado</a>";
+echo "<a>registrado</a>";}
 $mi_temporizador = microtime();
 $partes_de_la_hora_actual = explode(' ', $mi_temporizador);
 $hora_actual = $partes_de_la_hora_actual[1] + $partes_de_la_hora_actual[0];
