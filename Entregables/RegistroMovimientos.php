@@ -31,7 +31,7 @@ $basededatos = $key[ 'basededatos' ];
 $conexion = mysqli_connect($servidor, $usuario, $password, $basededatos) or die ("No se ha podido conectar al servidor de Base de datos");
 $db = mysqli_select_db( $conexion, $basededatos ) or die ( "Upps! Pues va a ser que no se ha podido conectar a la base de datos" );
 
-$consulta2 = "SELECT * FROM `cuentabanco` WHERE `cuentabanco`.`Empresa_pk` = $PKempresa;";
+$consulta2 = "SELECT * FROM `cuentabanco` WHERE `cuentabanco`.`Empresa_pk` = $PKempresa;"; //temporal porque luego se administra entre varias
 $resultado2 = mysqli_query( $conexion, $consulta2 ) or die ( "Algo ha ido mal en la consulta a la base de datos 2er aviso");
 
 echo "decode ".$decoded_json['total_items'];
@@ -39,7 +39,7 @@ $columna = mysqli_fetch_array( $resultado2);
 $Xpagina = $decoded_json['total_items']-$columna['movRegistrados'];
 echo "mov registrados ".$columna['movRegistrados'];
 echo "paginas ".$Xpagina;
-$consulta = "UPDATE `usuario` SET `movRegistrados` = '".$decoded_json['total_items']."' WHERE `usuario`.`PK` = $PKempresa";
+$consulta = "UPDATE `cuentabanco` SET `movRegistrados` = '".$decoded_json['total_items']."' WHERE `cuentabanco`.`PK` = '".$columna['PK']."';";
 $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
 header('Content-Type: application/json');
 $json_ugly = file_get_contents('https://api.cymasuite.com/api/v1/accounts/'.$PKbancoAC.'/movements?per_page='.$decoded_json['total_items'].'&page=1&date=desc&movement_buys=true&movement_sales=true', false, $context);
@@ -60,7 +60,7 @@ if ($decoded_json['data'][$i][ 'amount' ]<0) {
   ,'".$decoded_json['data'][$i][ 'recipient_account' ][ 'holder_id' ]."')";
 }else { //3 temporal porque se debe ver la administracion de distintas cuentas de banco para un solo usuario
 $consulta3 = "INSERT INTO `movimientos`(`PK`, `PK_Usuario`, `PK_Cuenta`,`Fecha`, `Cuenta`, `Descripcion`, `Ingreso`, `Egreso`, `RUT`) 
-VALUES ('0','".$PKempresa."','3','".$fecha_y_m_d."','".$decoded_json['data'][$i][ 'bank_bill_id' ]."',
+VALUES ('0','".$PKempresa."','".$columna['PK']."','".$fecha_y_m_d."','".$decoded_json['data'][$i][ 'bank_bill_id' ]."',
 '".$decoded_json['data'][$i][ 'description' ]."','".$decoded_json['data'][$i][ 'amount' ]."','0'
 ,'".$decoded_json['data'][$i][ 'sender_account' ][ 'holder_id' ]."')";
 }

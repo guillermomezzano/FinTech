@@ -19,8 +19,8 @@ $opts = array(
   $context = stream_context_create($opts);
   $PKempresa = "867";
   $operation = "VENTA";
-  $mes = "09";
-  $yr = "2023"; //202306
+  $mes = "10";
+  $yr = "2023"; //202309
 
   $data = file_get_contents("key.json");
   $key = json_decode($data, true);
@@ -31,10 +31,10 @@ $opts = array(
   $conexion = mysqli_connect($servidor, $usuario, $password, $basededatos) or die ("No se ha podido conectar al servidor de Base de datos");
   $db = mysqli_select_db( $conexion, $basededatos ) or die ( "Upps! Pues va a ser que no se ha podido conectar a la base de datos" );
   $archivo = 1;
-  $limitey = date("Y");
-  $limitem = date("m");
-  $mes = $limitem;
-  $yr = $limitey;
+  // $limitey = date("Y");
+  // $limitem = date("m");
+  // $mes = $limitem;
+  // $yr = $limitey;
   // echo "limites".$limitey." ".$limitem."<\br>";
   // $mes = $ArrDate[$DateMonth];
   // $yr = $DateYear;

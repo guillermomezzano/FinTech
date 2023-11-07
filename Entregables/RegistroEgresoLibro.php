@@ -23,7 +23,7 @@ while ($columna = mysqli_fetch_array( $resultado))
   if($row_cnt == 0){
       $consulta1 = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
       `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
-      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['Cuenta']."', '16',
+      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '1', '".$columna['PK']."', '16',
       NULL, NULL, '".$columna['Descripcion']."',NULL, '".($columna['Egreso']*-1)."','".$columna['PK']."', '7', '".(-1*$columna['Egreso'])."');";
       $resultado1 = mysqli_query( $conexion, $consulta1 ) or die ( "Algo ha ido mal en la consulta a la base de datos 1er aviso");
     
@@ -41,28 +41,28 @@ while ($columna = mysqli_fetch_array( $resultado))
         $dineroTotal = $dineroTotal - $columnaA['Auxiliar'];
       $consultaD = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
       `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
-      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['Cuenta']."', '1',
-      NULL, NULL, '".$columnaA['PK']."-deuda que esta pagando', '".$columnaA['Auxiliar']."', NULL,'".$columna['PK']."', '7', '0');";
+      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '1', '".$columna['PK']."', '1',
+      NULL, NULL, '".$columnaA['PK']."-deuda que esta pagando', '".$columnaA['Auxiliar']."', NULL,'".$columna['PK']."', '7', '".$columnaA['NUM']."');";
         $resultadoD = mysqli_query( $conexion, $consultaD ) or die ( "Algo ha ido mal en la consulta a la base de datos D1er aviso"); 
     $consultaC = "UPDATE `libro` SET `Auxiliar`=0 WHERE `PK` = '".$columnaA['PK']."'";
-        echo "columnaA['Auxiliar']<=dineroTotal".$consultaC;
+        // echo "columnaA['Auxiliar']<=dineroTotal".$consultaC;
     $resultadoC = mysqli_query( $conexion, $consultaC ) or die ( "Algo ha ido mal en la consulta a la base de datos C1er aviso"); 
     $columnaA = mysqli_fetch_array( $resultadoA);
   }else{
         
     $consultaD = "INSERT INTO `libro` (`PK`, `FK_empresacliente`, `FECHA`, `TIPO`, 
       `NUM`, `CUENTA`, `Sucursal`, `CentroCostos`, `GLOSA`, `DEBE`, `HABER`, `PK_Origen`, `Tabla_Origen`, `Auxiliar` ) 
-      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '2', '".$columna['Cuenta']."', '1',
-      NULL, NULL, '".$columnaA['PK']."-deuda que esta pagando', '".$columnaA['Auxiliar']."', NULL,'".$columna['PK']."', '7', '0');";
+      VALUES ('0', '".$PKempresa."', '".$columna['Fecha']."', '1', '".$columna['PK']."', '1',
+      NULL, NULL, '".$columnaA['PK']."-deuda que esta pagando', '".$dineroTotal."', NULL,'".$columna['PK']."', '7', '".$columnaA['NUM']."');";
       $resultadoD = mysqli_query( $conexion, $consultaD ) or die ( "Algo ha ido mal en la consulta a la base de datos D1er aviso"); 
         $dineroTotal = $columnaA['Auxiliar']-$dineroTotal;
         $consultaC = "UPDATE `libro` SET `Auxiliar`='".$dineroTotal."' WHERE `PK` = '".$columnaA['PK']."'";
-        echo $consultaC;
+        // echo $consultaC;
         $resultadoC = mysqli_query( $conexion, $consultaC ) or die ( "Algo ha ido mal en la consulta a la base de datos C2er aviso"); 
         $dineroTotal=0;
       }
     }
-    if ($dineroTotal != $columna['Ingreso']) {
+    if ($dineroTotal != $columna['Egreso']*-1) {
       $consultaC = "UPDATE `libro` SET `Auxiliar`=$dineroTotal, `CUENTA` =2 WHERE `CUENTA` = 16 and `Tabla_Origen`= 7 and PK_Origen = '".$columna['PK']."'";
       $resultadoC = mysqli_query( $conexion, $consultaC ) or die ( "Algo ha ido mal en la consulta a la base de datos C3er aviso"); 
     }
