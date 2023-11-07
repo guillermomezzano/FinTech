@@ -7,6 +7,7 @@ import PieChartUnico from "./PieChartUnico";
 // var k = "VentasMes";
 
 export const MultiChartApp = ({ typeid }) => {
+  debugger;
   console.log("MULTY", typeid);
   const myArray = typeid.split("&");
   const type = myArray[0];

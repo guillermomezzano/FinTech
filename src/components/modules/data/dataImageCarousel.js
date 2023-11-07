@@ -13,52 +13,60 @@ export const imgsCarouselOne = [
   },
   {
     id: "BarraParalela&CompraVenta",
-    url: require("../../../assets/carousel/carouselOne/imgcuatro.jpg"),
+    url: require("../../../assets/carousel/carouselOne/imgcuatro.png"),
   },
   {
-    id: "5",
-    type: "1",
-    url: require("../../../assets/carousel/carouselOne/imgcinco.jpg"),
+    id: "BarraParalela&ComparaVentaIVA",
+    url: require("../../../assets/carousel/carouselOne/imgcinco.png"),
   },
   {
-    id: "6",
-    type: "1",
+    id: "BarraParalela&ComparaCompraIVA",
     url: require("../../../assets/carousel/carouselOne/imgseis.png"),
+  },
+  {
+    id: "BarraApilada&DeudasClientes",
+    url: require("../../../assets/carousel/carouselOne/imgsiete.png"),
   },
 ];
 
 export const imgsCarouselTwo = [
   {
-    id: "1",
-    type: "2",
+    id: "GraficoDeTorta&ComparaCliente",
     url: require("../../../assets/carousel/carouselTwo/imguno.jpg"),
   },
   {
-    id: "2",
-    type: "2",
+    id: "GraficoDeTorta&ComparaCliente",
     url: require("../../../assets/carousel/carouselTwo/imgdos.png"),
   },
   {
-    id: "3",
-    type: "2",
+    id: "GraficoDeTorta&ComparaCliente",
     url: require("../../../assets/carousel/carouselTwo/imgtres.png"),
+  },
+  {
+    id: "GraficoDeTorta&ComparaCliente",
+    url: require("../../../assets/carousel/carouselTwo/imgcuatro.jpg"),
+  },
+  {
+    id: "GraficoDeTorta&ComparaCliente",
+    url: require("../../../assets/carousel/carouselTwo/imgcinco.jpg"),
+  },
+  {
+    id: "GraficoDeTorta&ComparaCliente",
+    url: require("../../../assets/carousel/carouselTwo/imgseis.jpg"),
   },
 ];
 
 export const imgsCarouselThree = [
   {
-    id: "1",
-    type: "3",
+    id: "TableUno",
     url: require("../../../assets/carousel/carouselThree/fondo_1.jpg"),
   },
   {
-    id: "2",
-    type: "3",
+    id: "TableDos",
     url: require("../../../assets/carousel/carouselThree/fondo_2.jpg"),
   },
   {
-    id: "3",
-    type: "3",
+    id: "TableTres",
     url: require("../../../assets/carousel/carouselThree/singin.jpg"),
   },
 ];

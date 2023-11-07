@@ -61,10 +61,13 @@ const Carousel = ({ imgs }) => {
           modules={[EffectCoverflow, Pagination, Navigation]}
           className="swiper_container"
         >
-          {imgs.map(({ id, url, type }) => (
+          {imgs.map(({ id, url }) => (
             <SwiperSlide key={id}>
-              <Link to={`/${id}`} key={id}>
-                <img src={url} alt="slide_image" />
+              <Link to={`/${id}`} key={id} className="relative group">
+                <img src={url} alt="slide_image"></img>
+                <p className="absolute inset-0 flex items-center justify-center rounded-[2rem] text-xl backdrop-blur-sm text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  {id}
+                </p>
               </Link>
             </SwiperSlide>
           ))}
