@@ -32,53 +32,53 @@ export const imgsCarouselOne = [
 export const imgsCarouselTwo = [
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imguno.jpg"),
+    url: require("../../../assets/carousel/carouselTwo/imguno.jfif"),
   },
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imgdos.png"),
+    url: require("../../../assets/carousel/carouselTwo/imgdos.jfif"),
   },
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imgtres.png"),
+    url: require("../../../assets/carousel/carouselTwo/imgtres.jfif"),
   },
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imgcuatro.jpg"),
+    url: require("../../../assets/carousel/carouselTwo/imgcuatro.jfif"),
   },
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imgcinco.jpg"),
+    url: require("../../../assets/carousel/carouselTwo/imgcinco.jfif"),
   },
   {
     id: "GraficoDeTorta&ComparaCliente",
-    url: require("../../../assets/carousel/carouselTwo/imgseis.jpg"),
+    url: require("../../../assets/carousel/carouselTwo/imgseis.jfif"),
   },
 ];
 
 export const imgsCarouselThree = [
   {
     id: "LibroAuxiliarClienteResumido",
-    url: require("../../../assets/carousel/carouselThree/fondo_1.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imguno.jfif"),
   },
   {
     id: "LibroAuxiliarVentaResumido",
-    url: require("../../../assets/carousel/carouselThree/fondo_2.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imgdos.jfif"),
   },
   {
     id: "LibroAuxiliarCompraResumido",
-    url: require("../../../assets/carousel/carouselThree/singin.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imgtres.jfif"),
   },
   {
     id: "LibroAuxiliarProveedorResumido",
-    url: require("../../../assets/carousel/carouselThree/fondo_1.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imgcuatro.jfif"),
   },
   {
     id: "LibroAuxiliarIngresoResumido",
-    url: require("../../../assets/carousel/carouselThree/fondo_2.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imgcinco.jfif"),
   },
   {
     id: "LibroAuxiliarEgresoResumido",
-    url: require("../../../assets/carousel/carouselThree/singin.jpg"),
+    url: require("../../../assets/carousel/carouselThree/imgseis.jfif"),
   },
 ];

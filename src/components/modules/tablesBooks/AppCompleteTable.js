@@ -2,17 +2,15 @@
 import React, { useState, useEffect } from "react";
 
 // components
-
-// import TableDiaryBook from "../components/modules/tablesBooks/TableDiaryBook";
 import PaginationControls from "../../modules/PaginationControls.js";
+import TableJsonComplete from "./TableJsonComplete";
+import TableJsonCompleteDouble from "./TableJsonCompleteDouble.js";
 // import SearchCalendar from "../components/modules/SearchCalendar";
 
 // material
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import TableJsonComplete from "./TableJsonComplete";
-import TableJsonCompleteDouble from "./TableJsonCompleteDouble.js";
 
 // data
 import {
@@ -31,7 +29,6 @@ const theme = createTheme({
   },
 });
 
-// getComprobanteLibro
 const DiaryBook = ({ id }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);

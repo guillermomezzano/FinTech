@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { pruebaTablaTabla } from "../../../api/list.api.js";
-import { Link } from "react-router-dom";
 
 // material
-
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";

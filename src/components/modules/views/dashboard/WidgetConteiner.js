@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+
+//components
 import { MultiChartApp } from "../../../modules/charts/App";
-import ReactTable from "../../pruebas/ReactTable";
 import AppIncompleteTable from "../../../modules/tablesBooks/AppIncompleteTable";
 
 const WidgetConteiner = () => {
@@ -35,8 +36,6 @@ const WidgetConteiner = () => {
       setWidgetType(<AppIncompleteTable id={id} />);
       setIdTableComplete(id.replace("Resumido", "Completo"));
     }
-
-    // if (idTable) setWidgetType(<ReactTable id={id} />);
   }, [id]);
 
   return (

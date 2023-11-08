@@ -8,7 +8,6 @@ import Layout from "../components/layouts/index";
 
 const WidgetConteinerComplete = () => {
   const { id } = useParams();
-
   const [widget, setWidget] = useState();
   const [stylesDependenci, setStylesDependenci] = useState("");
 
