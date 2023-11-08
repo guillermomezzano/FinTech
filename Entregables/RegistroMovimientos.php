@@ -58,8 +58,8 @@ while( $decoded_json['data'][$i][ 'amount' ]) {  //se intento con un if y un Whi
 $arr = explode('T',$decoded_json['data'][$i][ 'date' ]);
 $fecha_y_m_d = $arr[0];
 if ($decoded_json['data'][$i][ 'amount' ]<0) {
-  $consulta3 = "INSERT INTO `movimientos`(`PK`, `PK_Usuario`,`Fecha`, `Cuenta`, `Descripcion`, `Ingreso`, `Egreso`, `RUT`) 
-  VALUES ('0','".$PKempresa."','".$fecha_y_m_d."','".$decoded_json['data'][$i][ 'bank_bill_id' ]."',
+  $consulta3 = "INSERT INTO `movimientos`(`PK`, `PK_Usuario`, `PK_Cuenta`,`Fecha`, `Cuenta`, `Descripcion`, `Ingreso`, `Egreso`, `RUT`) 
+  VALUES ('0','".$PKempresa."','".$columna['PK']."','".$fecha_y_m_d."','".$decoded_json['data'][$i][ 'bank_bill_id' ]."',
   '".$decoded_json['data'][$i][ 'description' ]."','0','".$decoded_json['data'][$i][ 'amount' ]."'
   ,'".$decoded_json['data'][$i][ 'recipient_account' ][ 'holder_id' ]."')";
 }else { //3 temporal porque se debe ver la administracion de distintas cuentas de banco para un solo usuario
