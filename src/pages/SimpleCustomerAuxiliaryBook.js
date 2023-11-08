@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 
 import SearchCalendar from "../components/modules/SearchCalendar.js";
 import PaginationControls from "../components/modules/PaginationControls.js";
-import TablePruebaJson from "../components/modules/tablesBooks/TablePruebaJson.js";
+import TablePruebaJson from "../components/modules/tablesBooks/TableJsonIncomplete.js";
 import Layout from "../components/layouts/index";
 // material
 import Typography from "@mui/material/Typography";

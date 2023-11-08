@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 // components
 
-import TableDiaryBook from "../components/modules/tablesBooks/TableDiaryBook";
+// import TableDiaryBook from "../components/modules/tablesBooks/TableDiaryBook";
 import PaginationControls from "../components/modules/PaginationControls";
 import SearchCalendar from "../components/modules/SearchCalendar";
 
@@ -12,7 +12,7 @@ import Layout from "../components/layouts/index";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import TablePruebaJson from "../components/modules/tablesBooks/TablePruebaJson.js";
+import TablePruebaJson from "../components/modules/tablesBooks/TableJsonIncomplete.js";
 
 import { getLibroAuxiliarVentaResumido } from "../api/table.api.js";
 // data que vendria de la api o base de datos

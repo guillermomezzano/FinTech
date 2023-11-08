@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { pruebaTablaTabla } from "../../../api/list.api.js";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // material
-
 import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
@@ -25,81 +23,7 @@ export function TablePruebaJson({ textoCabeza, sqlDatos, page, rowsPerPage }) {
   const handleFilterIdChange = (e) => {
     setFilterNombreEmpresa(e.target.value);
   };
-  const listItems = textoCabeza?.map((opcion) => <th>{opcion}</th>);
-  // const filteredData = sqlDatos
-  //   .filter((row) => {
-  //     const filter = filterNombreEmpresa.trim().toLowerCase();
-  //     if (filter === "") return true;
-  //     const nombre = row.nombre.toLowerCase();
-  //     return nombre.startsWith(filter);
-  //   })
-  //   ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
-  //   const [sqlDatos, setSqlDatos] = useState([]);
-  //   const [textoCabeza, setTextoCabeza] = useState([]);
-  //   useEffect(() => {
-  //     const fetchApiComparaCliente = async () => {
-  //       const  {data}  = await pruebaTablaTabla();
-  //       console.log("data es: ",data.data);
-  //       setSqlDatos(data.data);
-  //       setTextoCabeza(data.titulos);
-  //     }
-  //     fetchApiComparaCliente();
-  //   }, []);
 
-  // var datosJson=[
-  //   "0",
-  //   "Fecha",
-  //   "Folio",
-  //   "Comprobante",
-  //   "Monto",
-  //   "Cuenta"
-  // ];
-  // var cuerpoArr =[
-  //     [
-  //     "DTH CONSULTORES LIMITADA\n76730093-K",
-  //     "2023-10-04T04:00:00.000Z",
-  //     "0\n335129689",
-  //     56,
-  //     5102662,
-  //     "VENTAS EXENTAS"
-  //   ],
-  //   [
-  //     "DTH CONSULTORES LIMITADA\n76730093-K",
-  //     "2023-08-31T04:00:00.000Z",
-  //     "34\n315302609",
-  //     52,
-  //     5102662,
-  //     "VENTAS EXENTAS"
-  //   ],
-  //     [
-  //     "DTH CONSULTORES LIMITADA\n76730093-K",
-  //     "2023-08-02T04:00:00.000Z",
-  //     "34\n315302609",
-  //     51,
-  //     5102662,
-  //     "VENTAS EXENTAS"
-  //   ],
-  //   [
-  //     "DTH CONSULTORES LIMITADA\n76730093-K",
-  //     "2023-07-03T04:00:00.000Z",
-  //     "34\n309675955",
-  //     50,
-  //     5538262,
-  //     "VENTAS EXENTAS"
-  //   ],
-  //     [
-  //     "DTH CONSULTORES LIMITADA\n76730093-K",
-  //     "2023-06-04T04:00:00.000Z",
-  //     "34\n305002350",
-  //     49,
-  //     5102662,
-  //     "VENTAS EXENTAS"
-  //   ]];
-  // const listItems = textoCabeza?.map((opcion) =>
-  //   <th>
-  //     {opcion}
-  //   </th>
-  // );
   return (
     <div>
       <TextField

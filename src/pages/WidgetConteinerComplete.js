@@ -2,9 +2,8 @@ import { useParams } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
 //components
-import SimpleCustomerAuxiliaryBook from "./SimpleCustomerAuxiliaryBook";
-import SimpleSalesAuxiliaryBook from "./SimpleSalesAuxiliaryBook";
 import { MultiChartApp } from "../components/modules/charts/App";
+import AppCompleteTable from "../components/modules/tablesBooks/AppCompleteTable";
 import Layout from "../components/layouts/index";
 
 const WidgetConteinerComplete = () => {
@@ -24,20 +23,23 @@ const WidgetConteinerComplete = () => {
     "BarraParalela&ComparaVentaIVA",
   ];
 
-  const allowedIdsTable = ["TableUno", "TableDos", "TableTres"];
+  const allowedIdsTable = [
+    "LibroAuxiliarVentaCompleto",
+    "LibroAuxiliarCompraCompleto",
+    "LibroAuxiliarClienteCompleto",
+    "LibroAuxiliarProveedorCompleto",
+    "LibroAuxiliarIngresoCompleto",
+    "LibroAuxiliarEgresoCompleto",
+    "ComprobanteLibro",
+  ];
 
   useEffect(() => {
     if (allowedIdsCharts.includes(id)) {
       setWidget(<MultiChartApp typeid={id} key={"1"} />);
       setStylesDependenci("charts");
     }
-    if (id === "TableUno" || id === "TableTres") {
-      setWidget(<SimpleCustomerAuxiliaryBook />);
-      setStylesDependenci("table");
-    }
-
-    if (id === "TableDos") {
-      setWidget(<SimpleSalesAuxiliaryBook />);
+    if (allowedIdsTable.includes(id)) {
+      setWidget(<AppCompleteTable id={id} />);
       setStylesDependenci("table");
     }
   }, [id]);

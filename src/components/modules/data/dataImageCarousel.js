@@ -58,15 +58,27 @@ export const imgsCarouselTwo = [
 
 export const imgsCarouselThree = [
   {
-    id: "TableUno",
+    id: "LibroAuxiliarClienteResumido",
     url: require("../../../assets/carousel/carouselThree/fondo_1.jpg"),
   },
   {
-    id: "TableDos",
+    id: "LibroAuxiliarVentaResumido",
     url: require("../../../assets/carousel/carouselThree/fondo_2.jpg"),
   },
   {
-    id: "TableTres",
+    id: "LibroAuxiliarCompraResumido",
+    url: require("../../../assets/carousel/carouselThree/singin.jpg"),
+  },
+  {
+    id: "LibroAuxiliarProveedorResumido",
+    url: require("../../../assets/carousel/carouselThree/fondo_1.jpg"),
+  },
+  {
+    id: "LibroAuxiliarIngresoResumido",
+    url: require("../../../assets/carousel/carouselThree/fondo_2.jpg"),
+  },
+  {
+    id: "LibroAuxiliarEgresoResumido",
     url: require("../../../assets/carousel/carouselThree/singin.jpg"),
   },
 ];
