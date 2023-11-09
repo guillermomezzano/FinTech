@@ -7,3 +7,9 @@ export const getListaClientes = async () => {
   console.log("URL = ", changeableUrl);
   return await axios.get(changeableUrl);
 };
+//lista de cuentas
+export const getListaCuentas = async () => {
+  let changeableUrl = `${url}/getListaCuentas/`;
+  console.log("URL = ", changeableUrl);
+  return await axios.get(changeableUrl);
+};

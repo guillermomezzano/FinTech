@@ -1,9 +1,9 @@
 import {MultiChartApp} from '../components/modules/charts/App'
-import {ReactTable, ReactTableDoble} from '../components/modules/pruebas/pruebaTabla'
+import {ReactTable, ReactTableSelect} from '../components/modules/pruebas/pruebaTabla'
 
 const CompleteAuxiliaryBook = () => {
   // return(<MultiChartApp typeid = "GraficoDeTorta&ComparaCliente"/>)
-  return(<ReactTableDoble/>)
+  return(<ReactTableSelect/>)
 };
 
 export default CompleteAuxiliaryBook;
