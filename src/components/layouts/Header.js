@@ -16,7 +16,7 @@ import WebhookIcon from "@mui/icons-material/Webhook";
 const initialData = [
   {
     id: "1",
-    nombre: "empresa uno",
+    nombre: "Asesorias Corporativas Santa Trinidad LTDA",
     fecha: new Date("1/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
@@ -27,7 +27,7 @@ const initialData = [
   },
   {
     id: "2",
-    nombre: "empresa dos",
+    nombre: "empresa uno",
     fecha: new Date("2/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
@@ -38,7 +38,7 @@ const initialData = [
   },
   {
     id: "3",
-    nombre: "cocacola",
+    nombre: "empresa dos",
     fecha: new Date("3/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
@@ -49,7 +49,7 @@ const initialData = [
   },
   {
     id: "4",
-    nombre: "ccu",
+    nombre: "CCU",
     fecha: new Date("3/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,
@@ -60,7 +60,7 @@ const initialData = [
   },
   {
     id: "5",
-    nombre: "daniel",
+    nombre: "Falabella",
     fecha: new Date("4/15/2023"),
     cuenta: "12312312312 PROVEEDORES LTDA",
     debe: 34,

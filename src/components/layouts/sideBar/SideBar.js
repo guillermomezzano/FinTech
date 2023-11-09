@@ -1,5 +1,6 @@
 // react
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Styles
 import "./sideBar.css";
@@ -21,6 +22,7 @@ const Sidebar = () => {
   const [menuItems, setMenuItems] = useState(menuItemsDefaults);
   const [searchText, setSearchText] = useState("");
   const [showInput, setShowInput] = useState(false);
+  const [redirects, setRedirects] = useState("");
   // const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleMouseEnter = (value, name) => {
@@ -119,16 +121,24 @@ const Sidebar = () => {
               <>
                 {menuItem.icon}
                 {expanded && (
-                  <Typography
-                    sx={{
-                      fontSize: menuItem.fontSize,
-                      // transition: "20s ease-in-out",
-                      // opacity: `${expanded ? "1" : "0"}`,
-                    }}
+                  <Link
+                    to={
+                      menuItem.link === "libroDiario"
+                        ? "http://localhost:3000/libroDiario"
+                        : "http://localhost:3000/libroMayor"
+                    }
                   >
-                    {/* // <Typography variant={menuItem.variant}> */}
-                    {menuItem.name}
-                  </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: menuItem.fontSize,
+                        // transition: "20s ease-in-out",
+                        // opacity: `${expanded ? "1" : "0"}`,
+                      }}
+                    >
+                      {/* // <Typography variant={menuItem.variant}> */}
+                      {menuItem.name}
+                    </Typography>
+                  </Link>
                 )}
               </>
             </div>

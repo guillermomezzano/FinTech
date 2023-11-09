@@ -7,6 +7,8 @@ import Authentication from "../pages/Authentication";
 import IncomeUpdateForm from "../pages/IncomeUpdateForm";
 import CarouselTabs from "../components/modules/views/dashboard/tabs";
 import WidgetConteinerComplete from "../pages/WidgetConteinerComplete";
+import DiaryBook from "../pages/DiaryBook";
+import ElderlyBook from "../pages/ElderlyBook";
 
 const AppRoutes = () => {
   return (
@@ -16,6 +18,8 @@ const AppRoutes = () => {
       <Route path="/signin" element={<Authentication />} />
       <Route path="/incomeupdateform" element={<IncomeUpdateForm />} />
       <Route path="/carousel" element={<CarouselTabs />} />
+      <Route path="/libroMayor" element={<ElderlyBook />} />
+      <Route path="/libroDiario" element={<DiaryBook />} />
       <Route
         path="/widgetconteinercomplete/:id"
         element={<WidgetConteinerComplete />}
