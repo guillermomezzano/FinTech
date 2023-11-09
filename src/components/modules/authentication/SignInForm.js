@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -16,6 +16,7 @@ const SignInForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  // const history = useHistory();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -30,6 +31,7 @@ const SignInForm = () => {
     // Aquí puedes agregar la lógica de autenticación, por ejemplo, enviar los datos al servidor.
     console.log("Username:", username);
     console.log("Password:", password);
+    // history.push("/");
   };
 
   return (

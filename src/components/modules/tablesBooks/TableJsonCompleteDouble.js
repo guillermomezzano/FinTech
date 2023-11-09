@@ -65,7 +65,6 @@ const TableJsonCompleteDouble = ({ textoCabeza, sqlDatos }) => {
                       </Link>
                     </Tooltip>
                   </TableCell>
-
                   {/* <td>{val[i]}</td> */}
                 </TableRow>
               ))

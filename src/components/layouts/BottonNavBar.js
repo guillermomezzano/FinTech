@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const BottonNavBar = () => {
   const squares = [
-    { color: "#84cc16", to: "/DiaryBook" },
-    { color: "red", to: "/SimpleAuxiliaryBook" },
-    { color: "blue", to: "/IncomeUpdateForm" },
+    { color: "#84cc16", to: "/carousel" },
+    { color: "red", to: "/carousel" },
+    { color: "blue", to: "/carousel" },
     { color: "orange", to: "/carousel" },
   ];
 

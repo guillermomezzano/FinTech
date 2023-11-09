@@ -106,7 +106,8 @@ const DiaryBook = ({ id }) => {
         <ThemeProvider theme={theme}>
           <div className="w-full">
             <div>
-              {id === "LibroAuxiliarClienteCompleto" ? (
+              {id === "LibroAuxiliarClienteCompleto" ||
+              id === "LibroAuxiliarProveedorCompleto" ? (
                 <TableJsonCompleteDouble
                   textoCabeza={textoCabeza}
                   sqlDatos={sqlDatos}
