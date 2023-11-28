@@ -12,6 +12,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import WebhookIcon from "@mui/icons-material/Webhook";
+import SearchIcon from "@mui/icons-material/Search";
+
+// assets
+import iconParlanteNegro from "../../assets/iconos/iconParlanteNegro.png";
+import iconTuercaNegro from "../../assets/iconos/iconTuercaNegro.png";
 
 const initialData = [
   {
@@ -73,24 +78,41 @@ const initialData = [
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-
+  const [searchText, setSearchText] = useState("");
   const handleClickOpen = () => () => {
     setOpen(true);
   };
 
+  const handleInputChange = (event) => {
+    setSearchText(event.target.value);
+  };
   return (
-    <div className="mb-20">
-      <AppBar>
-        <Toolbar sx={{ justifyContent: "space-between" }}>
-          <WebhookIcon sx={{ fontSize: 50 }} />
-          <div className="flex gap-4">
+    <div className="ml-20">
+      <nav
+        sx={{
+          zIndex: "0",
+          backgroundColor: "white",
+        }}
+      >
+        <Toolbar sx={{ justifyContent: "flex-end" }}>
+          <div className="flex gap-4 items-center justify-end pr-8">
+            <SearchIcon sx={{ fontSize: 30, color: "black" }} />
+            <input
+              className="text-black outline-none border-none"
+              type="text"
+              placeholder="Buscador"
+              value={searchText}
+              onChange={handleInputChange}
+            />
             <AutoCompleteHeader initialData={initialData} />
-            <IconButton onClick={handleClickOpen()} color="inherit">
+            <img className="w-[3%] h-[3%] ml-4" src={iconParlanteNegro} />
+            <img className="w-[3%] h-[3%]" src={iconTuercaNegro} />
+            <IconButton onClick={handleClickOpen()} color="black">
               <AddIcon />
             </IconButton>
           </div>
         </Toolbar>
-      </AppBar>
+      </nav>
       <ModalDialogOptions setOpen={setOpen} open={open} />
     </div>
   );

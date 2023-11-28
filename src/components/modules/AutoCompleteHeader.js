@@ -45,7 +45,7 @@ const AutoCompleteHeader = ({ initialData }) => {
             onChange={handleInputChange}
             value={empresa}
             {...params}
-            label={empresa ? "" : "Empresa"}
+            label={empresa ? "" : "Empresas"}
             InputLabelProps={{
               shrink: false,
             }}

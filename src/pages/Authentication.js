@@ -7,6 +7,7 @@ import singin from "../assets/singin.jpg";
 // import Forgotpassword from '../components/modules/authentication/Forgotpassword';
 import SignInForm from "../components/modules/authentication/SignInForm";
 import SignUpForm from "../components/modules/authentication/SignUpForm";
+import SignUpStepperRecord from "../components/modules/authentication/SignUpStepperRecord";
 
 import Typography from "@mui/material/Typography";
 
@@ -16,21 +17,15 @@ const Authentication = () => {
   const authComponents = {
       "/signin": <SignInForm />,
       "/signup": <SignUpForm />,
+      "/signuprecord": <SignUpStepperRecord />,
       //   '/forgotpassword': <Forgotpassword />,
     },
     defaultComponent = <SignInForm />,
     selectedComponent = authComponents[location.pathname] || defaultComponent;
 
   return (
-    <div className="flex flex-col relative  items-center justify-center bg-white h-screen">
-      <div className="self-center z-10 absolute top-[3%] w-[40%]">
-        {selectedComponent}
-      </div>
-      <img
-        src={singin}
-        alt=""
-        className="absolute w-[70%] h-[70%] object-cover"
-      />
+    <div>
+      <div>{selectedComponent}</div>
       <Typography variant="body" className="text-lg z-10 absolute bottom-4">
         Luca | {new Date().getFullYear()}
       </Typography>
