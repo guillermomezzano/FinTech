@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import singin from "../../../assets/singin.jpg";
 
@@ -18,7 +18,7 @@ const SignInForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const history = useHistory();
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -31,9 +31,9 @@ const SignInForm = () => {
 
   const handleLogin = () => {
     // Aquí puedes agregar la lógica de autenticación, por ejemplo, enviar los datos al servidor.
+    navigate("/");
     console.log("Username:", username);
     console.log("Password:", password);
-    // history.push("/");
   };
 
   return (
@@ -79,7 +79,7 @@ const SignInForm = () => {
             />
           </FormControl>
           <div className="flex flex-col gap-3 my-1">
-            <Link>
+            <Link to={"http://localhost:3000/signuprecord"}>
               <p className="text-stone-500 hover:text-[#EB5E4F]">Registrar</p>
             </Link>
             <Link>

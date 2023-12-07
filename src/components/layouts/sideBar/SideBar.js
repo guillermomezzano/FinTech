@@ -8,44 +8,55 @@ import "./sideBar.css";
 // data
 import { menuItemsDefaults } from "../../modules/data/dataSideBar.js";
 
-// Material
+// assets
+import logoLuca from "../../../assets/logoLuca.png";
 
+// Material
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Typography from "@mui/material/Typography";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
   const [menuItems, setMenuItems] = useState(menuItemsDefaults);
   const [showInput, setShowInput] = useState(false);
+  const [buttonPressed, setButtonPressed] = useState(false);
 
-  const handleMouseEnter = (value, name) => {
-    setExpanded(value);
-    name === "busqueda" ? setShowInput(value) : setShowInput(false);
-  };
-
-  //funcion para cuando el mouse esta fuera del menu
-  const handleMouseLeave = (value) => {
-    setExpanded(value);
+  const handleButtonClick = () => {
+    setButtonPressed(!buttonPressed);
+    setExpanded(!expanded);
   };
 
   return (
     <>
       <div className={`sidebar ${expanded ? "expanded" : ""}`}>
+        <button className="toggle-button" onClick={handleButtonClick}>
+          {expanded ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
+        </button>
+        {expanded ? (
+          <img className="w-1/2 h-14 m-6 mb-14" src={logoLuca} alt="" />
+        ) : (
+          <GitHubIcon className="m-4" />
+        )}
         {menuItems.map((menuItem) => (
           <div
             key={menuItem.id}
-            className={`flex h-16 hover:bg-[#4b5563] cursor-pointer rounded-lg ${
-              expanded ? "icon-hover p-6" : "justify-center"
+            className={`flex h-16 cursor-pointer ${
+              expanded
+                ? "icon-hover p-6 border-b-4 border-light-gray hover:border-light-orange transition-colors duration-300 ease-in-out"
+                : "justify-center"
             }`}
-            onMouseEnter={() => handleMouseEnter(true, "")}
-            onMouseLeave={() => handleMouseLeave(false)}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-6">
               <>
-                <div>
-                  <img className="w-8 h-8" src={menuItem.icon} />
-                </div>
+                <img
+                  className="w-8 h-8"
+                  src={menuItem.icon}
+                  alt={menuItem.name}
+                />
                 {expanded && (
-                  <Link>
+                  <Link to={menuItem.path}>
                     <Typography sx={{ fontSize: menuItem.fontSize }}>
                       {menuItem.name}
                     </Typography>

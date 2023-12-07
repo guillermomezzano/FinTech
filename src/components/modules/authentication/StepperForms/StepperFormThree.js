@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { OutlinedInput } from "@mui/material";
 import CustomButton from "../../../modules/ui/CustomButton";
 
-const StepFormTwo = ({ active, onNext, onBack }) => {
+const StepperFormThree = ({ active, onNext, onBack }) => {
   const [formData, setFormData] = useState({});
 
   const handleChange = (e) => {
@@ -19,9 +19,9 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
 
   return (
     <div className="w-full" style={{ display: active ? "block" : "none" }}>
-      <h1 className="text-6xl">¿Cómo se llama tu empresa?</h1>
+      <h1 className="text-6xl">¿Cuál es tu giro?</h1>
       <h3 className="text-2xl mt-8">
-        Con este nombre podrás trabajar con Luca
+        Empieza a escribir y busca el tuyo. Puedes cambiarlo más adelante.
       </h3>
       <div className="w-5/6">
         <OutlinedInput
@@ -31,8 +31,8 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
             boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
           }}
           fullWidth
-          name="company"
-          value={formData.company || ""}
+          name="giro"
+          value={formData.giro || ""}
           onChange={handleChange}
         />
       </div>
@@ -49,4 +49,4 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
   );
 };
 
-export default StepFormTwo;
+export default StepperFormThree;
