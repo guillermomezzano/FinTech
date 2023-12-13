@@ -36,14 +36,17 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
           onChange={handleChange}
         />
       </div>
-      {/* Agrega más campos según sea necesario */}
       <div className="flex gap-4">
-        <CustomButton className="bg-light-gray w-40" onClick={handleBack}>
-          Aterior
-        </CustomButton>
-        <CustomButton className="w-40" onClick={handleNext}>
-          Siguiente
-        </CustomButton>
+        <CustomButton
+          className="w-40 bg-light-gray text-white font-bold py-2 px-4"
+          title="Aterior"
+          onClick={handleBack}
+        />
+        <CustomButton
+          className="w-40 bg-aqua-green text-white font-bold py-2 px-4"
+          title="Siguiente"
+          onClick={handleNext}
+        />
       </div>
     </div>
   );

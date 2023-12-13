@@ -1,6 +1,6 @@
 // react
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // Styles
 import "./sideBar.css";
@@ -14,20 +14,19 @@ import logoLuca from "../../../assets/logoLuca.png";
 // Material
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import Typography from "@mui/material/Typography";
-import GitHubIcon from "@mui/icons-material/GitHub";
+import CycloneIcon from "@mui/icons-material/Cyclone";
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
   const [menuItems, setMenuItems] = useState(menuItemsDefaults);
-  const [showInput, setShowInput] = useState(false);
-  const [buttonPressed, setButtonPressed] = useState(false);
+
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const handleButtonClick = () => {
-    setButtonPressed(!buttonPressed);
     setExpanded(!expanded);
   };
-
+  debugger;
   return (
     <>
       <div className={`sidebar ${expanded ? "expanded" : ""}`}>
@@ -37,34 +36,42 @@ const Sidebar = () => {
         {expanded ? (
           <img className="w-1/2 h-14 m-6 mb-14" src={logoLuca} alt="" />
         ) : (
-          <GitHubIcon className="m-4" />
+          <div className="p-3 my-6">
+            <CycloneIcon sx={{ fontSize: "2.5rem" }} />
+          </div>
         )}
         {menuItems.map((menuItem) => (
-          <div
-            key={menuItem.id}
-            className={`flex h-16 cursor-pointer ${
-              expanded
-                ? "icon-hover p-6 border-b-4 border-light-gray hover:border-light-orange transition-colors duration-300 ease-in-out"
-                : "justify-center"
-            }`}
-          >
-            <div className="flex items-center gap-6">
-              <>
+          <Link to={menuItem.path}>
+            <div
+              key={menuItem.id}
+              className={`flex mb-2 h-16 cursor-pointer icon-hover hover:border-light-orange ${
+                expanded ? "p-6 border-b-4 border-dark-gray" : "justify-center"
+              } ${
+                currentPath === menuItem.path &&
+                expanded &&
+                "border-light-orange"
+              }`}
+            >
+              <div className="flex items-center gap-6">
                 <img
-                  className="w-8 h-8"
+                  className={`w-8 h-8 ${
+                    currentPath === menuItem.path && "selected"
+                  }`}
                   src={menuItem.icon}
                   alt={menuItem.name}
                 />
                 {expanded && (
-                  <Link to={menuItem.path}>
-                    <Typography sx={{ fontSize: menuItem.fontSize }}>
-                      {menuItem.name}
-                    </Typography>
-                  </Link>
+                  <p
+                    className={`text-xl ${
+                      currentPath === menuItem.path && "text-light-orange"
+                    }`}
+                  >
+                    {menuItem.name}
+                  </p>
                 )}
-              </>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </>

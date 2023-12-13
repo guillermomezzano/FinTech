@@ -1,8 +1,5 @@
 import { useLocation } from "react-router-dom";
 
-// image
-import singin from "../assets/singin.jpg";
-
 // Components
 // import Forgotpassword from '../components/modules/authentication/Forgotpassword';
 import SignInForm from "../components/modules/authentication/SignInForm";

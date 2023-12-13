@@ -1,25 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
 // components
-import WidgetConteiner from "../components/modules/views/dashboard/WidgetConteiner";
 import Layout from "../components/layouts/index";
+import Empresa from "../components/modules/views/dashboard/Empresa";
 
 const Home = () => {
-  const { id } = useParams();
-
   return (
     <div>
       <Layout>
-        <div>
-          {id ? (
-            <p>
-              <WidgetConteiner />
-            </p>
-          ) : (
-            <></>
-          )}
-        </div>
+        <Empresa />
       </Layout>
     </div>
   );

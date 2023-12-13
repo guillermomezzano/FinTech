@@ -1,14 +1,15 @@
 // Components
-// import ModalDialog from '../modules/ModalDialog';
 import SideBar from "./sideBar/SideBar";
 import Header from "./Header";
 
 const Layout = ({ children }) => {
   return (
-    <div>
-      <Header />
+    <div className="flex">
       <SideBar />
-      <div>{children}</div>
+      <div className="flex-1 overflow-y-auto">
+        <Header />
+        <div className="p-14">{children}</div>
+      </div>
     </div>
   );
 };

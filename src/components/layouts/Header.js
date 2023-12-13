@@ -7,11 +7,9 @@ import AutoCompleteHeader from "../modules/AutoCompleteHeader";
 import ModalDialogOptions from "../modules/ModalDialogOptions";
 
 //material
-import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
-import WebhookIcon from "@mui/icons-material/Webhook";
 import SearchIcon from "@mui/icons-material/Search";
 
 // assets
@@ -87,7 +85,7 @@ const Header = () => {
     setSearchText(event.target.value);
   };
   return (
-    <div className="ml-20">
+    <div>
       <nav
         sx={{
           zIndex: "0",
@@ -105,8 +103,12 @@ const Header = () => {
               onChange={handleInputChange}
             />
             <AutoCompleteHeader initialData={initialData} />
-            <img className="w-[3%] h-[3%] ml-4" src={iconParlanteNegro} />
-            <img className="w-[3%] h-[3%]" src={iconTuercaNegro} />
+            <img
+              className="w-[3%] h-[3%] ml-4"
+              src={iconParlanteNegro}
+              alt=""
+            />
+            <img className="w-[3%] h-[3%]" src={iconTuercaNegro} alt="" />
             <IconButton onClick={handleClickOpen()} color="black">
               <AddIcon />
             </IconButton>

@@ -25,12 +25,16 @@ const StepperFormSeven = ({ active, onNext, onBack }) => {
         </div>
       </div>
       <div className="flex gap-4 mt-16">
-        <CustomButton className="bg-light-gray w-40" onClick={handleBack}>
-          Aterior
-        </CustomButton>
-        <CustomButton className="w-40" onClick={handleNext}>
-          Siguiente
-        </CustomButton>
+        <CustomButton
+          className="bg-light-gray text-white font-bold py-2 px-4 w-40"
+          title="Aterior"
+          onClick={handleBack}
+        />
+        <CustomButton
+          className="bg-aqua-green text-white font-bold py-2 px-4 w-40"
+          title="Siguiente"
+          onClick={handleNext}
+        />
       </div>
     </div>
   );
