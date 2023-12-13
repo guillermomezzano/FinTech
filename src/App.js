@@ -12,14 +12,15 @@ import "./App.css";
 
 // material
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#6d1b7b",
+      main: "#1FB4B0",
     },
     secondary: {
-      main: "#cac3c3",
+      main: "#EB5E4F",
     },
   },
   // typography: {
@@ -32,11 +33,13 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalState>
-        <Loader />
-        <SnackbarMessage />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
+        <AuthContextProvider>
+          <Loader />
+          <SnackbarMessage />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </AuthContextProvider>
       </GlobalState>
     </ThemeProvider>
   );

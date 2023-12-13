@@ -1,98 +1,101 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import PersonIcon from "@mui/icons-material/Person";
+import { TextField, Button, FormControl, FormHelperText } from "@mui/material";
+import { UserAuth } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import Input from "../ui/Input";
 
 const SignInForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const { login } = UserAuth();
+  const navigate = useNavigate();
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const validateFields = () => {
+    let errors = {};
 
-  const handleLogin = () => {
-    // Aquí puedes agregar la lógica de autenticación, por ejemplo, enviar los datos al servidor.
-    console.log("Username:", username);
-    console.log("Password:", password);
+    if (!formValues.email) {
+      errors.email = "Ingrese su correo electrónico.";
+    }
+
+    if (!formValues.password) {
+      errors.password = "Ingrese su contraseña.";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const errors = validateFields();
+
+    if (Object.keys(errors).length === 0) {
+      try {
+        // Lógica de inicio de sesión
+        await login(formValues.email, formValues.password);
+        navigate("/");
+      } catch (error) {
+        // Manejar errores de inicio de sesión
+        console.error("Error al iniciar sesión:", error.message);
+      }
+    } else {
+      setErrors(errors);
+    }
   };
 
   return (
-    <div className="flex flex-col gap-3 px-12 py-10 h-auto bg-white shadow-lg rounded-lg">
-      <h1 className="text-4xl font-semibold mb-10 text-stone-500">
-        Inicio de sesión
-      </h1>
-      <TextField
-        label="Usuario"
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col space-y-4 p-12 m-12 shadow-lg max-w-5xl"
+    >
+      <h1 className="text-2xl font-semibold">Ingresa con tu cuenta en Luca.</h1>
+      <p>
+        ¿No tienes cuenta?{" "}
+        <a href="/signup" className="text-secondary hover:underline">
+          Regístrate aquí
+        </a>
+      </p>
+      <Input
+        name="email"
+        label="CORREO"
         variant="outlined"
-        fullWidth
-        value={username}
-        onChange={handleUsernameChange}
-        className="mb-4"
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <PersonIcon />
-            </InputAdornment>
-          ),
-        }}
+        value={formValues.email}
+        onChange={handleChange}
+        error={!!errors.email}
+        helperText={errors.email}
       />
-      <FormControl variant="outlined">
-        <InputLabel>Password</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-password"
-          type={showPassword ? "text" : "password"}
-          onChange={handlePasswordChange}
-          endAdornment={
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={handleClickShowPassword}
-                edge="end"
-              >
-                {showPassword ? <VisibilityOff /> : <Visibility />}
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Password"
+      <FormControl error={!!errors.password}>
+        <Input
+          name="password"
+          label="CONTRASEÑA"
+          variant="outlined"
+          type="password"
+          value={formValues.password}
+          onChange={handleChange}
         />
+        {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
       </FormControl>
-      <div className="flex flex-col gap-3 my-1">
-        <Link>
-          <p className="text-stone-500 hover:text-[#6d1b7b]">Registrar</p>
-        </Link>
-        <Link>
-          <p className="text-stone-500 italic hover:text-[#6d1b7b]">
-            ¿Olvidaste tu Contraseña?
-          </p>
-        </Link>
-      </div>
-
-      <Button
-        variant="contained"
-        color="primary"
-        size="large"
-        onClick={handleLogin}
-        fullWidth
+      <button
+        type="submit"
+        className="w-36 py-2 bg-primary hover:bg-opacity-90 active:translate-y-[2px] text-white font-bold"
       >
-        Iniciar sesión
-      </Button>
-    </div>
+        Iniciar Sesión
+      </button>
+    </form>
   );
 };
 
