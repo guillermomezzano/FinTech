@@ -58,44 +58,50 @@ const SignInForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col space-y-4 p-12 m-12 shadow-lg max-w-5xl"
-    >
-      <h1 className="text-2xl font-semibold">Ingresa con tu cuenta en Luca.</h1>
-      <p>
-        ¿No tienes cuenta?{" "}
-        <a href="/signup" className="text-secondary hover:underline">
-          Regístrate aquí
-        </a>
-      </p>
-      <Input
-        name="email"
-        label="CORREO"
-        variant="outlined"
-        value={formValues.email}
-        onChange={handleChange}
-        error={!!errors.email}
-        helperText={errors.email}
-      />
-      <FormControl error={!!errors.password}>
-        <Input
-          name="password"
-          label="CONTRASEÑA"
-          variant="outlined"
-          type="password"
-          value={formValues.password}
-          onChange={handleChange}
-        />
-        {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
-      </FormControl>
-      <button
-        type="submit"
-        className="w-36 py-2 bg-primary hover:bg-opacity-90 active:translate-y-[2px] text-white font-bold"
+    <div className="flex items-center justify-center h-screen w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col space-y-4 p-12 shadow-lg max-w-5xl"
       >
-        Iniciar Sesión
-      </button>
-    </form>
+        <h1 className="text-2xl font-semibold">
+          Ingresa con tu cuenta en Luca.
+        </h1>
+        <p>
+          ¿No tienes cuenta?{" "}
+          <a href="/signup" className="text-secondary hover:underline">
+            Regístrate aquí
+          </a>
+        </p>
+        <Input
+          name="email"
+          label="CORREO"
+          variant="outlined"
+          value={formValues.email}
+          onChange={handleChange}
+          error={!!errors.email}
+          helperText={errors.email}
+        />
+        <FormControl error={!!errors.password}>
+          <Input
+            name="password"
+            label="CONTRASEÑA"
+            variant="outlined"
+            type="password"
+            value={formValues.password}
+            onChange={handleChange}
+          />
+          {errors.password && (
+            <FormHelperText>{errors.password}</FormHelperText>
+          )}
+        </FormControl>
+        <button
+          type="submit"
+          className="w-36 py-2 bg-primary hover:bg-opacity-90 active:translate-y-[2px] text-white font-bold"
+        >
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
   );
 };
 
