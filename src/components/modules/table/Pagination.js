@@ -19,7 +19,7 @@ const Pagination = ({
   <TablePagination
     rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
     colSpan={3}
-    count={rows.length}
+    count={rows?.length}
     rowsPerPage={rowsPerPage}
     page={page}
     slotProps={{
