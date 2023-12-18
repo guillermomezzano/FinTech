@@ -4,18 +4,22 @@ import CustomButton from "../../../modules/ui/CustomButton";
 
 const StepperFormSix = ({ active, onNext, onBack }) => {
   const [formData, setFormData] = useState({});
+  const [selectedButton, setSelectedButton] = useState(null);
 
   const options = [
     {
+      id: "1",
       name: "Buscar factura de gastos",
     },
     {
+      id: "2",
       name: "Buscar facturas impagas",
     },
   ];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSelectedButton(e.target.id);
   };
 
   const handleNext = () => {
@@ -30,10 +34,11 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
     <div className="w-full" style={{ display: active ? "block" : "none" }}>
       <h1 className="text-6xl mb-8">¿Que deberíamos hacer primero?</h1>
       <div className="grid grid-cols-2 gap-6 w-5/6">
-        {options.map((unOptions) => (
-          <div>
+        {options.map((unOptions, index) => (
+          <div key={index}>
             <Button
               fullWidth
+              id={unOptions.id}
               variant="outlined"
               name="typeCompany"
               value={unOptions.name}
@@ -41,6 +46,10 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
                 height: "100px",
                 boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
                 color: "black",
+                backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                "&:hover": {
+                  backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                },
               }}
               onClick={handleChange}
             >

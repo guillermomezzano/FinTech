@@ -1,8 +1,13 @@
 import React, { useState } from "react";
-import { TextField, Button, FormControl, FormHelperText } from "@mui/material";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
+// material
+import { TextField, Button, FormControl, FormHelperText } from "@mui/material";
+
+//components
 import Input from "../ui/Input";
+import CustomButton from "../ui/CustomButton";
 
 const SignInForm = () => {
   const { login } = UserAuth();
@@ -94,12 +99,11 @@ const SignInForm = () => {
             <FormHelperText>{errors.password}</FormHelperText>
           )}
         </FormControl>
-        <button
+        <CustomButton
           type="submit"
-          className="w-36 py-2 bg-primary hover:bg-opacity-90 active:translate-y-[2px] text-white font-bold"
-        >
-          Iniciar Sesión
-        </button>
+          className="w-36 py-2 bg-primary active:translate-y-[2px] text-white font-bold"
+          title="Iniciar Sesión"
+        />
       </form>
     </div>
   );

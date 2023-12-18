@@ -4,29 +4,36 @@ import CustomButton from "../../../modules/ui/CustomButton";
 
 const StepperFormFive = ({ active, onNext, onBack }) => {
   const [formData, setFormData] = useState({});
+  const [selectedButton, setSelectedButton] = useState(null);
 
   const options = [
     {
+      id: "1",
       name: "Gastos",
       icon: require("../../../../assets/iconos/iconLibroA.png"),
     },
     {
+      id: "2",
       name: "Ventas",
       icon: require("../../../../assets/iconos/iconDinero.png"),
     },
     {
+      id: "3",
       name: "Informes",
       icon: require("../../../../assets/iconos/iconRedes.png"),
     },
     {
+      id: "4",
       name: "Transacciones",
       icon: require("../../../../assets/iconos/iconAvion.png"),
     },
     {
+      id: "5",
       name: "Impuestos",
       icon: require("../../../../assets/iconos/iconCalendario.png"),
     },
     {
+      id: "6",
       icon: require("../../../../assets/iconos/iconLibroA.png"),
       name: "Clientes",
     },
@@ -34,6 +41,7 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSelectedButton(e.target.id);
   };
 
   const handleNext = () => {
@@ -56,6 +64,7 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
           <div key={index}>
             <Button
               fullWidth
+              id={unOptions.id}
               variant="outlined"
               name="typeCompany"
               value={unOptions.name}
@@ -63,13 +72,20 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
                 height: "100px",
                 boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
                 color: "black",
+                backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                "&:hover": {
+                  backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                },
               }}
               onClick={handleChange}
             >
               <img
                 src={unOptions.icon}
                 alt={`Icono ${unOptions.name}`}
-                className="w-10, h-10 mr-4"
+                className={`w-10, h-10 mr-4 ${
+                  selectedButton === unOptions.id &&
+                  "filter grayscale brightness-0"
+                }`}
               />
               <span style={{ fontWeight: "bold" }}>{unOptions.name}</span>
             </Button>

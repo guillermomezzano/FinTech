@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // material
 import { Stepper, Step, StepLabel } from "@mui/material";
@@ -19,12 +20,16 @@ import ContactInfo from "./ContactInfo";
 const SignUpStepperRecord = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [formValues, setFormValues] = useState({});
+  const navigate = useNavigate();
 
   const steps = ["", "", "", "", "", "", ""];
 
   const handleNext = (data) => {
     setFormValues({ ...formValues, ...data });
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    debugger;
+    activeStep === 6
+      ? navigate("/", { replace: true })
+      : setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = (data) => {

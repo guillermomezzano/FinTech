@@ -1,15 +1,15 @@
-import {createContext, useContext, useEffect, useState} from 'react';
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-} from '@firebase/auth';
-import {auth} from '../firebase';
+} from "@firebase/auth";
+import { auth } from "../firebase";
 
 const UserContext = createContext({});
-
-export const AuthContextProvider = ({children}) => {
+debugger;
+export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
 
   const createUser = async (email, password) =>
@@ -31,7 +31,7 @@ export const AuthContextProvider = ({children}) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{createUser, user, login, logout}}>
+    <UserContext.Provider value={{ createUser, user, login, logout }}>
       {children}
     </UserContext.Provider>
   );

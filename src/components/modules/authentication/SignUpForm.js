@@ -4,8 +4,11 @@ import { useState } from "react";
 import { FormControl, FormHelperText } from "@mui/material";
 import { UserAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
+// components
 import Input from "../ui/Input";
 import ContactInfo from "./ContactInfo";
+import CustomButton from "../ui/CustomButton";
 
 // Assets
 import logoLuca from "../../../assets/logoLuca.png";
@@ -102,100 +105,99 @@ const SignUpForm = () => {
 
   return (
     <div className="flex flex-col p-10  px-20">
-        <div className="w-full">
-          <img src={logoLuca} alt="logoLuca" />
-        </div>
+      <div className="w-full">
+        <img src={logoLuca} alt="logoLuca" />
+      </div>
       <div className="flex justify-between items-start pt-16">
         <div>
-        <h1 className="text-5xl font-light">¡Partamos!</h1>
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col space-y-4 p-12 my-12 shadow-lg"
-        >
-          <h1 className="text-2xl font-semibold">Crea una cuenta en Luca.</h1>
-          <p>
-            ¿Ya tienes una cuenta?{" "}
-            <a href="/signin" className="text-secondary hover:underline">
-              Ingresa aquí
-            </a>
-          </p>
-          <div className="flex flex-col">
-            <div className={styles.inputContainer}>
-              <Input
-                label="NOMBRE"
-                name="firstName"
-                variant="outlined"
-                className={styles.input}
-                value={formValues.firstName}
-                onChange={handleChange}
-              />
-              <Input
-                label="APELLIDO"
-                name="lastName"
-                variant="outlined"
-                className={styles.input}
-                value={formValues.lastName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <FormControl error={!!errors.email}>
+          <h1 className="text-5xl font-light">¡Partamos!</h1>
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col space-y-4 p-12 my-10 shadow-3xl"
+          >
+            <h1 className="text-4xl font-light">Crea una cuenta en Luca.</h1>
+            <p>
+              ¿Ya tienes una cuenta?{" "}
+              <a href="/signin" className="text-secondary hover:underline">
+                Ingresa aquí
+              </a>
+            </p>
+            <div className="flex flex-col">
+              <div className={styles.inputContainer}>
                 <Input
-                  label="CORREO"
-                  id="email"
-                  name="email"
+                  label="NOMBRE"
+                  name="firstName"
+                  variant="outlined"
                   className={styles.input}
-                  value={formValues.email}
+                  value={formValues.firstName}
                   onChange={handleChange}
                 />
-                {errors.email && (
-                  <FormHelperText>{errors.email}</FormHelperText>
-                )}
-              </FormControl>
-              <Input
-                label="TELÉFONO"
-                name="phoneNumber"
-                variant="outlined"
-                className={styles.input}
-                value={formValues.phoneNumber}
-                onChange={handleChange}
-              />
-            </div>
-            <div className={styles.inputContainer}>
-              <FormControl error={!!errors.password}>
                 <Input
-                  label="CONTRASEÑA"
-                  id="password"
-                  name="password"
+                  label="APELLIDO"
+                  name="lastName"
+                  variant="outlined"
+                  className={styles.input}
+                  value={formValues.lastName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <FormControl error={!!errors.email}>
+                  <Input
+                    label="CORREO"
+                    id="email"
+                    name="email"
+                    className={styles.input}
+                    value={formValues.email}
+                    onChange={handleChange}
+                  />
+                  {errors.email && (
+                    <FormHelperText>{errors.email}</FormHelperText>
+                  )}
+                </FormControl>
+                <Input
+                  label="TELÉFONO"
+                  name="phoneNumber"
+                  variant="outlined"
+                  className={styles.input}
+                  value={formValues.phoneNumber}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className={styles.inputContainer}>
+                <FormControl error={!!errors.password}>
+                  <Input
+                    label="CONTRASEÑA"
+                    id="password"
+                    name="password"
+                    className={styles.input}
+                    type="password"
+                    value={formValues.password}
+                    onChange={handleChange}
+                  />
+                  {errors.password && (
+                    <FormHelperText>{errors.password}</FormHelperText>
+                  )}
+                </FormControl>
+                <Input
+                  label="REPETIR CONTRASEÑA"
+                  name="repeatPassword"
+                  variant="outlined"
                   className={styles.input}
                   type="password"
-                  value={formValues.password}
+                  value={formValues.repetirContrasena}
                   onChange={handleChange}
                 />
-                {errors.password && (
-                  <FormHelperText>{errors.password}</FormHelperText>
-                )}
-              </FormControl>
-              <Input
-                label="REPETIR CONTRASEÑA"
-                name="repeatPassword"
-                variant="outlined"
-                className={styles.input}
-                type="password"
-                value={formValues.repetirContrasena}
-                onChange={handleChange}
-              />
+              </div>
             </div>
-          </div>
-          <button
-            type="submit"
-            className="w-36 py-2 bg-primary hover:bg-opacity-90 active:translate-y-[2px] text-white font-bold"
-          >
-            Suscribirse
-          </button>
-        </form>
+            <CustomButton
+              type="submit"
+              className="w-36 py-2 bg-primary active:translate-y-[2px] text-white font-bold"
+              title="Suscribirse"
+            />
+          </form>
         </div>
-      <ContactInfo />
+        <ContactInfo />
       </div>
     </div>
   );

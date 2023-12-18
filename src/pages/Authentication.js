@@ -25,7 +25,7 @@ const Authentication = () => {
 
   return (
     <div className="">
-    {selectedComponent}
+      {selectedComponent}
       {/* <Typography variant="body" className="text-lg z-10 absolute bottom-4">
         Luca | {new Date().getFullYear()}
       </Typography> */}

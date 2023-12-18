@@ -9,7 +9,7 @@ export const menuItemsDefaults = [
     id: 2,
     name: "Transacciones",
     icon: require("../../../assets/iconos/iconAvion.png"),
-    path: "/signin",
+    path: "",
   },
   {
     id: 3,
