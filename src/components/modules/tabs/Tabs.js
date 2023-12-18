@@ -3,15 +3,14 @@ import { TabsList } from "@mui/base/TabsList";
 import { TabPanel } from "@mui/base/TabPanel";
 import { Tabs as BaseTabs } from "@mui/base/Tabs";
 import { useEffect, useRef, useState } from "react";
-import Table from "../table/Table";
-import Card from "../card/Card";
 
-const Tabs = (props) => {
+const Tabs = ({ tabs, ...restProps }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [indicatorStyle, setIndicatorStyle] = useState({});
   const tabsRef = useRef([]);
 
-  const handleTabChange = (event, newValue) => {
+  const handleTabChange = (e, newValue) => {
+    e.preventDefault();
     setActiveTab(newValue);
   };
 
@@ -34,7 +33,7 @@ const Tabs = (props) => {
           className: "w-full",
         },
       }}
-      {...props}
+      {...restProps}
       defaultValue={0}
     >
       <TabsList
@@ -44,51 +43,27 @@ const Tabs = (props) => {
           },
         }}
       >
-        <Tab
-          ref={(el) => (tabsRef.current[0] = el)}
-          value={0}
-          slotProps={{
-            root: { className: "py-2 px-4 font-bold text-lg" },
-          }}
-          onClick={() => handleTabChange(null, 0)}
-        >
-          Acciones
-        </Tab>
-        <Tab
-          ref={(el) => (tabsRef.current[1] = el)}
-          value={1}
-          slotProps={{
-            root: { className: "py-2 px-4 font-bold text-lg" },
-          }}
-          onClick={() => handleTabChange(null, 1)}
-        >
-          Visión del negocio
-        </Tab>
-        <Tab
-          ref={(el) => (tabsRef.current[2] = el)}
-          value={2}
-          slotProps={{
-            root: { className: "py-2 px-4 font-bold text-lg" },
-          }}
-          onClick={() => handleTabChange(null, 2)}
-        >
-          Flujo de caja
-        </Tab>
+        {tabs.map((tab, index) => (
+          <Tab
+            key={index}
+            ref={(el) => (tabsRef.current[index] = el)}
+            value={index}
+            slotProps={{
+              root: { className: "py-2 px-4 font-bold text-lg" },
+            }}
+            onClick={() => handleTabChange(null, index)}
+          >
+            {tab.title}
+          </Tab>
+        ))}
         <div className="absolute bottom-0 left-0 w-full border-b-4 border-gray-200" />
         <span
           className="absolute bottom-0 border-b-4 border-secondary transition-all duration-200"
           style={indicatorStyle}
         />
       </TabsList>
-      <TabPanel value={0} slotProps={{ root: { className: "w-full" } }}>
-        <div className="py-10">
-          <Card title="Clientes" type="tablas" idChart="" />
-          </div>
-        <Table />
-      </TabPanel>
-      <TabPanel value={1} slotProps={{ root: { className: "w-full" } }}>
-      </TabPanel>
-      <TabPanel value={2} slotProps={{ root: { className: "w-full" } }}>
+      <TabPanel value={activeTab} slotProps={{ root: { className: "w-full" } }}>
+        {tabs[activeTab].content}
       </TabPanel>
     </BaseTabs>
   );

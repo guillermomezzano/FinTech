@@ -45,9 +45,10 @@ const SignUpForm = () => {
   };
 
   const validatePassword = (password) => {
-    // Verifica que la contraseña tenga al menos 8 caracteres, una mayúscula, etc.
-    return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
-  };
+      // Verifica que la contraseña tenga al menos 8 caracteres, una mayuscula, una minuscula y un numero etc.
+      return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+    };
+    
 
   const handleChange = (event) => {
     const { name, value } = event.target;
