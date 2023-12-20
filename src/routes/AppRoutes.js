@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Authentication from "../pages/Authentication";
 import Empresa from "../pages/Empresa";
 import Ventas from "../pages/Ventas";
+import Accountant from "../pages/Accountant";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
       <Route path="/" element={<Home />} />
       <Route path="/ventas" element={<Ventas />} />
       <Route path="/empresa" element={<Empresa />} />
+      <Route path="/mi-contador" element={<Accountant />} />
       <Route path="/signin" element={<Authentication />} />
       <Route path="/signup" element={<Authentication />} />
       <Route path="/signuprecord" element={<Authentication />} />
