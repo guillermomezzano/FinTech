@@ -32,9 +32,11 @@ const StepperFormFour = ({ active, onNext, onBack }) => {
     },
   ];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSelectedButton(e.target.id);
+  const handleChange = (id, name) => {
+    // setFormData({ ...formData, [e.target.name]: e.target.value });
+    // setSelectedButton(e.target.id);
+    setFormData({ ...formData, typeCompany: name });
+    setSelectedButton(id);
   };
 
   const handleNext = () => {
@@ -66,9 +68,14 @@ const StepperFormFour = ({ active, onNext, onBack }) => {
                   backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
                 },
               }}
-              onClick={handleChange}
+              onClick={() => handleChange(unOptions.id, unOptions.name)}
             >
-              <span style={{ fontWeight: "bold" }}>{unOptions.name}</span>
+              <span
+                style={{ fontWeight: "bold" }}
+                onClick={() => handleChange(unOptions.id, unOptions.name)}
+              >
+                {unOptions.name}
+              </span>
             </Button>
           </div>
         ))}

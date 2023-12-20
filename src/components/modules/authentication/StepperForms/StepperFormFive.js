@@ -3,8 +3,9 @@ import { Button } from "@mui/material";
 import CustomButton from "../../../modules/ui/CustomButton";
 
 const StepperFormFive = ({ active, onNext, onBack }) => {
-  const [formData, setFormData] = useState({});
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [formData, setFormData] = useState({
+    initialsWidget: [],
+  });
 
   const options = [
     {
@@ -39,9 +40,24 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
     },
   ];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSelectedButton(e.target.id);
+  const handleChange = (id, name) => {
+    const isSelected = formData.initialsWidget.includes(id);
+    let updatedSelection;
+
+    if (isSelected) {
+      // Si ya está seleccionado, quítalo de la selección
+      updatedSelection = formData.initialsWidget.filter(
+        (selected) => selected !== id
+      );
+    } else {
+      // Si no está seleccionado, agrégalo a la selección
+      updatedSelection = [...formData.initialsWidget, id];
+    }
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      initialsWidget: updatedSelection,
+    }));
   };
 
   const handleNext = () => {
@@ -56,34 +72,36 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
     <div className="w-full" style={{ display: active ? "block" : "none" }}>
       <h1 className="text-6xl">¿Que necesitas de Luca?</h1>
       <h3 className="text-2xl my-8">
-        Tus elecciones ayudan a organizar tus areas de trabajo. Luego puedes
+        Tus elecciones ayudan a organizar tus áreas de trabajo. Luego puedes
         modificar tus elecciones.
       </h3>
       <div className="grid grid-cols-2 gap-6 w-5/6">
-        {options.map((unOptions, index) => (
-          <div key={index}>
+        {options.map((unOptions) => (
+          <div key={unOptions.id}>
             <Button
               fullWidth
               id={unOptions.id}
               variant="outlined"
-              name="typeCompany"
+              name="initialsWidget"
               value={unOptions.name}
               sx={{
                 height: "100px",
                 boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
                 color: "black",
-                backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                backgroundColor:
+                  formData.initialsWidget.includes(unOptions.id) && "#8d9fb5",
                 "&:hover": {
-                  backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
+                  backgroundColor:
+                    formData.initialsWidget.includes(unOptions.id) && "#8d9fb5",
                 },
               }}
-              onClick={handleChange}
+              onClick={() => handleChange(unOptions.id, unOptions.name)}
             >
               <img
                 src={unOptions.icon}
                 alt={`Icono ${unOptions.name}`}
                 className={`w-10, h-10 mr-4 ${
-                  selectedButton === unOptions.id &&
+                  formData.initialsWidget.includes(unOptions.id) &&
                   "filter grayscale brightness-0"
                 }`}
               />
@@ -95,7 +113,7 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
       <div className="flex gap-4 mt-16">
         <CustomButton
           className="bg-light-gray text-white font-bold py-2 px-4 w-40"
-          title="Aterior"
+          title="Anterior"
           onClick={handleBack}
         />
         <CustomButton

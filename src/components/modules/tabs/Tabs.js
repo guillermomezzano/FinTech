@@ -49,7 +49,7 @@ const Tabs = ({ tabs, ...restProps }) => {
             ref={(el) => (tabsRef.current[index] = el)}
             value={index}
             slotProps={{
-              root: { className: "py-2 px-4 font-bold text-lg" },
+              root: { className: "pb-4 pt-1 px-4 font-bold text-lg" },
             }}
             onClick={() => handleTabChange(null, index)}
           >

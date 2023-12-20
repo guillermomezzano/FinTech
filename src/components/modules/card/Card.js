@@ -3,13 +3,19 @@ import React, { useState, useEffect } from "react";
 //components
 import { MultiChartApp } from "../charts/App";
 import CustomButton from "../ui/CustomButton.js";
+import Title from "../ui/Title.js";
 
 //material
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+
+//assets
+import iconoPregunta from "../../../assets/iconoPregunta.jpg";
 
 //data
 import { infoCardTable } from "../data/dataCardInfoTable.js";
+import { mesageAlertTable } from "../data/dataTableAlertas.js";
 
 const Card = ({ title, type, idChart }) => {
   const [chart, setChart] = useState();
@@ -42,14 +48,16 @@ const Card = ({ title, type, idChart }) => {
       return CardFlujoCaja();
     } else if (type === "tablas") {
       return CardTablas();
-    }
+    } else if (type === "alertas") {
+      return CardAlertas();
+    } else if (type === "novedades") return CardNovedades();
     // Puedes agregar más condiciones según sea necesario
     return null;
   };
 
   useEffect(() => {
     if (allowedIdsCharts.includes(idChart)) {
-      setChart("");
+      setChart(<MultiChartApp typeid={idChart} key={"1"} />);
     }
   }, []);
 
@@ -111,11 +119,11 @@ const Card = ({ title, type, idChart }) => {
           {title === "Clientes" ? (
             <div className="flex gap-1">
               <CustomButton
-                className="bg-aqua-green text-white font-bold py-1 px-6"
+                className="bg-aqua-green text-white font-bold px-6"
                 title="Nuevo Cliente"
               />
               <CustomButton
-                className="bg-aqua-green text-white font-bold py-1 px-6"
+                className="bg-aqua-green text-white font-bold px-6"
                 title={<ExpandMoreIcon />}
               />
             </div>
@@ -128,11 +136,65 @@ const Card = ({ title, type, idChart }) => {
             <div key={index} className="flex flex-col w-[25%]">
               <p className="px-3">{unInfoCardTable.name}</p>
               <p className="font-bold px-3">{unInfoCardTable.value}</p>
-              <div
-                className={`w-auto h-5 mt-4 ${unInfoCardTable.bgColor}`}
-              />
+              <div className={`w-auto h-5 mt-4 ${unInfoCardTable.bgColor}`} />
             </div>
           ))}
+        </div>
+      </div>
+    );
+  };
+
+  const CardAlertas = () => {
+    return (
+      <div className="shadow-3xl p-4 max-h-[300px] overflow-y-auto">
+        <div className="flex flex-col gap-2">
+          <Title className="uppercase font-bold">{title}</Title>
+          <p className="italic">Luca necesita verificar ciertos movimientos</p>
+        </div>
+        <div className="">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {mesageAlertTable.map((unMesageAlertTable, index) => (
+                <tr key={index} className="">
+                  <td className="border-b border-gray-300 px-6 py-6 font-bold">
+                    {unMesageAlertTable.name}
+                  </td>
+                  <td className="border-b border-gray-300 px-6">
+                    <button className="bg-[#8F9FB2] py-1 px-4">
+                      <EditOutlinedIcon sx={{ color: "white" }} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
+  const CardNovedades = () => {
+    return (
+      <div className="shadow-3xl p-4">
+        <div className="flex flex-col gap-2">
+          <Title className="uppercase font-bold">{title}</Title>
+          <p className="italic">
+            Accede a nuevas funcionalidades en la sección de empleados, ahora
+            podrás agregar las horas de su jornada laboral.
+          </p>
+        </div>
+        <div>
+          <div className="flex">
+            <img src={iconoPregunta} alt="" />
+            <p className="">Cómo funciona</p>
+          </div>
+          <CustomButton className="bg-aqua-green text-white font-bold" />
         </div>
       </div>
     );

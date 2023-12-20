@@ -17,9 +17,8 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
     },
   ];
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    setSelectedButton(e.target.id);
+  const handleChange = (id) => {
+    setSelectedButton(id);
   };
 
   const handleNext = () => {
@@ -40,7 +39,7 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
               fullWidth
               id={unOptions.id}
               variant="outlined"
-              name="typeCompany"
+              name=""
               value={unOptions.name}
               sx={{
                 height: "100px",
@@ -51,9 +50,14 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
                   backgroundColor: selectedButton === unOptions.id && "#8d9fb5",
                 },
               }}
-              onClick={handleChange}
+              onClick={() => handleChange(unOptions.id)}
             >
-              <span style={{ fontWeight: "bold" }}>{unOptions.name}</span>
+              <span
+                style={{ fontWeight: "bold" }}
+                onClick={() => handleChange(unOptions.id)}
+              >
+                {unOptions.name}
+              </span>
             </Button>
           </div>
         ))}
