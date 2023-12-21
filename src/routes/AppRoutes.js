@@ -6,8 +6,11 @@ import Home from "../pages/Home";
 import Authentication from "../pages/Authentication";
 import Empresa from "../pages/Empresa";
 import Ventas from "../pages/Ventas";
+
 import Informes from "../pages/Informes";
 import Gastos from "../pages/Gastos";
+
+import Accountant from "../pages/Accountant";
 
 const AppRoutes = () => {
   return (
@@ -17,6 +20,7 @@ const AppRoutes = () => {
       <Route path="/ventas" element={<Ventas />} />
       <Route path="/informes" element={<Informes />} />
       <Route path="/empresa" element={<Empresa />} />
+      <Route path="/mi-contador" element={<Accountant />} />
       <Route path="/signin" element={<Authentication />} />
       <Route path="/signup" element={<Authentication />} />
       <Route path="/signuprecord" element={<Authentication />} />

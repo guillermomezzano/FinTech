@@ -51,7 +51,7 @@ export const menuItemsDefaults = [
     id: 9,
     name: "Mi Contador",
     icon: require("../../../assets/iconos/iconMujer.png"),
-    path: "",
+    path: "/mi-contador",
   },
   {
     id: 10,
