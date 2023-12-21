@@ -21,7 +21,7 @@ export const menuItemsDefaults = [
     id: 4,
     name: "Gastos",
     icon: require("../../../assets/iconos/iconLibroA.png"),
-    path: "",
+    path: "/gastos",
   },
   {
     id: 5,
@@ -33,7 +33,7 @@ export const menuItemsDefaults = [
     id: 6,
     name: "Informes",
     icon: require("../../../assets/iconos/iconRedes.png"),
-    path: "",
+    path: "/informes",
   },
   {
     id: 7,

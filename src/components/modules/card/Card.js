@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { MultiChartApp } from "../charts/App";
 import CustomButton from "../ui/CustomButton.js";
 import Title from "../ui/Title.js";
+import SearchInput from "../ui/SearchInput.js";
 
 //material
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -12,13 +13,20 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 //assets
 import iconoPregunta from "../../../assets/iconoPregunta.jpg";
+import personaNovedades from "../../../assets/personaNovedades.jpeg";
 
 //data
 import { infoCardTable } from "../data/dataCardInfoTable.js";
 import { mesageAlertTable } from "../data/dataTableAlertas.js";
+import {
+  favoriteInfo,
+  comrprasInfo,
+  ventasInfo,
+} from "../data/dataInfoCardInformes.js";
 
 const Card = ({ title, type, idChart }) => {
   const [chart, setChart] = useState();
+  const [informesType, setInformesType] = useState();
 
   const allowedIdsCharts = [
     "BarraUnica&ComparaCliente",
@@ -40,6 +48,11 @@ const Card = ({ title, type, idChart }) => {
   //   "LibroAuxiliarEgresoCompleto",
   //   "ComprobanteLibro",
   // ];
+  const typeInformes = [
+    "informesVentas",
+    "informesCompras",
+    "informesFavoritos",
+  ];
 
   const renderCardByType = () => {
     if (type === "ventas" || type === "compras") {
@@ -50,10 +63,19 @@ const Card = ({ title, type, idChart }) => {
       return CardTablas();
     } else if (type === "alertas") {
       return CardAlertas();
-    } else if (type === "novedades") return CardNovedades();
+    } else if (type === "novedades") {
+      return CardNovedades();
+    } else if (typeInformes.includes(type)) {
+      return CardInformes();
+    }
     // Puedes agregar más condiciones según sea necesario
     return null;
   };
+  useEffect(() => {
+    if (type === "informesFavoritos") setInformesType(favoriteInfo);
+    if (type === "informesCompras") setInformesType(comrprasInfo);
+    if (type === "informesVentas") setInformesType(ventasInfo);
+  }, []);
 
   useEffect(() => {
     if (allowedIdsCharts.includes(idChart)) {
@@ -181,7 +203,7 @@ const Card = ({ title, type, idChart }) => {
 
   const CardNovedades = () => {
     return (
-      <div className="shadow-3xl p-4">
+      <div className="flex flex-col gap-4 shadow-3xl py-4 px-6">
         <div className="flex flex-col gap-2">
           <Title className="uppercase font-bold">{title}</Title>
           <p className="italic">
@@ -189,12 +211,47 @@ const Card = ({ title, type, idChart }) => {
             podrás agregar las horas de su jornada laboral.
           </p>
         </div>
-        <div>
-          <div className="flex">
-            <img src={iconoPregunta} alt="" />
-            <p className="">Cómo funciona</p>
+        <div className="flex justify-between">
+          <div className="flex flex-col gap-12">
+            <div className="flex gap-4">
+              <img className="w-6" src={iconoPregunta} alt="" />
+              <p className="font-bold">Cómo funciona</p>
+            </div>
+            <CustomButton
+              className="bg-aqua-green text-white font-bold h-1/4"
+              title="Tutorial"
+            />
           </div>
-          <CustomButton className="bg-aqua-green text-white font-bold" />
+          <img className="w-[50%]" src={personaNovedades} alt="" />
+        </div>
+      </div>
+    );
+  };
+
+  const CardInformes = () => {
+    return (
+      <div className="flex flex-col shadow-3xl mt-6">
+        <div className="flex justify-between px-4 py-2 items-center">
+          <Title className="text-xl font-bold">{title}</Title>
+          <SearchInput />
+        </div>
+        <div className="flex bg-light-gray-card pl-4 pr-36 py-6 justify-between">
+          {informesType?.map((unInformesType) => (
+            <button
+              key={unInformesType.id}
+              className="flex flex-col w-[7%] items-center"
+            >
+              <img
+                className="w-full h-auto max-w-full object-contain"
+                src={unInformesType.icon}
+                alt=""
+              />
+              <div className="flex flex-col items-start ">
+                <p className="font-bold">{unInformesType.name}</p>
+                <p className="font-bold uppercase">{unInformesType.text}</p>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
     );

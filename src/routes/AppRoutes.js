@@ -6,12 +6,16 @@ import Home from "../pages/Home";
 import Authentication from "../pages/Authentication";
 import Empresa from "../pages/Empresa";
 import Ventas from "../pages/Ventas";
+import Informes from "../pages/Informes";
+import Gastos from "../pages/Gastos";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/gastos" element={<Gastos />} />
       <Route path="/ventas" element={<Ventas />} />
+      <Route path="/informes" element={<Informes />} />
       <Route path="/empresa" element={<Empresa />} />
       <Route path="/signin" element={<Authentication />} />
       <Route path="/signup" element={<Authentication />} />
