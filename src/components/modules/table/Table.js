@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Pagination from "./Pagination";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { Link } from "react-router-dom";
 
 const styles = {
   table: "font-sans text-sm border-collapse w-full",
@@ -49,9 +50,9 @@ const Table = ({ data, ...restProps }) => {
             ))}
             {restProps?.edit && (
               <td className={styles.td}>
-                <button className="bg-[#8F9FB2] py-1 px-4">
+                <Link to={`/compras/${row.ID}`} className="bg-[#8F9FB2] flex py-1 px-4">
                   <EditOutlinedIcon sx={{ color: "white" }} />
-                </button>
+                </Link>
               </td>
             )}
           </tr>
