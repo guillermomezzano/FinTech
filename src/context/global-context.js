@@ -8,6 +8,8 @@ const GlobalContext = React.createContext({
     setSnackbar: () => {},
     dialog: {},
     setDialog: () => {},
+    dialogForm: {},
+    setDialogForm: () => {},
   },
   empresa: {},
   setEmpresa: () => {},

@@ -32,9 +32,8 @@ const AutoCompleteHeader = ({ initialData }) => {
   });
 
   const handleInputChange = (event, newValue) => {
-    const { firstLetter, ...newValueWithoutFirstLetter } = newValue;
-    setEmpresaSeleccionada(newValueWithoutFirstLetter);
-    setEmpresa(newValueWithoutFirstLetter);
+    setEmpresaSeleccionada(newValue);
+    setEmpresa(newValue);
   };
 
   useEffect(() => {

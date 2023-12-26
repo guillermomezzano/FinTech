@@ -10,11 +10,13 @@ import Informes from "../pages/Informes";
 import Gastos from "../pages/Gastos";
 import Accountant from "../pages/Accountant";
 import Compras from "../pages/Compras";
+import EditForm from "../components/modules/views/dashboard/Compras/EditForm";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/editForm" element={<EditForm />} />
       <Route path="/compras" element={<Compras />} />
       <Route path="/gastos" element={<Gastos />} />
       <Route path="/ventas" element={<Ventas />} />
