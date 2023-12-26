@@ -17,13 +17,17 @@ const StepForm = ({ active, onNext }) => {
         <br />
         entregarte todo el potencial de Luca.
       </h3>
-      <div className="flex gap-20">
+      <div className="flex flex-col lg:flex-row gap-20 ">
         <CustomButton
           className="h-12 w-48 mt-12 bg-aqua-green text-white font-bold py-2 px-4"
           title="Iniciar"
           onClick={handleNext}
         />
-        <img className="w-full" src={welcomeImage} alt="welcomeImage" />
+        <img
+          className="w-full h-auto max-w-full object-contain"
+          src={welcomeImage}
+          alt="welcomeImage"
+        />
       </div>
     </div>
   );

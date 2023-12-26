@@ -52,12 +52,12 @@ const SignUpStepperRecord = () => {
   };
 
   return (
-    <div className="flex flex-col p-10  px-20">
+    <div className="flex flex-col py-10 px-2 lg:px-20">
       <div className="w-full">
         <img src={logoLuca} alt="logoLuca" />
       </div>
-      <div className="flex justify-between items-start pt-16">
-        <div className="flex-shrink-0 w-[20%]">
+      <div className="flex flex-col lg:flex-row justify-between items-start pt-16">
+        <div className="flex flex-shrink-0 2xl:w-[20%] w-auto">
           <Stepper
             activeStep={activeStep}
             orientation="vertical"
@@ -78,7 +78,7 @@ const SignUpStepperRecord = () => {
             ))}
           </Stepper>
         </div>
-        <div className="w-[50%] flex justify-center items-center">
+        <div className="lg:w-[50%] flex justify-center items-center">
           <StepperForm active={activeStep === 0} onNext={handleNext} />
           <StepperFormTwo
             active={activeStep === 1}

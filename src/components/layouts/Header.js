@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import GlobalContext from "../../context/global-context";
 //services
 
 // components
@@ -16,74 +16,35 @@ import SearchIcon from "@mui/icons-material/Search";
 import iconParlanteNegro from "../../assets/iconos/iconParlanteNegro.png";
 import iconTuercaNegro from "../../assets/iconos/iconTuercaNegro.png";
 
-const initialData = [
-  {
-    id: "1",
-    nombre: "Asesorias Corporativas Santa Trinidad LTDA",
-    fecha: new Date("1/15/2023"),
-    cuenta: "12312312312 PROVEEDORES LTDA",
-    debe: 34,
-    haber: 45,
-    glosa: "glosa del elemento",
-    tipo: "compras",
-    comentario: "comentario",
-  },
-  {
-    id: "2",
-    nombre: "empresa uno",
-    fecha: new Date("2/15/2023"),
-    cuenta: "12312312312 PROVEEDORES LTDA",
-    debe: 34,
-    haber: 45,
-    glosa: "glosa del elemento",
-    tipo: "compras",
-    comentario: "comentario",
-  },
-  {
-    id: "3",
-    nombre: "empresa dos",
-    fecha: new Date("3/15/2023"),
-    cuenta: "12312312312 PROVEEDORES LTDA",
-    debe: 34,
-    haber: 45,
-    glosa: "glosa del elemento",
-    tipo: "compras",
-    comentario: "comentario",
-  },
-  {
-    id: "4",
-    nombre: "CCU",
-    fecha: new Date("3/15/2023"),
-    cuenta: "12312312312 PROVEEDORES LTDA",
-    debe: 34,
-    haber: 45,
-    glosa: "glosa del elemento",
-    tipo: "compras",
-    comentario: "comentario",
-  },
-  {
-    id: "5",
-    nombre: "Falabella",
-    fecha: new Date("4/15/2023"),
-    cuenta: "12312312312 PROVEEDORES LTDA",
-    debe: 34,
-    haber: 45,
-    glosa: "glosa del elemento",
-    tipo: "compras",
-    comentario: "comentario",
-  },
-];
+import { getListaUsuarios } from "../../api/list.api";
 
 const Header = () => {
+  const [empresa, setEmpresa] = useState([]);
   const [open, setOpen] = useState(false);
   const [searchText, setSearchText] = useState("");
   const handleClickOpen = () => () => {
     setOpen(true);
   };
 
+  useEffect(() => {
+    const getEmpresas = async () => {
+      try {
+        const { data } = await getListaUsuarios();
+        console.log("data es: ", data);
+        setEmpresa(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getEmpresas();
+  }, []);
+
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
   };
+  console.log(empresa);
+  debugger;
   return (
     <div>
       <nav
@@ -102,7 +63,7 @@ const Header = () => {
               value={searchText}
               onChange={handleInputChange}
             />
-            <AutoCompleteHeader initialData={initialData} />
+            <AutoCompleteHeader initialData={empresa} />
             <img
               className="w-[3%] h-[3%] ml-4"
               src={iconParlanteNegro}

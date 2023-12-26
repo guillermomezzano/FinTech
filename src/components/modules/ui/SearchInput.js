@@ -1,4 +1,5 @@
-import SearchIcon from "@mui/icons-material/Search";
+//assets
+import iconLupa from "../../../assets/iconos/iconLupa.png";
 
 const SearchInput = () => {
   return (
@@ -11,7 +12,7 @@ const SearchInput = () => {
         // onChange={}
       />
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-        <SearchIcon sx={{ fontSize: 30, color: "#94a3b8" }} />
+        <img className="w-[20px]" src={iconLupa} alt="iconLupa" />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
       <SideBar />
       <div className="flex-1 overflow-y-auto">
         <Header />
-        <div className="p-14">{children}</div>
+        <div className="px-14 py-5">{children}</div>
       </div>
     </div>
   );

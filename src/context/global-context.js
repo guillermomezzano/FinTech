@@ -9,6 +9,9 @@ const GlobalContext = React.createContext({
     dialog: {},
     setDialog: () => {},
   },
+  empresa: {},
+  setEmpresa: () => {},
+
   // auth: {
   //   jwt: false,
   //   setJwt: () => {},

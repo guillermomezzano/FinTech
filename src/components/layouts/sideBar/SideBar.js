@@ -34,7 +34,7 @@ const Sidebar = () => {
           {expanded ? <ArrowBackIosNewIcon /> : <ArrowForwardIosIcon />}
         </button>
         {expanded ? (
-          <img className="w-1/2 h-14 m-6 mb-14" src={logoLuca} alt="" />
+          <img className="w-1/2 h-14 m-6 mb-6" src={logoLuca} alt="" />
         ) : (
           <div className="p-3 my-6">
             <CycloneIcon sx={{ fontSize: "2.5rem" }} />

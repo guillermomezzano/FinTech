@@ -31,8 +31,8 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
             boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
           }}
           fullWidth
-          name="company"
-          value={formData.company || ""}
+          name="nameCompany"
+          value={formData.nameCompany || ""}
           onChange={handleChange}
         />
       </div>
@@ -43,9 +43,12 @@ const StepFormTwo = ({ active, onNext, onBack }) => {
           onClick={handleBack}
         />
         <CustomButton
-          className="w-40 bg-aqua-green text-white font-bold py-2 px-4"
+          className={`w-40 ${
+            formData.nameCompany ? "bg-aqua-green" : "bg-light-gray"
+          }  text-white font-bold py-2 px-4`}
           title="Siguiente"
           onClick={handleNext}
+          disabled={formData.nameCompany ? false : true}
         />
       </div>
     </div>

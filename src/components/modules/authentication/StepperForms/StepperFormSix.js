@@ -70,9 +70,12 @@ const StepperFormSix = ({ active, onNext, onBack }) => {
         />
 
         <CustomButton
-          className="bg-aqua-green text-white font-bold py-2 px-4 w-40"
+          className={`text-white font-bold py-2 px-4 w-40 ${
+            selectedButton ? "bg-aqua-green" : "bg-light-gray"
+          }  `}
           title="Siguiente"
           onClick={handleNext}
+          disabled={selectedButton ? false : true}
         />
       </div>
     </div>

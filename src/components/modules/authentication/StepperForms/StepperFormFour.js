@@ -87,9 +87,12 @@ const StepperFormFour = ({ active, onNext, onBack }) => {
           onClick={handleBack}
         />
         <CustomButton
-          className="bg-aqua-green text-white font-bold py-2 px-4 w-40"
+          className={`${
+            formData.typeCompany ? "bg-aqua-green" : "bg-light-gray"
+          }  text-white font-bold py-2 px-4 w-40`}
           title="Siguiente"
           onClick={handleNext}
+          disabled={formData.typeCompany ? false : true}
         />
       </div>
     </div>

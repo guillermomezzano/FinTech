@@ -3,7 +3,7 @@ import iconCelu from "../../../assets/iconos/iconCelu.png";
 import iconUbicacion from "../../../assets/iconos/iconUbicacion.png";
 
 const ContactInfo = () => (
-  <div className="flex flex-col gap-14 w-[30%]">
+  <div className="flex flex-col gap-14 lg:w-[30%]">
     <div className="flex gap-10">
       <img className="w-[15%] h-[15%]" src={iconDialogo} alt="iconDialogo" />
       <p className="text-dark-blue">

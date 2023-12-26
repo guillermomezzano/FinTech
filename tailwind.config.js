@@ -18,6 +18,10 @@ module.exports = {
       boxShadow: {
         "3xl": "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
       },
+      filter: {
+        "icon-hover":
+          "invert(53%) sepia(57%) saturate(3041%) hue-rotate(329deg) brightness(95%) contrast(94%)",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms")],

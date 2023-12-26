@@ -41,17 +41,17 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
   ];
 
   const handleChange = (id, name) => {
-    const isSelected = formData.initialsWidget.includes(id);
     let updatedSelection;
 
-    if (isSelected) {
-      // Si ya está seleccionado, quítalo de la selección
-      updatedSelection = formData.initialsWidget.filter(
-        (selected) => selected !== id
-      );
+    if (formData.initialsWidget.some((btn) => btn.id === id)) {
+      // Si ya está seleccionado, quítalo del array
+      updatedSelection = formData.initialsWidget.filter((btn) => btn.id !== id);
     } else {
-      // Si no está seleccionado, agrégalo a la selección
-      updatedSelection = [...formData.initialsWidget, id];
+      // Si no está seleccionado, agrégalo al array
+      updatedSelection = [
+        ...formData.initialsWidget,
+        { id, name }, // Agregar el objeto con id y name
+      ];
     }
 
     setFormData((prevFormData) => ({
@@ -67,7 +67,7 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
   const handleBack = () => {
     onBack(formData);
   };
-
+  debugger;
   return (
     <div className="w-full" style={{ display: active ? "block" : "none" }}>
       <h1 className="text-6xl">¿Que necesitas de Luca?</h1>
@@ -89,10 +89,14 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
                 boxShadow: "0px 0px 10px 10px rgba(0, 0, 0, 0.1)",
                 color: "black",
                 backgroundColor:
-                  formData.initialsWidget.includes(unOptions.id) && "#8d9fb5",
+                  formData.initialsWidget.some(
+                    (btn) => btn.id === unOptions.id
+                  ) && "#8d9fb5",
                 "&:hover": {
                   backgroundColor:
-                    formData.initialsWidget.includes(unOptions.id) && "#8d9fb5",
+                    formData.initialsWidget.some(
+                      (btn) => btn.id === unOptions.id
+                    ) && "#8d9fb5",
                 },
               }}
               onClick={() => handleChange(unOptions.id, unOptions.name)}
@@ -101,8 +105,9 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
                 src={unOptions.icon}
                 alt={`Icono ${unOptions.name}`}
                 className={`w-10, h-10 mr-4 ${
-                  formData.initialsWidget.includes(unOptions.id) &&
-                  "filter grayscale brightness-0"
+                  formData.initialsWidget.some(
+                    (btn) => btn.id === unOptions.id
+                  ) && "filter grayscale brightness-0"
                 }`}
               />
               <span style={{ fontWeight: "bold" }}>{unOptions.name}</span>
@@ -117,9 +122,14 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
           onClick={handleBack}
         />
         <CustomButton
-          className="bg-aqua-green text-white font-bold py-2 px-4 w-40"
+          className={`w-40 ${
+            formData.initialsWidget.length > 0
+              ? "bg-aqua-green"
+              : "bg-light-gray"
+          }  text-white font-bold py-2 px-4 w-40`}
           title="Siguiente"
           onClick={handleNext}
+          disabled={formData.initialsWidget.length === 0}
         />
       </div>
     </div>

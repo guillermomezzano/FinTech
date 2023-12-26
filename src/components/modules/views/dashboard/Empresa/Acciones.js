@@ -1,5 +1,5 @@
-import Title from "../../../ui/Title";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 // data
 import {
   itemsFilaUno,
@@ -10,6 +10,7 @@ import {
 //components
 import SearchInput from "../../../ui/SearchInput";
 import Card from "../../../card/Card";
+import Title from "../../../ui/Title";
 
 const Acciones = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -30,14 +31,14 @@ const Acciones = () => {
     <div className="flex">
       <div className="py-12 w-3/5">
         <div>
-          <Title className="text-2xl">Gestión de contactos</Title>
+          <Title className="pb-0 my-0">Gestión de contactos</Title>
           <div className="flex gap-40 justify-between">
             {itemsFilaUno.map((unItemsFilaUno) => (
               <>
-                <button
+                <Link
+                  to={unItemsFilaUno.link}
                   key={unItemsFilaUno.id}
                   className="overflow-hidden w-[15%]"
-                  onClick={() => handleButtonClick(unItemsFilaUno)}
                   onMouseOver={() => handleMouseOver(unItemsFilaUno)}
                   onMouseOut={handleMouseOut}
                 >
@@ -50,16 +51,17 @@ const Acciones = () => {
                     alt={unItemsFilaUno.name}
                     className="w-full h-auto max-w-full object-contain"
                   />
-                </button>
+                </Link>
               </>
             ))}
           </div>
         </div>
-        <div className="my-12">
-          <Title className="text-2xl">Movimientos</Title>
+        <div className="my-8">
+          <Title className="pb-0 my-0">Movimientos</Title>
           <div className="flex gap-40 justify-between">
             {itemsFilaDos.map((unItemsFilaDos) => (
-              <button
+              <Link
+                to={unItemsFilaDos.link}
                 key={unItemsFilaDos.id}
                 className="overflow-hidden w-[15%]"
                 onClick={() => handleButtonClick(unItemsFilaDos)}
@@ -75,15 +77,16 @@ const Acciones = () => {
                   alt=""
                   className="w-full h-auto max-w-full object-contain"
                 />
-              </button>
+              </Link>
             ))}
           </div>
         </div>
-        <div className="my-12">
-          <Title className="text-2xl">Movimientos</Title>
+        <div className="my-8">
+          <Title className="pb-0 my-0">Movimientos</Title>
           <div className="flex gap-40 justify-between">
             {itemsFilaTres.map((unItemsFilaTres) => (
-              <button
+              <Link
+                to={unItemsFilaTres.link}
                 key={unItemsFilaTres.id}
                 className="overflow-hidden w-[15%]"
                 onClick={() => handleButtonClick(unItemsFilaTres)}
@@ -99,7 +102,7 @@ const Acciones = () => {
                   alt=""
                   className="w-full h-auto max-w-full object-contain"
                 />
-              </button>
+              </Link>
             ))}
           </div>
         </div>
