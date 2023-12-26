@@ -11,11 +11,6 @@ const GlobalContext = React.createContext({
   },
   empresa: {},
   setEmpresa: () => {},
-
-  // auth: {
-  //   jwt: false,
-  //   setJwt: () => {},
-  // },
 });
 
 export default GlobalContext;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import GlobalContext from "../../context/global-context";
 
 // material
 import Autocomplete from "@mui/material/Autocomplete";
@@ -7,7 +8,9 @@ import { styled, lighten, darken } from "@mui/system";
 
 const AutoCompleteHeader = ({ initialData }) => {
   console.log(initialData);
-  const [empresa, setEmpresa] = useState();
+  const { empresa, setEmpresa } = useContext(GlobalContext);
+
+  const [empresaSeleccionada, setEmpresaSeleccionada] = useState();
 
   const GroupHeader = styled("div")(({ theme }) => ({
     position: "sticky",
@@ -29,11 +32,21 @@ const AutoCompleteHeader = ({ initialData }) => {
   });
 
   const handleInputChange = (event, newValue) => {
-    setEmpresa(newValue);
+    const { firstLetter, ...newValueWithoutFirstLetter } = newValue;
+    setEmpresaSeleccionada(newValueWithoutFirstLetter);
+    setEmpresa(newValueWithoutFirstLetter);
   };
 
   useEffect(() => {
-    console.log(empresa);
+    if (empresaSeleccionada) {
+      console.log(empresaSeleccionada);
+    }
+  }, [empresaSeleccionada]);
+
+  useEffect(() => {
+    if (empresa) {
+      console.log(empresa);
+    }
   }, [empresa]);
   debugger;
   return (
@@ -45,7 +58,7 @@ const AutoCompleteHeader = ({ initialData }) => {
         )}
         groupBy={(option) => option.firstLetter}
         getOptionLabel={(option) => option.data}
-        value={empresa}
+        value={empresaSeleccionada}
         onChange={handleInputChange}
         sx={{ width: 300 }}
         renderInput={(params) => (

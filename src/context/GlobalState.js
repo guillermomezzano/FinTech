@@ -3,7 +3,7 @@ import GlobalContext from "./global-context";
 
 const GlobalState = (props) => {
   // const [auth, dispatch] = useReducer(authReducer, initialAuthState);
-  const [empresa, setEmpresa] = useState({});
+  const [empresa, setEmpresa] = useState(null);
   const [loader, setLoader] = useState({ visible: false, text: "" });
   const [snackbar, setSnackbar] = useState({
     message: "",
@@ -27,8 +27,8 @@ const GlobalState = (props) => {
           dialog: dialog,
           setDialog: setDialog,
         },
-        empresa,
-        setEmpresa,
+        empresa: empresa,
+        setEmpresa: setEmpresa,
       }}
     >
       {props.children}

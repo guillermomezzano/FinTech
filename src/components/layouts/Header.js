@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
-import GlobalContext from "../../context/global-context";
+import React, { useState, useEffect } from "react";
 //services
 
 // components
