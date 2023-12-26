@@ -16,6 +16,14 @@ const GlobalState = (props) => {
     open: false,
   });
 
+  const [dialogForm, setDialogForm] = useState({
+    title: "",
+    body: "",
+    btnTextClose: "",
+    btnTextOpen: "",
+    open: false,
+  });
+
   return (
     <GlobalContext.Provider
       value={{
@@ -26,6 +34,8 @@ const GlobalState = (props) => {
           setSnackbar: setSnackbar,
           dialog: dialog,
           setDialog: setDialog,
+          dialogForm: dialogForm,
+          setDialogForm: setDialogForm,
         },
         empresa: empresa,
         setEmpresa: setEmpresa,

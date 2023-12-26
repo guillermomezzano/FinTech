@@ -21,3 +21,24 @@ export const getListaUsuarios = async () => {
   console.log("URL = ", changeableUrl);
   return await axios.get(changeableUrl);
 };
+
+//crear un nuevo cliente
+export const postEmpresa = async (data) => {
+  changeableUrl = `${url}/createUsuario/`;
+  console.log("URL = ", changeableUrl);
+  return await axios.post(changeableUrl, data);
+};
+
+// export const createEmpresa = async (empresa) =>{
+//   changeableUrl = "https://api.cymasuite.com/api/v1/company";
+//   const { data } = await axios.get(changeableUrl , empresa,
+//     {
+//       headers: {
+//         Authorization: `Bearer ${auth.jwt}`,
+//       },
+//     },
+//   );
+
+//   return await axios.post();
+
+// }

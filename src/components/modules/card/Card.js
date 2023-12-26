@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 //components
-// import { MultiChartApp } from "../charts/App";
+import { MultiChartApp } from "../charts/App";
 import CustomButton from "../ui/CustomButton.js";
 import Title from "../ui/Title.js";
 import SearchInput from "../ui/SearchInput.js";
@@ -25,19 +25,19 @@ import {
 } from "../data/dataInfoCardInformes.js";
 
 const Card = ({ title, type, idChart }) => {
-  // const [chart, setChart] = useState();
+  const [chart, setChart] = useState();
   const [informesType, setInformesType] = useState();
 
-  // const allowedIdsCharts = [
-  //   "BarraUnica&ComparaCliente",
-  //   "BarraUnica&VentasMes",
-  //   "BarraParalela&ComparaVenta",
-  //   "BarraParalela&CompraVenta",
-  //   "BarraParalela&ComparaCompraIVA",
-  //   "BarraApilada&DeudasClientes",
-  //   "GraficoDeTorta&ComparaCliente",
-  //   "BarraParalela&ComparaVentaIVA",
-  // ];
+  const allowedIdsCharts = [
+    "BarraUnica&ComparaCliente",
+    "BarraUnica&VentasMes",
+    "BarraParalela&ComparaVenta",
+    "BarraParalela&CompraVenta",
+    "BarraParalela&ComparaCompraIVA",
+    "BarraApilada&DeudasClientes",
+    "GraficoDeTorta&ComparaCliente",
+    "BarraParalela&ComparaVentaIVA",
+  ];
 
   // const allowedIdsTable = [
   //   "LibroAuxiliarVentaCompleto",
@@ -77,11 +77,11 @@ const Card = ({ title, type, idChart }) => {
     if (type === "informesVentas") setInformesType(ventasInfo);
   }, []);
 
-  // useEffect(() => {
-  //   if (allowedIdsCharts.includes(idChart)) {
-  //     setChart(<MultiChartApp typeid={idChart} key={"1"} />);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (allowedIdsCharts.includes(idChart)) {
+      setChart(<MultiChartApp typeid={idChart} key={"1"} />);
+    }
+  }, []);
 
   const CardVentaCompras = () => {
     return (
@@ -91,7 +91,7 @@ const Card = ({ title, type, idChart }) => {
           <div className="border-solid border border-black px-4">MES</div>
         </div>
         <div className=" flex justify-between bg-light-gray-card p-6">
-          <div className="max-w-[35%]">""</div>
+          <div className="max-w-[35%]">{chart}</div>
           <div className="flex flex-col justify-center gap-4">
             <div className="flex flex-col">
               <p>{type === "ventas" ? "Pagadas" : "Facturadas"}</p>
