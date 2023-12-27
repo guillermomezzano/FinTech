@@ -19,11 +19,14 @@ const IncomeUpdateForm = () => {
 
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
+    const selectorName = event.target.name;
 
-    if (event.target.name === "CuentaSugerida") {
+    if (selectorName === "CuentaSugerida") {
       setSelectedCuentaSugerida(selectedValue);
-    } else if (event.target.name === "otrasCuentas") {
+      setSelectedOtrasCuentas("");
+    } else if (selectorName === "otrasCuentas") {
       setSelectedOtrasCuentas(selectedValue);
+      setSelectedCuentaSugerida("");
     }
   };
 
