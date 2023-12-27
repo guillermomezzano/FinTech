@@ -29,16 +29,23 @@ export const postEmpresa = async (data) => {
   return await axios.post(changeableUrl, data);
 };
 
-// export const createEmpresa = async (empresa) =>{
-//   changeableUrl = "https://api.cymasuite.com/api/v1/company";
-//   const { data } = await axios.get(changeableUrl , empresa,
-//     {
-//       headers: {
-//         Authorization: `Bearer ${auth.jwt}`,
-//       },
-//     },
-//   );
+// infomrmacion de un libro especifico compra/venta
+export const getLibroEspecifico = async (PK) => {
+  changeableUrl = `${url}/getLibroEspecifico/${PK}`;
+  console.log("URL = ", changeableUrl);
+  return await axios.get(changeableUrl);
+};
 
-//   return await axios.post();
+//cuentas sugeridas
+export const getCuentasSugeridas = async (PK) => {
+  changeableUrl = `${url}/getCuentasSugeridas/${PK}`;
+  console.log("URL = ", changeableUrl);
+  return await axios.get(changeableUrl);
+};
 
-// }
+//todas las cuentas
+export const getTodasCuentas = async (PK) => {
+  changeableUrl = `${url}/getTodasCuentas/`;
+  console.log("URL = ", changeableUrl);
+  return await axios.get(changeableUrl);
+};
