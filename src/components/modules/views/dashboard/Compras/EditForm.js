@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import GlobalContext from "../../../../../context/global-context";
+
+//components
 import Layout from "../../../../layouts/index";
 import { Input, Title, Button } from "../../../ui/index";
+
+//data
 import {
   getLibroEspecifico,
   getCuentasSugeridas,
@@ -11,6 +16,8 @@ import {
 
 const IncomeUpdateForm = () => {
   const { id } = useParams();
+  const { ui } = useContext(GlobalContext);
+  const navigate = useNavigate();
   const [compra, setCompra] = useState(null);
   const [cuentasSugeridas, setCuentasSugeridas] = useState(null);
   const [todasCuentas, setTodasCuentas] = useState(null);
@@ -20,6 +27,7 @@ const IncomeUpdateForm = () => {
 
   const handleSelectChange = (event) => {
     setCuentaSeleccionada(event.target.value);
+
     console.log("cuentaSeleccionada", cuentaSeleccionada);
     // setFormValues({...formValues, cuentaSeleccionada});
   };
@@ -29,6 +37,7 @@ const IncomeUpdateForm = () => {
   };
 
   const handleGuardarClick = async () => {
+    ui.setLoader({ visible: true, text: "editando empresa porfavor espera" });
     const PK = `${id}&${cuentaSeleccionada}`;
     setEditable(false);
     try {
@@ -36,12 +45,21 @@ const IncomeUpdateForm = () => {
       console.log(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      ui.setLoader({ visible: false });
+      navigate("/compras");
     }
+  };
+
+  const handleCerrarClick = () => {
+    // Redirige a la ruta anterior
+    navigate("/compras");
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        ui.setLoader({ visible: true, text: "cargado datos porfavor espera" });
         const { data: compraData } = await getLibroEspecifico(id);
         const { data: cuentasSugeridasData } = await getCuentasSugeridas(id);
         const { data: todasCuentasData } = await getTodasCuentas();
@@ -52,6 +70,8 @@ const IncomeUpdateForm = () => {
         setTodasCuentas(todasCuentasData);
       } catch (error) {
         console.error(error);
+      } finally {
+        ui.setLoader({ visible: false });
       }
     };
 
@@ -146,7 +166,7 @@ const IncomeUpdateForm = () => {
                   disabled={!editable}
                   value={cuentaSeleccionada}
                 >
-                  <optgroup label="Cuenta Sugerida">
+                  <optgroup label="Cuentas Sugeridas">
                     {cuentasSugeridas?.map((unCuentasSugeridas, index) => (
                       <option key={index} value={unCuentasSugeridas?.key}>
                         {unCuentasSugeridas?.data}
@@ -183,6 +203,7 @@ const IncomeUpdateForm = () => {
           <Button
             className="bg-[#dc2626] text-white font-bold px-6"
             title="Cerrar"
+            onClick={handleCerrarClick}
           />
         </div>
       </div>

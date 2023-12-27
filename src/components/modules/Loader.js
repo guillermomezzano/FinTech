@@ -14,8 +14,8 @@ const Loader = () => {
       {ui.loader.visible && (
         <div>
           <Backdrop sx={{ zIndex: 1600 }} open={true}>
-            <div className="py-6 px-12 flex flex-col items-center justify-center">
-              <Typography variant="h2" className="text-xl mb-4 text-center">
+            <div className="py-6 px-12 flex flex-col items-center justify-center bg-white">
+              <Typography variant="h6" className="text-xl mb-4 text-center">
                 {ui.loader.text || "Cargando"}
               </Typography>
               <CircularProgress color="primary" thickness={5} size={60} />

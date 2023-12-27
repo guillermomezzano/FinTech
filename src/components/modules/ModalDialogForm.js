@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
+import GlobalContext from "../../context/global-context";
 //api
 import { postEmpresa } from "../../api/list.api";
 
@@ -11,6 +11,7 @@ import TextField from "@mui/material/TextField";
 import { Button } from "./ui/index";
 
 const ModalForm = ({ open, setShowForm }) => {
+  const { ui } = useContext(GlobalContext);
   const [formData, setFormData] = useState({
     rut: "",
     password: "",
@@ -29,6 +30,7 @@ const ModalForm = ({ open, setShowForm }) => {
   };
 
   const handleSubmitForm = async () => {
+    ui.setLoader({ visible: true, text: "agregando empresa porfavor espera" });
     try {
       // Llama a la función postEmpresa con los datos del formulario
       await postEmpresa(formData);
@@ -37,6 +39,9 @@ const ModalForm = ({ open, setShowForm }) => {
     } catch (error) {
       console.error("Error al intentar insertar en la base de datos:", error);
       // Puedes manejar el error según tus necesidades
+    } finally {
+      ui.setLoader({ visible: false });
+      setShowForm(false);
     }
   };
 
