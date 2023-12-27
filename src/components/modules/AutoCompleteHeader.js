@@ -47,7 +47,7 @@ const AutoCompleteHeader = ({ initialData }) => {
       console.log(empresa);
     }
   }, [empresa]);
-  debugger;
+
   return (
     <>
       <Autocomplete

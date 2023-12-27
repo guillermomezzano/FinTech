@@ -43,7 +43,7 @@ const Header = () => {
     setSearchText(event.target.value);
   };
   console.log(empresa);
-  debugger;
+
   return (
     <div>
       <nav

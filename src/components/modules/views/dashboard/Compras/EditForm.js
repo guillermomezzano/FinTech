@@ -21,7 +21,7 @@ const IncomeUpdateForm = () => {
     const selectedValue = event.target.value;
     const selectorName = event.target.name;
 
-    if (selectorName === "CuentaSugerida") {
+    if (selectorName === "cuentaSugerida") {
       setSelectedCuentaSugerida(selectedValue);
       setSelectedOtrasCuentas("");
     } else if (selectorName === "otrasCuentas") {
@@ -151,7 +151,7 @@ const IncomeUpdateForm = () => {
             <div>
               <p className="text-lg font-bold">Cuentas sugeridas</p>
               <select
-                name="CuentaSugerida"
+                name="cuentaSugerida"
                 onChange={handleSelectChange}
                 disabled={!editable}
                 value={selectedCuentaSugerida}

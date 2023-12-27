@@ -46,7 +46,6 @@ const ModalForm = ({ open, setShowForm }) => {
     }
   }, [formData]);
 
-  debugger;
   return (
     <Dialog open={open} onClose={handleCloseForm}>
       <DialogTitle>Empresa</DialogTitle>

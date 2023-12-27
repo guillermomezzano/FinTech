@@ -26,7 +26,7 @@ const Sidebar = () => {
   const handleButtonClick = () => {
     setExpanded(!expanded);
   };
-  debugger;
+
   return (
     <>
       <div className={`sidebar ${expanded ? "expanded" : ""}`}>
