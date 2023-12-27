@@ -26,7 +26,8 @@ export const getListaUsuarios = async () => {
 export const postEmpresa = async (data) => {
   changeableUrl = `${url}/createUsuario/`;
   console.log("URL = ", changeableUrl);
-  return await axios.post(changeableUrl, data);
+  console.log(data);
+  return await axios.get(changeableUrl, data);
 };
 
 // infomrmacion de un libro especifico compra/venta
@@ -44,8 +45,15 @@ export const getCuentasSugeridas = async (PK) => {
 };
 
 //todas las cuentas
-export const getTodasCuentas = async (PK) => {
+export const getTodasCuentas = async () => {
   changeableUrl = `${url}/getTodasCuentas/`;
+  console.log("URL = ", changeableUrl);
+  return await axios.get(changeableUrl);
+};
+
+// set cuenta
+export const setCuenta = async (PK) => {
+  changeableUrl = `${url}/setCuenta/${PK}`;
   console.log("URL = ", changeableUrl);
   return await axios.get(changeableUrl);
 };

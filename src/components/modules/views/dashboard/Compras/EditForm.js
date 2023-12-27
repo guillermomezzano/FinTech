@@ -6,6 +6,7 @@ import {
   getLibroEspecifico,
   getCuentasSugeridas,
   getTodasCuentas,
+  setCuenta,
 } from "../../../../../api/list.api";
 
 const IncomeUpdateForm = () => {
@@ -13,33 +14,29 @@ const IncomeUpdateForm = () => {
   const [compra, setCompra] = useState(null);
   const [cuentasSugeridas, setCuentasSugeridas] = useState(null);
   const [todasCuentas, setTodasCuentas] = useState(null);
-  const [selectedCuentaSugerida, setSelectedCuentaSugerida] = useState("");
-  const [selectedOtrasCuentas, setSelectedOtrasCuentas] = useState("");
-  const [formValues, setFormValues] = useState({
-    Cuenta: selectedCuentaSugerida || selectedOtrasCuentas,
-  });
+  const [cuentaSeleccionada, setCuentaSeleccionada] = useState(null);
+  // const [formValues, setFormValues] = useState({});
   const [editable, setEditable] = useState(false);
 
   const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    const selectorName = event.target.name;
-
-    if (selectorName === "cuentaSugerida") {
-      setSelectedCuentaSugerida(selectedValue);
-      setSelectedOtrasCuentas("");
-    } else if (selectorName === "otrasCuentas") {
-      setSelectedOtrasCuentas(selectedValue);
-      setSelectedCuentaSugerida("");
-    }
+    setCuentaSeleccionada(event.target.value);
+    console.log("cuentaSeleccionada", cuentaSeleccionada);
+    // setFormValues({...formValues, cuentaSeleccionada});
   };
 
   const handleEditClick = () => {
     setEditable(true);
   };
 
-  const handleGuardarClick = () => {
+  const handleGuardarClick = async () => {
+    const PK = `${id}&${cuentaSeleccionada}`;
     setEditable(false);
-    // Aquí puedes realizar acciones adicionales al guardar
+    try {
+      const { data } = await setCuenta(PK);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -50,7 +47,7 @@ const IncomeUpdateForm = () => {
         const { data: todasCuentasData } = await getTodasCuentas();
 
         setCompra(compraData.data[0]);
-        setFormValues(...formValues, compraData.data[0]);
+        // setFormValues({ ...formValues, compraData });
         setCuentasSugeridas(cuentasSugeridasData);
         setTodasCuentas(todasCuentasData);
       } catch (error) {
@@ -62,9 +59,9 @@ const IncomeUpdateForm = () => {
   }, [id]);
 
   useEffect(() => {
-    console.log("selectedCuentaSugerida", selectedCuentaSugerida);
-    console.log("selectedOtrasCuentas", selectedOtrasCuentas);
-  }, [selectedCuentaSugerida, selectedOtrasCuentas]);
+    console.log("compra", compra);
+    console.log("cuentaSeleccionada", cuentaSeleccionada);
+  }, [compra, cuentaSeleccionada]);
 
   return (
     <Layout>
@@ -74,14 +71,14 @@ const IncomeUpdateForm = () => {
           <div className="grid grid-rows-4 grid-flow-col gap-4">
             <div>
               <Input
-                label="Compra"
+                label="Comprobante"
                 disabled={true}
                 placeholder={compra?.Comprobante}
               />
             </div>
             <div>
               <Input
-                label="Cliente"
+                label="Proveedor"
                 disabled={true}
                 placeholder={compra?.Proveedor}
               />
@@ -115,18 +112,10 @@ const IncomeUpdateForm = () => {
               />
             </div>
             <div>
-              <Input
-                label="Descripcion"
-                disabled={true}
-                placeholder={compra?.Fecha}
-              />
+              <Input label="Descripcion" disabled={true} placeholder="" />
             </div>
             <div>
-              <Input
-                label="Adjuntar"
-                disabled={true}
-                placeholder={compra?.Fecha}
-              />
+              <Input label="Adjuntar" disabled={true} placeholder="" />
             </div>
           </div>
           <div>
@@ -147,42 +136,32 @@ const IncomeUpdateForm = () => {
               <Input
                 label="Monto neto"
                 disabled={true}
-                placeholder={compra?.Monto}
+                placeholder={compra?.MontoNeto}
               />
-            </div>
-          </div>
-          <div className="flex gap-4">
-            <div>
-              <p className="text-lg font-bold">Cuentas sugeridas</p>
-              <select
-                name="cuentaSugerida"
-                onChange={handleSelectChange}
-                disabled={!editable}
-                value={selectedCuentaSugerida}
-              >
-                <option value="">Selecciona una cuenta</option>
-                {cuentasSugeridas?.map((unCuentasSugeridas, index) => (
-                  <option key={index} value={unCuentasSugeridas?.key}>
-                    {unCuentasSugeridas?.data}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <p className="text-lg font-bold">Otras Cuentas</p>
-              <select
-                name="otrasCuentas"
-                onChange={handleSelectChange}
-                disabled={!editable}
-                value={selectedOtrasCuentas}
-              >
-                <option value="">Selecciona una cuenta</option>
-                {todasCuentas?.map((unTodasCuentas, index) => (
-                  <option key={index} value={unTodasCuentas?.key}>
-                    {unTodasCuentas?.data}
-                  </option>
-                ))}
-              </select>
+              <div>
+                <p className="text-lg font-bold">Cuentas</p>
+                <select
+                  name="cuentaSeleccionada"
+                  onChange={handleSelectChange}
+                  disabled={!editable}
+                  value={cuentaSeleccionada}
+                >
+                  <optgroup label="Cuenta Sugerida">
+                    {cuentasSugeridas?.map((unCuentasSugeridas, index) => (
+                      <option key={index} value={unCuentasSugeridas?.key}>
+                        {unCuentasSugeridas?.data}
+                      </option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="Otras Cuentas">
+                    {todasCuentas?.map((unTodasCuentas, index) => (
+                      <option key={index} value={unTodasCuentas?.key}>
+                        {unTodasCuentas?.data}
+                      </option>
+                    ))}
+                  </optgroup>
+                </select>
+              </div>
             </div>
           </div>
         </div>

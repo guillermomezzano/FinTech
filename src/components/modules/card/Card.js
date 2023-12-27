@@ -91,7 +91,7 @@ const Card = ({ title, type, idChart }) => {
           <div className="border-solid border border-black px-4">MES</div>
         </div>
         <div className=" flex justify-between bg-light-gray-card p-6">
-          <div className="max-w-[35%]">{chart}</div>
+          <div className="max-w-[35%]"></div>
           <div className="flex flex-col justify-center gap-4">
             <div className="flex flex-col">
               <p>{type === "ventas" ? "Pagadas" : "Facturadas"}</p>
@@ -127,7 +127,7 @@ const Card = ({ title, type, idChart }) => {
           <p className="italic">Revisa como se mueve el negocio en el tiempo</p>
         </div>
         <div className="bg-light-gray-card p-6">
-          <div className="max-w-xs">""</div>
+          <div className="max-w-xs"></div>
         </div>
       </div>
     );
