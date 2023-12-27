@@ -12,22 +12,22 @@ import "./App.css";
 
 // material
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { esES } from "@mui/material/locale";
 import { AuthContextProvider } from "./context/AuthContext";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1FB4B0",
-    },
-    secondary: {
-      main: "#EB5E4F",
+const theme = createTheme(
+  {
+    palette: {
+      primary: {
+        main: "#1FB4B0",
+      },
+      secondary: {
+        main: "#EB5E4F",
+      },
     },
   },
-  // typography: {
-  //   fontFamily: ['Karla, sans-serif'].join(','),
-  //   fontSize: 17,
-  // },
-});
+  esES,
+);
 
 function App() {
   return (

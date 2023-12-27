@@ -30,7 +30,7 @@ const TodasLasCompras = () => {
         console.log(error);
       }
     };
-    
+
     getData();
   }, [empresa]);
 
@@ -45,7 +45,7 @@ const TodasLasCompras = () => {
         <SearchInput className="bg-white border-2" />
         <SearchInput className="bg-white border-2" />
       </div>
-      <Table data={{ cols, rows: data }} edit />
+      <Table data={{ cols, rows: data }} edit path="/compras" />
     </div>
   );
 };
