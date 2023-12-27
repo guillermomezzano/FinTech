@@ -27,7 +27,7 @@ export const postEmpresa = async (data) => {
   changeableUrl = `${url}/createUsuario/`;
   console.log("URL = ", changeableUrl);
   console.log(data);
-  return await axios.get(changeableUrl, data);
+  return await axios.post(changeableUrl, data);
 };
 
 // infomrmacion de un libro especifico compra/venta
