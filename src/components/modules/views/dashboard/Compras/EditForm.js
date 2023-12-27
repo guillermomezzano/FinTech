@@ -15,6 +15,9 @@ const IncomeUpdateForm = () => {
   const [todasCuentas, setTodasCuentas] = useState(null);
   const [selectedCuentaSugerida, setSelectedCuentaSugerida] = useState("");
   const [selectedOtrasCuentas, setSelectedOtrasCuentas] = useState("");
+  const [formValues, setFormValues] = useState({
+    Cuenta: selectedCuentaSugerida || selectedOtrasCuentas,
+  });
   const [editable, setEditable] = useState(false);
 
   const handleSelectChange = (event) => {
@@ -47,6 +50,7 @@ const IncomeUpdateForm = () => {
         const { data: todasCuentasData } = await getTodasCuentas();
 
         setCompra(compraData.data[0]);
+        setFormValues(...formValues, compraData.data[0]);
         setCuentasSugeridas(cuentasSugeridasData);
         setTodasCuentas(todasCuentasData);
       } catch (error) {
