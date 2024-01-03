@@ -7,8 +7,8 @@ export const cols = {
   Pagado: "Monto Pagado",
   Bruto: "Monto Bruto",
   estado: "Estado",
-  Cuenta: "Honorarios Por Pagar",
-  codCuenta: "2-01-06-04",
+  Cuenta: "Cuenta",
+  codCuenta: "Código Cuenta",
 };
 
 export const columnHeaders = Object.values(cols);
