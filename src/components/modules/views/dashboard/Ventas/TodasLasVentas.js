@@ -22,7 +22,7 @@ const TodasLasVentas = () => {
     if (!empresa?.key) return;
     try {
       const response = await fetch(
-        `http://localhost:4000/getLibroHonorarioLibro/${empresa?.key}&${
+        `http://localhost:4000/getLibroVentaLibro/${empresa?.key}&${
           yearFilter ? yearFilter : year
         }&${monthFilter ? monthFilter : month}`
       );
@@ -63,7 +63,7 @@ const TodasLasVentas = () => {
         onClick={handleSearch}
         title="Buscar"
       />
-      <Table data={{ cols, rows: data }} edit path="/ventas" />
+      <Table data={{ cols, rows: data }} edit path={`/compras/${data.PK}`} />
     </div>
   );
 };
