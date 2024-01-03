@@ -1,7 +1,7 @@
 import React from "react";
 
 // data
-import { cols, rows } from "../../../data/dataTablaVentas";
+// import { cols, rows } from "../../../data/dataTablaVentas";
 
 // components
 import Card from "../../../card/Card";
@@ -19,7 +19,7 @@ const Honorarios = () => {
       <div className="flex gap-2 ">
         <Input className="bg-white border-2" />
       </div>
-      <Table data={{ cols, rows }} edit />
+      {/* <Table data={{ cols, rows }} edit /> */}
     </div>
   );
 };

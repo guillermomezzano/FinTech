@@ -49,7 +49,7 @@ const TodasLasCompras = () => {
   return (
     <div>
       <div className="py-10">
-        <Card title="Transacciones de venta" type="tablas" idChart="" />
+        <Card title="Transacciones de compras" type="tablas" idChart="" />
       </div>
       <div className="flex gap-2 items-center">
         <SearchInput className="bg-white border-2" />

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 // data
-import { cols } from "../../../data/dataTablaClientes";
+import { cols } from "../../../data/dataTablaProveedores";
 
 // components
 import Card from "../../../card/Card";
@@ -20,7 +20,7 @@ const Clientes = () => {
       if (!empresa?.key) return;
       try {
         const response = await fetch(
-          `http://localhost:4000/getLibroClienteLibro/${empresa?.key}&2023&11`
+          `http://localhost:4000/getLibroProveedorLibro/${empresa?.key}&2023&11`
         );
         console.log(response);
         const data = await response.json();

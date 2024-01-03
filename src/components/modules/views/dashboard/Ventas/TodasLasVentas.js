@@ -10,6 +10,7 @@ import Table from "../../../table/Table";
 import { Button } from "../../../ui/index";
 // import inputFilterTable from "../../../ui/InputFilterTable";
 import Input from "../../../ui/Input";
+import GlobalContext from "../../../../../context/global-context";
 // material
 
 const TodasLasVentas = () => {

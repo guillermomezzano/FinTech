@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../../context/global-context";
 
 // data
-import { cols } from "../../../data/dataTablaCompras";
+import { cols } from "../../../data/dataTablaHonorarios";
 
 // components
 import Card from "../../../card/Card";
@@ -72,7 +72,7 @@ const TodosLosHonorarios = () => {
           title="Buscar"
         />
       </div>
-      <Table data={{ cols, rows: data }} edit path="/compras" />
+      <Table data={{ cols, rows: data }} edit path="/honorarios" />
     </div>
   );
 };
