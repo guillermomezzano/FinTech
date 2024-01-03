@@ -73,7 +73,7 @@ const TodasLasCompras = () => {
           title="Buscar"
         />
       </div>
-      <Table data={{ cols, rows: data }} edit path="/compras" />
+      <Table data={{ cols, rows: data }} edit path={`/compras/${data.PK}`}/>
     </div>
   );
 };

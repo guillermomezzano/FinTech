@@ -72,7 +72,7 @@ const TodosLosHonorarios = () => {
           title="Buscar"
         />
       </div>
-      <Table data={{ cols, rows: data }} edit path="/honorarios" />
+      <Table data={{ cols, rows: data }} edit path={`/compras/${data.PK}`} />
     </div>
   );
 };
