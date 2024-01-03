@@ -67,7 +67,7 @@ const TodasLasVentas = () => {
         onClick={handleSearch}
         title="Buscar"
       />
-      <Table data={{ cols, rows: data }} edit path="/ventas" />
+      <Table data={{ cols, rows: data }} edit path="/compras" />
     </div>
   );
 };

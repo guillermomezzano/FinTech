@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../../context/global-context";
 
 // data
-import { cols } from "../../../data/dataTablaHonorarios";
+import { cols } from "../../../data/dataTablaCompras";
 
 // components
 import Card from "../../../card/Card";
