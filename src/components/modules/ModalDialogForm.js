@@ -3,12 +3,18 @@ import GlobalContext from "../../context/global-context";
 //api
 import { postEmpresa } from "../../api/list.api";
 
+//assets
+import tituloLoginSII from "../../assets/tituloLoginSII.png";
+import iconoLlaveSII from "../../assets/iconoLlaveSII.png";
+
+//components
+import { Input } from "../modules/ui/index";
+import { Button } from "./ui/index";
+
+//material
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import TextField from "@mui/material/TextField";
-import { Button } from "./ui/index";
 
 const ModalForm = ({ open, setShowForm }) => {
   const { ui } = useContext(GlobalContext);
@@ -53,39 +59,44 @@ const ModalForm = ({ open, setShowForm }) => {
 
   return (
     <Dialog open={open} onClose={handleCloseForm}>
-      <DialogTitle>Empresa</DialogTitle>
-      <DialogContent>
-        <TextField
-          label="Rut"
-          variant="outlined"
-          fullWidth
-          name="rut"
-          value={formData.rut}
-          onChange={handleInputChange}
-          margin="normal"
-        />
-        <TextField
-          label="Clave"
-          variant="outlined"
-          fullWidth
-          name="password"
-          value={formData.password}
-          onChange={handleInputChange}
-          margin="normal"
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button
-          onClick={handleCloseForm}
-          className="bg-light-gray text-white font-bold px-6"
-          title="Cerrar"
-        />
-        <Button
-          onClick={handleSubmitForm}
-          className="bg-aqua-green text-white font-bold px-6"
-          title="Agregar"
-        />
-      </DialogActions>
+      <div className="flex flex-col items-center mb-5">
+        <h1 className="text-[#002A46] font-bold text-3xl text-center p-4">
+          Identificación de Contribuyentes
+        </h1>
+        <div className="flex flex-col m-2 border shadow-lg w-10/12">
+          <div className="flex justify-center bg-[#002A46] h-24 py-5">
+            <img src={tituloLoginSII} alt="tituloLoginSII" />
+          </div>
+          <DialogContent>
+            <Input
+              className="border-[#CCCCCC] border bg-white placeholder:font-semibold placeholder:opacity-50 placeholder:text-lg focus:shadow-4xl focus:shadow-[#cbe0f2]"
+              labelStyle="px-[0px] text-[#002A46]"
+              label="RUT"
+              placeholder="Ej: 123456789"
+              name="rut"
+              value={formData.rut}
+              onChange={handleInputChange}
+            />
+            <Input
+              className="border-[#CCCCCC] border bg-white focus:shadow-4xl focus:shadow-[#cbe0f2]"
+              label="Ingresa Clave Tributaria"
+              labelStyle="px-[0px] pt-2.5 text-[#002A46]"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+            <DialogActions sx={{ padding: 0 }}>
+              <Button
+                onClick={handleSubmitForm}
+                className="bg-[#002A46] text-white font-bold w-full uppercase
+                mt-7 hover:bg-[#EB510D] cursor-pointer"
+                title="ingresar"
+                imageSrc={iconoLlaveSII}
+              />
+            </DialogActions>
+          </DialogContent>
+        </div>
+      </div>
     </Dialog>
   );
 };

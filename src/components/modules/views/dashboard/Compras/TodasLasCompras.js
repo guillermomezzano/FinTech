@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // data
 import { cols } from "../../../data/dataTablaCompras";
@@ -13,7 +13,7 @@ import GlobalContext from "../../../../../context/global-context";
 // material
 
 const TodasLasCompras = () => {
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
   const { empresa } = useContext(GlobalContext);
 
   useEffect(() => {

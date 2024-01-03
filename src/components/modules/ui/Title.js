@@ -15,7 +15,7 @@ const Title = ({ children, className, variant = "h1", classTitle }) => {
   };
 
   return renderHeading(
-    `${classTitle || "text-2xl font-light my-4 pb-6"} ${className}`,
+    `${classTitle || "text-2xl font-light"} ${className}`,
     variant,
     children
   );

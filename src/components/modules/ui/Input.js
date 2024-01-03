@@ -4,7 +4,11 @@ import clsx from "clsx";
 const Input = (props) => (
   <div className={props?.containerStyle}>
     <label htmlFor={props?.name || props?.id}>
-      <p className={clsx("text-lg font-bold px-4", props?.labelStyle, { "uppercase": props?.uppercase })}>
+      <p
+        className={clsx("text-lg font-bold px-4", props?.labelStyle, {
+          uppercase: props?.uppercase,
+        })}
+      >
         {props?.label}
       </p>
     </label>

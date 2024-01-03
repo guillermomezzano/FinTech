@@ -11,6 +11,7 @@ import Gastos from "../pages/Gastos";
 import Accountant from "../pages/Accountant";
 import Compras from "../pages/Compras";
 import EditForm from "../components/modules/views/dashboard/Compras/EditForm";
+import Honorario from "../pages/Honorario";
 
 const AppRoutes = () => {
   return (
@@ -26,6 +27,7 @@ const AppRoutes = () => {
       <Route path="/signin" element={<Authentication />} />
       <Route path="/signup" element={<Authentication />} />
       <Route path="/signuprecord" element={<Authentication />} />
+      <Route path="/honorarios" element={<Honorario />} />
     </Routes>
   );
 };
