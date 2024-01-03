@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../../../../context/global-context";
 
 // data
-import { cols } from "../../../data/dataTablaCompras";
+import { cols } from "../../../data/dataTablaHonorarios";
 
 // components
 import Card from "../../../card/Card";
@@ -17,7 +17,6 @@ const TodosLosHonorarios = () => {
   const { empresa } = useContext(GlobalContext);
   const [monthFilter, setMonthFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
-
   const date = new Date();
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
@@ -44,16 +43,7 @@ const TodosLosHonorarios = () => {
 
   const handleSearch = () => {
     getData();
-    console.log("monthFilter", monthFilter);
-    console.log("yearFilter", yearFilter);
   };
-
-  useEffect(() => {
-    console.log("empresa", empresa?.key);
-    console.log("date", date);
-    console.log("year", year);
-    console.log("month", month);
-  }, [empresa, date, year, month]);
 
   return (
     <div>
@@ -64,7 +54,7 @@ const TodosLosHonorarios = () => {
         <SearchInput className="bg-white border-2" />
         <SearchInput className="bg-white border-2" />
         <SearchInput className="bg-white border-2" />
-        <label>Dia</label>
+        <label>Mes</label>
         <input
           type="number"
           value={monthFilter}
