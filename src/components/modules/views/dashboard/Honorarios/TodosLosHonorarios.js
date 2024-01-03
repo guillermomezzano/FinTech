@@ -7,6 +7,7 @@ import { cols } from "../../../data/dataTablaCompras";
 import Card from "../../../card/Card";
 import Table from "../../../table/Table";
 // import inputFilterTable from "../../../ui/InputFilterTable";
+import DateRangeFilter from "../../../buttonFilter/DateRangeFilter";
 import SearchInput from "../../../ui/SearchInput";
 import GlobalContext from "../../../../../context/global-context";
 
@@ -17,12 +18,15 @@ const TodosLosHonorarios = () => {
   const { empresa } = useContext(GlobalContext);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
 
   const getData = async () => {
     if (!empresa?.key) return;
     try {
       const response = await fetch(
-        `http://localhost:4000/getLibroCompraLibro/${empresa?.key}`
+        `http://localhost:4000/getLibroHonorarioLibro/${empresa?.key}&${year}&${month}`
       );
       const data = await response.json();
       console.log(data);
@@ -56,15 +60,19 @@ const TodosLosHonorarios = () => {
     console.log("queryDateInitial", queryDateInitial);
     console.log("queryDateEnd", queryDateEnd);
   };
+  // const handleSearch = () => {
+  //   const queryDateInitial = DateRangeFilter.getQueryDate(startDate);
+  //   const queryDateEnd = DateRangeFilter.getQueryDate(endDate);
+  //   console.log("queryDateInitial", queryDateInitial);
+  //   console.log("queryDateEnd", queryDateEnd);
+  // };
   useEffect(() => {
-    console.log("empresa", empresa.key);
-  }, [empresa]);
+    console.log("empresa", empresa?.key);
+    console.log("date", date);
+    console.log("year", year);
+    console.log("month", month);
+  }, [empresa, date, year, month]);
 
-  // useEffect(() => {
-  //   console.log("startDate", startDate);
-  //   console.log("endDate", endDate);
-  // }, [startDate, endDate]);
-  debugger;
   return (
     <div>
       <div className="py-10">
@@ -87,6 +95,13 @@ const TodosLosHonorarios = () => {
           onChange={(e) => setEndDate(e.target.value)}
         />
         <button onClick={handleSearch}>Buscar</button>
+        {/* <DateRangeFilter
+          startDate={startDate}
+          endDate={endDate}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
+          handleSearch={handleSearch}
+        /> */}
       </div>
       <Table data={{ cols, rows: data }} edit path="/compras" />
     </div>
