@@ -6,10 +6,11 @@ export const cols = {
   Codigo: "Código",
   Comprobante: "Comprobante",
   MontoTotal: "Monto total",
+  MontoNeto: "Monto neto",
   MontoExento: "Monto exento",
   MontoIVA: "Monto IVA",
-  MontoNeto: "Monto neto",
   Cuenta: "Cuenta",
+  codCuenta: "codCuenta",
 };
 
 export const columnHeaders = Object.values(cols);

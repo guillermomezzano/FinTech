@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 // data
-import { cols } from "../../../data/dataTablaCompras";
+import { cols } from "../../../data/dataTablaHonorarios";
 
 // components
 import Card from "../../../card/Card";
@@ -18,22 +18,19 @@ const TodosLosHonorarios = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
 
-  const getData = async () => {
-    if (!empresa?.key) return;
-    try {
-      const response = await fetch(
-        `http://localhost:4000/getLibroCompraLibro/${empresa?.key}`
-      );
-      const data = await response.json();
-      console.log(data);
-      setData(data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getData();
+    (async () => {
+      if (!empresa?.key) return;
+      try {
+        const response = await fetch(
+          `http://localhost:4000/getLibroHonorarioLibro/${empresa?.key}&2023&11`
+        );
+        const data = await response.json();
+        setData(data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   }, [empresa]);
 
   const getQueryInitialDate = (startDate) => {
@@ -56,15 +53,7 @@ const TodosLosHonorarios = () => {
     console.log("queryDateInitial", queryDateInitial);
     console.log("queryDateEnd", queryDateEnd);
   };
-  useEffect(() => {
-    console.log("empresa", empresa.key);
-  }, [empresa]);
 
-  // useEffect(() => {
-  //   console.log("startDate", startDate);
-  //   console.log("endDate", endDate);
-  // }, [startDate, endDate]);
-  debugger;
   return (
     <div>
       <div className="py-10">
@@ -88,7 +77,7 @@ const TodosLosHonorarios = () => {
         />
         <button onClick={handleSearch}>Buscar</button>
       </div>
-      <Table data={{ cols, rows: data }} edit path="/compras" />
+      <Table data={{ cols, rows: data }} edit path="/honorarios" />
     </div>
   );
 };

@@ -1,16 +1,17 @@
 export const cols = {
-  Proveedor: "Proveedor",
-  RUT: "RUT",
+  Cliente:"Cliente",
+  RUT:"RUT",
   Fecha: "Fecha",
-  Folio: "Folio",
+  Vencim: "Vencimiento",
+  Folio: "Documento",
   Codigo: "Código",
   Comprobante: "Comprobante",
-  MontoTotal: "Monto total",
-  MontoNeto: "Monto neto",
-  MontoExento: "Monto exento",
-  MontoIVA: "Monto IVA",
+  DEBE: "Debe",
+  HABER:  "Haber",
+  Saldo: "Saldo",
+  Balance: "Balance",
+  codCuenta: "Código Cuenta",
   Cuenta: "Cuenta",
-  codCuenta: "codCuenta",
 };
 
 export const columnHeaders = Object.values(cols);

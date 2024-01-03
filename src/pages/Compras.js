@@ -5,7 +5,7 @@ import Title from "../components/modules/ui/Title";
 import Tabs from "../components/modules/tabs/Tabs";
 import Layout from "../components/layouts/index";
 import TodasLasCompras from "../components/modules/views/dashboard/Compras/TodasLasCompras";
-import Clientes from "../components/modules/views/dashboard/Compras/Clientes";
+import Proveedores from "../components/modules/views/dashboard/Compras/Proveedores";
 // material
 
 const Compras = () => {
@@ -15,8 +15,8 @@ const Compras = () => {
       content: <TodasLasCompras />,
     },
     {
-      title: "Clientes",
-      content: <Clientes />,
+      title: "Proveedores",
+      content: <Proveedores />,
     },
     {
       title: "Productos y servicios",

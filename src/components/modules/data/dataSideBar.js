@@ -33,7 +33,7 @@ export const menuItemsDefaults = [
     id: 6,
     name: "Clientes",
     icon: require("../../../assets/iconos/iconLibroA.png"),
-    path: "",
+    path: "/clientes",
   },
   {
     id: 7,
@@ -51,13 +51,13 @@ export const menuItemsDefaults = [
     id: 9,
     name: "Inpuestos",
     icon: require("../../../assets/iconos/iconCalendario.png"),
-    path: "",
+    path: "/impuestos",
   },
   {
     id: 10,
     name: "Empleados",
     icon: require("../../../assets/iconos/iconPersona.png"),
-    path: "",
+    path: "/empleados",
   },
   {
     id: 11,

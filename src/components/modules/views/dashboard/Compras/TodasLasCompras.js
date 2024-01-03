@@ -17,27 +17,24 @@ const TodasLasCompras = () => {
   const { empresa } = useContext(GlobalContext);
 
   useEffect(() => {
-    const getData = async () => {
+    (async () => {
       if (!empresa?.key) return;
       try {
         const response = await fetch(
-          `http://localhost:4000/getLibroCompraLibro/${empresa?.key}`
+          `http://localhost:4000/getLibroCompraLibro/${empresa?.key}&2023&11`
         );
         const data = await response.json();
-        console.log(data);
         setData(data.data);
       } catch (error) {
         console.log(error);
       }
-    };
-
-    getData();
+    })();
   }, [empresa]);
 
   return (
     <div>
       <div className="py-10">
-        <Card title="Transacciones de venta" type="tablas" idChart="" />
+        <Card title="Transacciones de compras" type="tablas" idChart="" />
       </div>
       <div className="flex gap-2 ">
         <SearchInput className="bg-white border-2" />
