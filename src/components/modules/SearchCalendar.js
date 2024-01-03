@@ -24,11 +24,10 @@ const SearchCalendar = ({ initialData, setData }) => {
   const handleFechaFinChange = (e) => {
     setFechaFin(e.target.value);
   };
-  debugger;
+
   useEffect(() => {
     // Función para filtrar las filas por fecha
     const filterDataByDateRange = () => {
-      debugger;
       const filteredRows = initialData.filter((row) => {
         const rowFecha = new Date(row.fecha);
         const startFecha = new Date(fechaInicio);
@@ -40,7 +39,6 @@ const SearchCalendar = ({ initialData, setData }) => {
       setData(filteredRows);
     };
     // Llama a la función cuando cambien las fechas
-    debugger;
     filterDataByDateRange();
   }, [fechaInicio, fechaFin]);
   return (

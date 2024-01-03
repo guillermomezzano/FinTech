@@ -8,10 +8,6 @@ import { cols } from "../../../data/dataTablaVentas";
 import Card from "../../../card/Card";
 import Table from "../../../table/Table";
 import { Button } from "../../../ui/index";
-// import inputFilterTable from "../../../ui/InputFilterTable";
-import Input from "../../../ui/Input";
-import GlobalContext from "../../../../../context/global-context";
-// material
 
 const TodasLasVentas = () => {
   const [data, setData] = useState([]);
@@ -31,7 +27,6 @@ const TodasLasVentas = () => {
         }&${monthFilter ? monthFilter : month}`
       );
       const data = await response.json();
-      console.log(data);
       setData(data.data);
     } catch (error) {
       console.log(error);
@@ -68,7 +63,7 @@ const TodasLasVentas = () => {
         onClick={handleSearch}
         title="Buscar"
       />
-      <Table data={{ cols, rows: data }} edit path="/compras" />
+      <Table data={{ cols, rows: data }} edit path="/ventas" />
     </div>
   );
 };

@@ -7,27 +7,21 @@ import PieChartUnico from "./PieChartUnico";
 // var k = "VentasMes";
 
 export const MultiChartApp = ({ typeid }) => {
-  debugger;
-  console.log("MULTY", typeid);
   const myArray = typeid.split("&");
   const type = myArray[0];
   const id = myArray[1];
   var Grafico;
   switch (type) {
     case "BarraUnica":
-      console.log("primero");
       Grafico = <BarraUnica tempo={id} />;
       break;
     case "BarraParalela":
-      console.log("segundo");
       Grafico = <BarraParalela tempo={id} />;
       break;
     case "BarraApilada":
-      console.log("terceo");
       Grafico = <BarraApilada tempo={id} />;
       break;
     case "GraficoDeTorta":
-      console.log("cuarto");
       Grafico = <PieChartUnico tempo={id} />;
       break;
     default:

@@ -26,7 +26,6 @@ const SignUpStepperRecord = () => {
 
   const handleNext = (data) => {
     setFormValues({ ...formValues, ...data });
-    debugger;
     activeStep === 6
       ? navigate("/", { replace: true })
       : setActiveStep((prevActiveStep) => prevActiveStep + 1);

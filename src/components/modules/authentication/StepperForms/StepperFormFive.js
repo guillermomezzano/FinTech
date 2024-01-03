@@ -67,7 +67,6 @@ const StepperFormFive = ({ active, onNext, onBack }) => {
   const handleBack = () => {
     onBack(formData);
   };
-  debugger;
   return (
     <div className="w-full" style={{ display: active ? "block" : "none" }}>
       <h1 className="text-6xl">¿Que necesitas de Luca?</h1>

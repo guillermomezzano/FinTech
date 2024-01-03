@@ -72,7 +72,7 @@ const SignUpForm = () => {
     e.preventDefault();
     console.log(formValues);
     console.log(errors);
-    debugger;
+
     try {
       if (formValues.password !== formValues.repeatPassword) {
         setErrors({
